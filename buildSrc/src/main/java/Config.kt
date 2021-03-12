@@ -39,6 +39,8 @@ object Versions {
     const val moshi = "1.11.0"
     const val viewBindingProperty = "1.4.4"
     const val dagger = "2.33"
+
+    const val googleMaps = "17.0.0"
 }
 
 object Plugins {
@@ -87,4 +89,5 @@ object Libs {
         "com.github.kirich1409:viewbindingpropertydelegate:${Versions.viewBindingProperty}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerProcessor = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val googleMaps = "com.google.android.gms:play-services-maps:${Versions.googleMaps}"
 }
