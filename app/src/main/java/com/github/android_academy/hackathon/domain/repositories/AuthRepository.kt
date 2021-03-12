@@ -1,17 +1,18 @@
 package com.github.android_academy.hackathon.domain.repositories
 
-import com.github.android_academy.hackathon.domain.models.Sample
+import com.github.android_academy.hackathon.domain.OperationResult
+import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.ViewState
 
 interface AuthRepository {
-    suspend fun loadUser(): ViewState<Sample>
+    fun loadUser(): User?
 
-    suspend fun login(username: String, password: String): ViewState<Boolean>
+    suspend fun login(username: String, password: String): OperationResult<Unit, String>
 
     suspend fun register(
         username: String,
         password: String,
         name: String,
         isMentor: Boolean
-    ): ViewState<Boolean>
+    ): OperationResult<Unit, String>
 }

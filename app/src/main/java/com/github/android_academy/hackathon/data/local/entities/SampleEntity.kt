@@ -3,7 +3,7 @@ package com.github.android_academy.hackathon.data.local.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.github.android_academy.hackathon.domain.models.Sample
+import com.github.android_academy.hackathon.domain.models.User
 
 @Entity(tableName = "samples")
 class SampleEntity(
@@ -12,8 +12,8 @@ class SampleEntity(
 )
 
 
-fun SampleEntity.toSample(): Sample =
-    Sample(
-        id = this.id,
-        text = this.text
-    )
+//fun SampleEntity.toSample(): User =
+//    User(
+//        id = this.id,
+//        text = this.text
+//    )

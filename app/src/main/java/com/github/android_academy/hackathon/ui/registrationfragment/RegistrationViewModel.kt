@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.ui.ViewState
 import kotlinx.coroutines.launch
@@ -12,9 +13,10 @@ import javax.inject.Inject
 class RegistrationViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    private var mutableRegistrationResult: MutableLiveData<ViewState<Boolean>> = MutableLiveData()
 
-    val registrationResult: LiveData<ViewState<Boolean>> = mutableRegistrationResult
+    private val  mutableRegistrationResult: MutableLiveData<ViewState<Unit, String>> = MutableLiveData()
+
+    val registrationResult: LiveData<ViewState<Unit, String>> get() = mutableRegistrationResult
 
     fun register(
         username: String,
@@ -23,15 +25,18 @@ class RegistrationViewModel @Inject constructor(
         isMentor: Boolean
     ) {
         viewModelScope.launch {
-            mutableRegistrationResult.postValue(ViewState.loading())
-            mutableRegistrationResult.postValue(
-                authRepository.register(
+            mutableRegistrationResult.value = ViewState.loading()
+
+            val result = authRepository.register(
                     username,
                     password,
                     name,
                     isMentor
                 )
-            )
+            mutableRegistrationResult.value = when(result){
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
         }
     }
 }
