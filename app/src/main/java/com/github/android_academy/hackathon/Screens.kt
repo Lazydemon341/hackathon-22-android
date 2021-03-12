@@ -2,14 +2,14 @@ package com.github.android_academy.hackathon
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.github.android_academy.hackathon.ui.loginfragment.SampleFragment
+import com.github.android_academy.hackathon.ui.loginfragment.LoginFragment
 import com.github.terrakok.cicerone.androidx.Creator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 object Screens {
     fun SampleScreen(): FragmentScreen =
         FragmentScreen(
-            fragmentCreator = FragmentCreator(SampleFragment.newInstance())
+            fragmentCreator = FragmentCreator(LoginFragment.newInstance())
         )
 
     class FragmentCreator(private val fragment: Fragment) : Creator<FragmentFactory, Fragment> {

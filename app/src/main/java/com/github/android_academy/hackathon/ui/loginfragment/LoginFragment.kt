@@ -10,9 +10,13 @@ import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.LoginFragmentBinding
 import com.github.android_academy.hackathon.di.login.DaggerLoginViewModelComponent
 import com.github.android_academy.hackathon.ui.BaseFragment
+import com.github.android_academy.hackathon.ui.ViewState
+import com.google.android.material.textfield.TextInputLayout
 
-class SampleFragment : BaseFragment(R.layout.login_fragment) {
+class LoginFragment : BaseFragment(R.layout.login_fragment) {
     private val binding by viewBinding(LoginFragmentBinding::bind)
+
+
 
     private val viewModel: LoginViewModel by viewModels(
         factoryProducer = { LoginViewModelFactory() }
@@ -20,14 +24,56 @@ class SampleFragment : BaseFragment(R.layout.login_fragment) {
 
     override fun initViews(view: View) {
         super.initViews(view)
-//        viewModel.sample.observe(viewLifecycleOwner) { sample ->
-//            binding.sampleField.text = sample.text
-//        }
+        viewModel.loginResult.observe(viewLifecycleOwner, {checkLoginResult(it)})
+
+        binding.loginFragmentSignInButton.setOnClickListener {
+            viewModel.login(
+                binding.loginFragmentLogin.editText?.text.toString(),
+                binding.loginFragmentPassword.editText?.text.toString()
+            )
+        }
+
+        binding.loginFragmentSignUpButton.setOnClickListener {
+            //TODO запустить фрагмент регистрации и перенести логин с паролем
+        }
+
+        bindHideErrors()
+    }
+
+    fun checkLoginResult(it:ViewState<Boolean>){
+        //it.Success
+        when(it){
+            is ViewState.Loading -> {/*TODO показать анимацию */ }
+            is ViewState.Error -> {
+                //TODO в зависимости от сообщения подчеркивать разные поля
+                wrongPassword(it.message)
+            }
+            is ViewState.Success -> {
+                //TODO запустить другой фрагмент
+            }
+        }
+    }
+
+    fun wrongPassword(message:String){
+        binding.loginFragmentPassword.error = message
+    }
+
+
+    fun bindHideErrors(){
+        //ошибка исчезнет при изменении текста логина
+        binding.loginFragmentLogin.addOnEditTextAttachedListener {
+            binding.loginFragmentLogin.error = null
+        }
+
+        //ошибка исчезнет при изменении текста пароля
+        binding.loginFragmentPassword.addOnEditTextAttachedListener {
+            binding.loginFragmentPassword.error = null
+        }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = SampleFragment()
+        fun newInstance() = LoginFragment()
     }
 }
 

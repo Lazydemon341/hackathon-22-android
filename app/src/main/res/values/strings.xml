@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">HackathonWinnerApp</string>
     <string name="sample_text">Sample text</string>
+    <string name="enter_login">Enter login or email address</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="enter_name">Enter your name</string>
+    <string name="enter_password_again">Enter your password again</string>
+    <string name="login_title">Login</string>
+    <string name="registration_title">Registration</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sigh up</string>
+    <string name="remember_me">Remember me</string>
+    <string name="error_wrong_password">Passwords don\'t match</string>
+    <string name="is_mentor">I am mentor</string>
 </resources>
