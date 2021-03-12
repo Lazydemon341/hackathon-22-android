@@ -29,7 +29,7 @@ class AppActivity : AppCompatActivity() {
         setContentView(R.layout.app_activity)
 
         if (savedInstanceState == null) {
-            router.newRootScreen(Screens.SampleScreen())
+            router.newRootScreen(Screens.LoginFragment())
         }
     }
 

@@ -43,13 +43,13 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         return binding.registrationFragmentPassword.editText?.text == binding.registrationFragmentPassword2.editText?.text
     }
 
-    fun checkRegistrationResult(it: ViewState<Boolean>){
+    fun checkRegistrationResult(it: ViewState<Unit, String>){
         //it.Success
         when(it){
             is ViewState.Loading -> {/*TODO показать анимацию */ }
             is ViewState.Error -> {
                 //TODO в зависимости от сообщения подчеркивать разные поля
-                wrongPassword(it.message)
+                wrongPassword(it.result)
             }
             is ViewState.Success -> {
                 //TODO запустить другой фрагмент

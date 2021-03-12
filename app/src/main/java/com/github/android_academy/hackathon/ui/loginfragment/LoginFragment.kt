@@ -35,18 +35,19 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
 
         binding.loginFragmentSignUpButton.setOnClickListener {
             //TODO запустить фрагмент регистрации и перенести логин с паролем
+            viewModel.launchRegistration()
         }
 
         bindHideErrors()
     }
 
-    fun checkLoginResult(it:ViewState<Boolean>){
+    fun checkLoginResult(it:ViewState<Unit, String>){
         //it.Success
         when(it){
             is ViewState.Loading -> {/*TODO показать анимацию */ }
             is ViewState.Error -> {
                 //TODO в зависимости от сообщения подчеркивать разные поля
-                wrongPassword(it.message)
+                wrongPassword(it.result)
             }
             is ViewState.Success -> {
                 //TODO запустить другой фрагмент
