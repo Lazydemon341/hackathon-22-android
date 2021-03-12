@@ -5,7 +5,7 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.di.modules.AppModule
 import com.github.android_academy.hackathon.di.modules.DataModule
 import com.github.android_academy.hackathon.di.modules.NetworkModule
-import com.github.android_academy.hackathon.domain.repositories.SampleRepository
+import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.ui.AppActivity
 import com.github.terrakok.cicerone.Router
 import dagger.BindsInstance
@@ -18,7 +18,7 @@ import javax.inject.Singleton
 interface AppComponent {
     fun provideRouter(): Router
 
-    fun provideSampleRepository(): SampleRepository
+    fun provideSampleRepository(): AuthRepository
 
     fun inject(app: App)
 
