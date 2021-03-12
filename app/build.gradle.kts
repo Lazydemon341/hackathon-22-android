@@ -6,6 +6,10 @@ plugins {
     kotlin(Plugins.kapt)
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 android {
     buildToolsVersion = Config.androidBuildTools
     compileSdkVersion(Config.androidCompileSdk)
@@ -65,6 +69,10 @@ dependencies {
     implementation(Libs.room)
     implementation(Libs.roomKtx)
     implementation(Libs.fragmentKtx)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
     kapt(Libs.roomCompiler)
     platform(Libs.firebase)
 

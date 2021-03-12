@@ -8,6 +8,7 @@ plugins {
 }
 
 buildscript {
+    val kotlin_version by extra("1.4.31")
     repositories {
         google()
         mavenCentral()
@@ -16,6 +17,7 @@ buildscript {
         classpath(Plugins.androidTools)
         classpath(kotlin(Plugins.kotlin, Versions.kotlin))
         classpath(Plugins.googleServicesClassPath)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
