@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.github.android_academy.hackathon.data.local.dao.SampleDao
+import com.github.android_academy.hackathon.data.local.entities.SampleEntity
 
-@Database(entities = [SampleDao::class], version = 1, exportSchema = false)
+@Database(entities = [SampleEntity::class], version = 1, exportSchema = false)
 abstract class SampleDatabase : RoomDatabase() {
 
     abstract fun getSampleDao(): SampleDao
