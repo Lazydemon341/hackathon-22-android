@@ -12,7 +12,7 @@ import javax.inject.Inject
 class RegistrationViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    private lateinit var mutableRegistrationResult: MutableLiveData<ViewState<Boolean>>
+    private var mutableRegistrationResult: MutableLiveData<ViewState<Boolean>> = MutableLiveData()
 
     val registrationResult: LiveData<ViewState<Boolean>> = mutableRegistrationResult
 

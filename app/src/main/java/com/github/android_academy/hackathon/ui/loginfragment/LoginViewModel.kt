@@ -13,7 +13,7 @@ class LoginViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    private lateinit var mutableLoginResult: MutableLiveData<ViewState<Boolean>>
+    private var mutableLoginResult: MutableLiveData<ViewState<Boolean>> = MutableLiveData()
 
     val loginResult: LiveData<ViewState<Boolean>> = mutableLoginResult
 
