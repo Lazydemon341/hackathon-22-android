@@ -9,6 +9,14 @@ android {
     buildToolsVersion = Config.androidBuildTools
     compileSdkVersion(Config.androidCompileSdk)
 
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = "debug"
+            keyPassword = "0123456789"
+            storeFile = file("DebugKeyStore.jks")
+            storePassword = "0123456789"
+        }
+    }
     defaultConfig {
         applicationId = Config.applicationId
         minSdkVersion(Config.androidMinSdk)
