@@ -1,5 +1,7 @@
 package com.github.android_academy.hackathon.di.modules
 
+import android.content.Context
+import com.github.android_academy.hackathon.data.local.SampleDatabase
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -26,4 +28,9 @@ internal class AppModule {
     @Singleton
     fun provideTimberTree(): Timber.Tree =
         Timber.DebugTree()
+
+    @Provides
+    @Singleton
+    fun provideDatabase(appContext : Context) : SampleDatabase =
+        SampleDatabase.getInstance(appContext)
 }

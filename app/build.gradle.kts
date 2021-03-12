@@ -11,7 +11,7 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            keyAlias = "debug"
+            keyAlias = "KEYSTORE"
             keyPassword = "0123456789"
             storeFile = file("DebugKeyStore.jks")
             storePassword = "0123456789"

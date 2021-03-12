@@ -14,9 +14,4 @@ internal abstract class DataModule {
     @Binds
     @Singleton
     abstract fun provideSampleRepository(sampleRepositoryImpl: SampleRepositoryImpl): SampleRepository
-
-    @Provides
-    @Singleton
-    fun provideDatabase(appContext : Context) : SampleDatabase =
-        SampleDatabase.getInstance(appContext)
 }
