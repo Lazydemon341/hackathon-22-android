@@ -83,4 +83,6 @@ dependencies {
     implementation(Libs.viewBindingProperty)
     implementation(Libs.dagger)
     kapt(Libs.daggerProcessor)
+
+    implementation(Libs.googleMaps)
 }

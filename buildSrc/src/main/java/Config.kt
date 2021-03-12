@@ -26,6 +26,7 @@ object Versions {
     const val workManager = "2.5.0"
     const val room = "2.2.6"
     const val fragmentKtx = "1.3.0"
+    const val googleMaps = "17.0.0"
 
     // third party libs
     const val adapterDelegates = "4.3.0"
@@ -82,4 +83,6 @@ object Libs {
         "com.github.kirich1409:viewbindingpropertydelegate:${Versions.viewBindingProperty}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerProcessor = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
+    const val googleMaps = "com.google.android.gms:play-services-maps:${Versions.googleMaps}"
 }
