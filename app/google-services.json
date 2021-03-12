@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "228182036385",
+    "project_id": "hackathon-22-c3630",
+    "storage_bucket": "hackathon-22-c3630.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228182036385:android:51779ef17a5ac451d785e0",
+        "android_client_info": {
+          "package_name": "com.github.android_academy.hackathon_22"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228182036385-u5ah2822bjk1ntot2qc4f2fs3e8bifls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.android_academy.hackathon_22",
+            "certificate_hash": "a850d8c0257176ee4d321c2520b07eae4872442f"
+          }
+        },
+        {
+          "client_id": "228182036385-hsf6kb1ohosslj7upsqnkulrqvq7s3mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJXcKiQAR0yXNQ_VIwQroo90oZ6SekZ38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228182036385-hsf6kb1ohosslj7upsqnkulrqvq7s3mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

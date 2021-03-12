@@ -4,7 +4,7 @@ object Config {
     const val androidMinSdk = 21
     const val androidCompileSdk = 30
     const val androidTargetSdk = 30
-    const val applicationId = "com.github.android_academy.hackathon"
+    const val applicationId = "com.github.android_academy.hackathon_22"
     const val versionCode = 1
     const val versionName = "1.0.0"
 }
@@ -26,6 +26,8 @@ object Versions {
     const val workManager = "2.5.0"
     const val room = "2.2.6"
     const val fragmentKtx = "1.3.0"
+    const val firebase = "26.7.0"
+    const val googleServices = "4.3.5"
 
     // third party libs
     const val adapterDelegates = "4.3.0"
@@ -48,6 +50,8 @@ object Plugins {
     const val kotlinAndroidApp = "kotlin-android"
     const val ktlint = "org.jlleitschuh.gradle.ktlint"
     const val kapt = "kapt"
+    const val googleServicesPlugin = "com.google.gms.google-services"
+    const val googleServicesClassPath = "com.google.gms:google-services:${Versions.googleServices}"
 }
 
 object Libs {
@@ -62,6 +66,7 @@ object Libs {
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+    const val firebase = "com.google.firebase:firebase-bom:${Versions.firebase}"
 
     const val adapterDelegates = "com.hannesdorfmann:adapterdelegates4:${Versions.adapterDelegates}"
     const val cicerone = "com.github.terrakok:cicerone:${Versions.cicerone}"
