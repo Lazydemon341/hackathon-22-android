@@ -33,7 +33,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun launchRegistration(){
-        router.navigateTo(Screens.RegistrationFragment(),true)
+    fun launchRegistration(login:String, password: String){
+        router.navigateTo(Screens.RegistrationFragment(login, password),true)
     }
 }

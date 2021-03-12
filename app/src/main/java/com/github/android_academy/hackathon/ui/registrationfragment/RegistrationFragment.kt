@@ -1,7 +1,12 @@
 package com.github.android_academy.hackathon.ui.registrationfragment
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -11,6 +16,7 @@ import com.github.android_academy.hackathon.databinding.RegistrationFragmentBind
 import com.github.android_academy.hackathon.di.registration.DaggerRegistrationViewModelComponent
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
+import kotlin.math.log
 
 class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
     private val binding by viewBinding(RegistrationFragmentBinding::bind)
@@ -21,8 +27,10 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
 
     override fun initViews(view: View) {
         super.initViews(view)
-
         viewModel.registrationResult.observe(viewLifecycleOwner, { checkRegistrationResult(it)})
+
+        binding.registrationFragmentLogin.editText?.setText(arguments?.getString(KEY_LOGIN))
+        binding.registrationFragmentPassword.editText?.setText(arguments?.getString(KEY_PASSWORD))
 
         binding.registrationFragmentSignUpButton.setOnClickListener {
             if (comparePasswords()){
@@ -62,6 +70,18 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
     }
 
     companion object {
+        private const val KEY_LOGIN = "login"
+        private const val KEY_PASSWORD = "password"
+        @JvmStatic
+        fun newInstance(login:String, password:String):RegistrationFragment {
+            val fragment = RegistrationFragment()
+            val bundle = Bundle()
+            bundle.putString(KEY_PASSWORD, password)
+            bundle.putString(KEY_LOGIN, login )
+            fragment.arguments = bundle
+            return fragment
+        }
+
         @JvmStatic
         fun newInstance() = RegistrationFragment()
     }

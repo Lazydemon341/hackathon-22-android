@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.ui.loginfragment
 
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -35,7 +36,10 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
 
         binding.loginFragmentSignUpButton.setOnClickListener {
             //TODO запустить фрагмент регистрации и перенести логин с паролем
-            viewModel.launchRegistration()
+            viewModel.launchRegistration(
+                binding.loginFragmentLogin.editText?.text.toString(),
+                binding.loginFragmentPassword.editText?.text.toString()
+            )
         }
 
         bindHideErrors()

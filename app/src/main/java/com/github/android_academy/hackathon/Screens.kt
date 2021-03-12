@@ -18,7 +18,10 @@ object Screens {
             fragmentCreator = FragmentCreator(RegistrationFragment.newInstance())
         )
 
-
+    fun RegistrationFragment(login:String, password : String): FragmentScreen =
+        FragmentScreen(
+            fragmentCreator = FragmentCreator(RegistrationFragment.newInstance(login, password))
+        )
 
     class FragmentCreator(private val fragment: Fragment) : Creator<FragmentFactory, Fragment> {
         override fun create(argument: FragmentFactory): Fragment =
