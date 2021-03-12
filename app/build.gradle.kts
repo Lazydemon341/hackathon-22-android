@@ -2,6 +2,7 @@ plugins {
     id(Plugins.androidApp)
     id(Plugins.kotlinAndroidApp)
     id(Plugins.parcelize)
+    id(Plugins.googleServicesPlugin)
     kotlin(Plugins.kapt)
 }
 
@@ -65,6 +66,7 @@ dependencies {
     implementation(Libs.roomKtx)
     implementation(Libs.fragmentKtx)
     kapt(Libs.roomCompiler)
+    platform(Libs.firebase)
 
     implementation(Libs.adapterDelegates)
     implementation(Libs.cicerone)
