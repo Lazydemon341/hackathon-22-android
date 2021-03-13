@@ -2,7 +2,6 @@ package com.github.android_academy.hackathon.data.repositories
 
 import android.content.Context
 import com.github.android_academy.hackathon.R
-import com.github.android_academy.hackathon.data.local.SampleDatabase
 import com.github.android_academy.hackathon.data.network.ServerApi
 import com.github.android_academy.hackathon.data.network.models.LoginRequestDTO
 import com.github.android_academy.hackathon.data.network.models.RegisterRequestDTO
@@ -90,8 +89,8 @@ class AuthRepositoryImpl @Inject constructor(
     ) {
         sharedPref.edit()
             .putString(USERNAME_KEY, user.username)
-            .putString(NAME_KEY, user.token)
-            .putString(TOKEN_KEY, user.name)
+            .putString(NAME_KEY, user.name)
+            .putString(TOKEN_KEY, user.token)
             .putBoolean(IS_MENTOR_KEY, user.isMentor)
             .apply()
     }

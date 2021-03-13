@@ -5,13 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Switch
+        android:id="@+id/course_list_fragment_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/show_only_favorites"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/course_list_fragment_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="138dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:layout_editor_absoluteY="156dp" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/course_list_fragment_switch"
+        tools:layout_editor_absoluteX="138dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/course_fragment_fab"
