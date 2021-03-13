@@ -1,12 +1,8 @@
-package com.github.android_academy.hackathon.ui.registrationfragment
+package com.github.android_academy.hackathon.ui.registration
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -17,7 +13,6 @@ import com.github.android_academy.hackathon.di.viewmodels.registration.DaggerReg
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
-import kotlin.math.log
 
 class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
     private val binding by viewBinding(RegistrationFragmentBinding::bind)
@@ -53,7 +48,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
                 binding.registrationFragmentPassword2.editText?.text?.toString()
     }
 
-    fun checkRegistrationResult(it: ViewState<User, String?>){
+    fun checkRegistrationResult(it: ViewState<Unit, String?>){
         //it.Success
         when(it){
             is ViewState.Loading -> {/*TODO показать анимацию */ }

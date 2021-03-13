@@ -1,7 +1,6 @@
-package com.github.android_academy.hackathon.ui.loginfragment
+package com.github.android_academy.hackathon.ui.login
 
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +9,6 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.LoginFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.login.DaggerLoginViewModelComponent
-import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 import com.google.android.material.snackbar.Snackbar
@@ -45,7 +43,7 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
         bindHideErrors()
     }
 
-    fun checkLoginResult(it: ViewState<User, String?>) {
+    fun checkLoginResult(it: ViewState<Unit, String?>) {
         //it.Success
         when (it) {
             is ViewState.Loading -> {/*TODO показать анимацию */

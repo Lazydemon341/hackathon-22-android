@@ -10,87 +10,95 @@ import com.github.android_academy.hackathon.data.network.models.toUser
 import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
-import com.github.android_academy.hackathon.extensions.isConflict
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val context: Context,
     private val database: SampleDatabase,
     private val serverApi: ServerApi
-) :
-    AuthRepository {
+) : AuthRepository {
+
+    val sharedPref = context.getSharedPreferences(
+        context.resources.getString(R.string.shared_pref_name),
+        Context.MODE_PRIVATE
+    )
+
 
     override fun loadUser(): User? {
-        TODO("Not yet implemented")
+        val username = sharedPref.getString(USERNAME_KEY, null)
+        val name = sharedPref.getString(NAME_KEY, null)
+        val token = sharedPref.getString(TOKEN_KEY, null)
+        val isMentor = sharedPref.getBoolean(IS_MENTOR_KEY, false)
+
+        if (!username.isNullOrBlank() && !name.isNullOrBlank() && !token.isNullOrBlank())
+            return User(
+                username = username,
+                name = name,
+                token = token,
+                isMentor = isMentor
+            )
+
+        return null
     }
 
     override suspend fun login(
         username: String,
         password: String
-    ): OperationResult<User, String?> =
-        withContext(Dispatchers.IO) {
-            try {
-                OperationResult.Success(
-                    data = serverApi.login(
-                        LoginRequestDTO(
-                            username = username,
-                            pwd = password
-                        )
-                    ).toUser()
+    ): OperationResult<Unit, String?> =
+        try {
+            val user = serverApi.login(
+                LoginRequestDTO(
+                    username = username,
+                    pwd = password
                 )
-            } catch (e: Exception) {
-                if (e.isConflict()) {
-                    OperationResult.Error(e.message)
-                } else {
-                    throw e
-                }
-            }
-//            val sharedPref = context.getSharedPreferences(
-//                context.resources.getString(R.string.shared_pref_name),
-//                Context.MODE_PRIVATE
-//            )
-//            sharedPref.edit()
-//                .putString("username", username)
-//                .putString("password", password)
-//                .apply()
+            ).toUser()
+
+            saveToSharedPref(user)
+
+            OperationResult.Success(Unit)
+
+        } catch (e: Exception) {
+            OperationResult.Error(e.message)
         }
+
 
     override suspend fun register(
         username: String,
         password: String,
         name: String,
         isMentor: Boolean
-    ): OperationResult<User, String?> =
-        withContext(Dispatchers.IO) {
-            try {
-                OperationResult.Success(
-                    data = serverApi.register(
-                        RegisterRequestDTO(
-                            username = username,
-                            pwd = password,
-                            name = name,
-                            isMentor = isMentor
-                        )
-                    ).toUser()
+    ): OperationResult<Unit, String?> =
+        try {
+            val user = serverApi.register(
+                RegisterRequestDTO(
+                    username = username,
+                    pwd = password,
+                    name = name,
+                    isMentor = isMentor
                 )
-            } catch (e: Exception) {
-                if (e.isConflict()) {
-                    OperationResult.Error(e.message)
-                } else {
-                    throw e
-                }
-            }
-//            val sharedPref = context.getSharedPreferences(
-//                context.resources.getString(R.string.shared_pref_name),
-//                Context.MODE_PRIVATE
-//            )
-//            sharedPref.edit()
-//                .putString("username", username)
-//                .putString("password", password)
-//                .putString("name", name)
-//                .putBoolean("isMentor", isMentor)
-//                .apply()
+            ).toUser()
+
+            saveToSharedPref(user)
+
+            OperationResult.Success(Unit)
+
+        } catch (e: Exception) {
+            OperationResult.Error(e.message)
         }
+
+    private fun saveToSharedPref(
+        user: User
+    ) {
+        sharedPref.edit()
+            .putString(USERNAME_KEY, user.username)
+            .putString(NAME_KEY, user.token)
+            .putString(TOKEN_KEY, user.name)
+            .putBoolean(IS_MENTOR_KEY, user.isMentor)
+            .apply()
+    }
 }
+
+private const val USERNAME_KEY = "username"
+private const val NAME_KEY = "name"
+private const val TOKEN_KEY = "token"
+private const val IS_MENTOR_KEY = "IsMentor"

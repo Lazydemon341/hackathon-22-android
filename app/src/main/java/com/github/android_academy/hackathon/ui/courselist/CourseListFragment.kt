@@ -10,7 +10,7 @@ import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.CourseListFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.courselist.DaggerCourseListViewModelComponent
 import com.github.android_academy.hackathon.ui.BaseFragment
-import com.github.android_academy.hackathon.ui.loginfragment.LoginFragment
+import com.github.android_academy.hackathon.ui.login.LoginFragment
 
 class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     private val binding by viewBinding(CourseListFragmentBinding::bind)
