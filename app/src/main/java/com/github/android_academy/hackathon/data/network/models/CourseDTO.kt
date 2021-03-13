@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.data.network.models
 
 import com.github.android_academy.hackathon.domain.models.Course
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -11,7 +12,7 @@ data class CourseDTO(
     val fullDescription: String? = null,
     val imgUrl: String? = null,
     val tags: List<String>,
-    val isSubscribed: Boolean
+    @Json(name = "subscribed") val isSubscribed: Boolean = false
 )
 
 fun CourseDTO.toCourse(): Course =
