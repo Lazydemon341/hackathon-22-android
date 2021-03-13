@@ -1,7 +1,8 @@
 package com.github.android_academy.hackathon.ui.lectureslist
 
-import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,7 @@ import com.github.android_academy.hackathon.databinding.LecturesListFragmentBind
 import com.github.android_academy.hackathon.di.viewmodels.lectureslist.DaggerLecturesListViewModelComponent
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.BaseFragment
+import com.github.android_academy.hackathon.ui.ViewState
 
 
 class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
@@ -37,10 +39,31 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
         binding.lecturesFragmentFab.setOnClickListener {
             viewModel.addLectureAction()
         }
+
+
         //observe
+        viewModel.lectures.observe(viewLifecycleOwner, this::updateAdapter)
+
     }
 
-    private fun callback(lecture: Lecture){}
+    private fun updateAdapter(lectures:ViewState<List<Lecture>, String?>){
+        when (lectures) {
+            is ViewState.Success -> {
+                //TODO Загрузка
+                lecturesAdapter.submitList(lectures.result)
+            }
+            //ViewState.Loading ->  //TODO Загрузка
+            is ViewState.Error -> {
+                //TODO Загрузка
+                showError()
+            }
+        }
+    }
+
+    private fun showError() {
+        Toast.makeText(requireContext(), "Couldn't load дусегкуы...", Toast.LENGTH_SHORT)
+            .show()
+    }
 
     override fun onBackPressed() {
         viewModel.exitFragment()

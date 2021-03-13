@@ -14,7 +14,6 @@ import javax.inject.Inject
 
 class LecturesListViewModel @Inject constructor(
     private val router: Router,
-    private val courseRepository: CourseRepository,
     private val authRepository: AuthRepository
 ): ViewModel() {
     private val _mutableuser = MutableLiveData<User>(authRepository.loadUser())
@@ -31,7 +30,7 @@ class LecturesListViewModel @Inject constructor(
     }
 
     fun addLectureAction(){
-
+        //TODO Экран с добавлением лекции
     }
 
     fun exitFragment(){
