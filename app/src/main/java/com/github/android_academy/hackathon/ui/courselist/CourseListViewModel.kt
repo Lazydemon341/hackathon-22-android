@@ -21,18 +21,17 @@ class CourseListViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
     //TODO: implement view model
-    private val _mutableuser = MutableLiveData<User>(authRepository.loadUser())
+    private val mutableUser = MutableLiveData<User>(authRepository.loadUser())
 
-    val user: LiveData<User> get() = _mutableuser
+    val user: LiveData<User> get() = mutableUser
 
-    private val _mutablecourses =
+    private val mutableCourses =
         MutableLiveData<ViewState<List<Course>, String?>>()//TODO добавить метод поолучения курсов
 
-    val courses: LiveData<ViewState<List<Course>, String?>> get() = _mutablecourses
+    val courses: LiveData<ViewState<List<Course>, String?>> get() = mutableCourses
 
     fun onCourseAction(course: Course) {
-        //TODO получить курс
-        router.navigateTo(Screens.lecturesListFragment())
+        router.navigateTo(Screens.lecturesListFragment(course))
     }
 
     fun addCourseAction() {
@@ -59,11 +58,11 @@ class CourseListViewModel @Inject constructor(
 
     fun showFavoriteCourses() {
         viewModelScope.launch {
-            _mutablecourses.value = ViewState.loading()
+            mutableCourses.value = ViewState.loading()
             when (val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")) {
-                is OperationResult.Success -> _mutablecourses.value =
+                is OperationResult.Success -> mutableCourses.value =
                     ViewState.success(coursesResult.data ?: emptyList())
-                is OperationResult.Error -> _mutablecourses.value =
+                is OperationResult.Error -> mutableCourses.value =
                     ViewState.error(coursesResult.data)
             }
         }
@@ -71,11 +70,11 @@ class CourseListViewModel @Inject constructor(
 
     fun showAllCourses() {
         viewModelScope.launch {
-            _mutablecourses.value = ViewState.loading()
+            mutableCourses.value = ViewState.loading()
             when (val coursesResult = courseRepository.getAllCourses()) {
-                is OperationResult.Success -> _mutablecourses.value =
+                is OperationResult.Success -> mutableCourses.value =
                     ViewState.success(coursesResult.data ?: emptyList())
-                is OperationResult.Error -> _mutablecourses.value =
+                is OperationResult.Error -> mutableCourses.value =
                     ViewState.error(coursesResult.data)
             }
         }

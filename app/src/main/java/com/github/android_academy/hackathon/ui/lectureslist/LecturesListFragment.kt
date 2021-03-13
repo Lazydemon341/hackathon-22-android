@@ -1,8 +1,8 @@
 package com.github.android_academy.hackathon.ui.lectureslist
 
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -12,15 +12,18 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.LecturesListFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.lectureslist.DaggerLecturesListViewModelComponent
+import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
+import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
 
 
-class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
+class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment) {
     private val binding by viewBinding(LecturesListFragmentBinding::bind)
 
-    private val lecturesAdapter = LecturesListAdapter({viewModel.onLectureAction(it)}) //TODO добавить нормальный callback при нажатии на лекцию
+    private val lecturesAdapter =
+        LecturesListAdapter({ viewModel.onLectureAction(it) }) //TODO добавить нормальный callback при нажатии на лекцию
 
     private val viewModel: LecturesListViewModel by viewModels(
         factoryProducer = { LecturesListViewModelFactory() }
@@ -35,7 +38,7 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
         binding.lecturesListFragmentRecycler.adapter = lecturesAdapter
 
         //fab
-        if(!viewModel.isMentor()) binding.lecturesFragmentFab.hide() //спрятать если не ментор
+        if (!viewModel.isMentor()) binding.lecturesFragmentFab.hide() //спрятать если не ментор
         binding.lecturesFragmentFab.setOnClickListener {
             viewModel.addLectureAction()
         }
@@ -46,7 +49,7 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
 
     }
 
-    private fun updateAdapter(lectures:ViewState<List<Lecture>, String?>){
+    private fun updateAdapter(lectures: ViewState<List<Lecture>, String?>) {
         when (lectures) {
             is ViewState.Success -> {
                 //TODO Загрузка
@@ -70,8 +73,16 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
     }
 
     companion object {
+        private const val COURSE_ID_KEY = "course_id"
+
         @JvmStatic
-        fun newInstance() = LecturesListFragment()
+        fun newInstance(course: Course) : LecturesListFragment{
+            val fragment = LecturesListFragment()
+            val bundle = Bundle()
+            bundle.putLong(COURSE_ID_KEY, course.id!!)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
 
