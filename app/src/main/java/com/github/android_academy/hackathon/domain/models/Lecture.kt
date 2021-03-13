@@ -1,7 +1,7 @@
 package com.github.android_academy.hackathon.domain.models
 
 data class Lecture(
-    val id: Long,
+    val id: Long? = null,
     val title: String,
     val youtubeUrl: String = "",
     val githubRepoUrl: String = "",

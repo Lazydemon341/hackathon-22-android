@@ -29,6 +29,7 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment) {
         factoryProducer = { LecturesListViewModelFactory() }
     )
 
+
     override fun initViews(view: View) {
         super.initViews(view)
         //TODO observe
@@ -47,6 +48,8 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment) {
         //observe
         viewModel.lectures.observe(viewLifecycleOwner, this::updateAdapter)
 
+
+        viewModel.updateLectures(arguments?.getLong(COURSE_ID_KEY) ?: 0)
     }
 
     private fun updateAdapter(lectures: ViewState<List<Lecture>, String?>) {

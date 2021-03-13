@@ -3,7 +3,9 @@ package com.github.android_academy.hackathon.ui.lectureslist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.github.android_academy.hackathon.Screens
+import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.domain.models.User
@@ -11,11 +13,13 @@ import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.domain.repositories.CourseRepository
 import com.github.android_academy.hackathon.ui.ViewState
 import com.github.terrakok.cicerone.Router
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LecturesListViewModel @Inject constructor(
     private val router: Router,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val courseRepository: CourseRepository
 ): ViewModel() {
     private val _mutableuser = MutableLiveData<User>(authRepository.loadUser())
 
@@ -26,9 +30,22 @@ class LecturesListViewModel @Inject constructor(
 
     val lectures: LiveData<ViewState<List<Lecture>, String?>> get() = _mutableLectures
 
+    fun updateLectures(courseId:Long){
+        viewModelScope.launch {
+            _mutableLectures.value = ViewState.loading()
+            when (val coursesResult = courseRepository.getAllLectures(courseId)) {
+                is OperationResult.Success -> _mutableLectures.value =
+                    ViewState.success(coursesResult.data ?: emptyList())
+                is OperationResult.Error -> _mutableLectures.value =
+                    ViewState.error(coursesResult.data)
+            }
+        }
+    }
+
     fun onLectureAction(lecture: Lecture){
         //TODO нажатие на лекцию. Запуск экрана с лекцией
-    }
+        router.navigateTo(Screens.lectureFragment())
+    }//TODO добавить передачу id лекции
 
     fun addLectureAction(){
         router.navigateTo(Screens.addLectureFragment())

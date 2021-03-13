@@ -26,7 +26,7 @@ class CourseListViewModel @Inject constructor(
     val user: LiveData<User> get() = mutableUser
 
     private val mutableCourses =
-        MutableLiveData<ViewState<List<Course>, String?>>()//TODO добавить метод поолучения курсов
+        MutableLiveData<ViewState<List<Course>, String?>>()
 
     val courses: LiveData<ViewState<List<Course>, String?>> get() = mutableCourses
 

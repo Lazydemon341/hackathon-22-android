@@ -12,7 +12,7 @@ interface CourseRepository {
 
     suspend fun updateCourse(course: Course) : OperationResult<Unit, String?>
 
-    suspend fun getAllLectures(course: Course) : OperationResult<List<Lecture>, String?>
+    suspend fun getAllLectures(courseId: Long) : OperationResult<List<Lecture>, String?>
 
     suspend fun updateLecture(lecture: Lecture) : OperationResult<Unit, String?>
 }

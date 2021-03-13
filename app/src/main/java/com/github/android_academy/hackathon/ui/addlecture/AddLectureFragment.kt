@@ -25,6 +25,7 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
         super.initViews(view)
 
 
+
         binding.addCourseFab.setOnClickListener {
             //TODO создать лекцйию и вызвать addLecture
             val lecture = Lecture(
@@ -34,9 +35,11 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
                 telegramChannel = binding.addLectureFragmentTelegramChannel.editText?.text.toString(),
                 additionalMaterials = emptyList(), //TODO может чем-то заменить
                 imgUrl = binding.addLectureFragmentImgUrl.editText?.text.toString(),
-                tags = binding.addLectureFragmentTags.editText?.text.toString().split(";"),
-
+                tags = binding.addLectureFragmentTags.editText?.text.toString().split(" "),
+                courseId = 1 //TODO получить из Bundle
             )
+
+
         }
     }
     override fun onBackPressed() {
