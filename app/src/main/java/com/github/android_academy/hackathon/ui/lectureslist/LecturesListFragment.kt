@@ -13,13 +13,12 @@ import com.github.android_academy.hackathon.databinding.LecturesListFragmentBind
 import com.github.android_academy.hackathon.di.viewmodels.lectureslist.DaggerLecturesListViewModelComponent
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.BaseFragment
-import com.github.android_academy.hackathon.ui.courselist.CoursesAdapter
 
 
 class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
     private val binding by viewBinding(LecturesListFragmentBinding::bind)
 
-    private val lecturesAdapter = LecturesListAdapter(::callback) //TODO добавить нормальный callback при нажатии на лекцию
+    private val lecturesAdapter = LecturesListAdapter({viewModel.onLectureAction(it)}) //TODO добавить нормальный callback при нажатии на лекцию
 
     private val viewModel: LecturesListViewModel by viewModels(
         factoryProducer = { LecturesListViewModelFactory() }
@@ -32,11 +31,20 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
         //recycler
         binding.lecturesListFragmentRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.lecturesListFragmentRecycler.adapter = lecturesAdapter
+
+        //fab
+        if(!viewModel.isMentor()) binding.lecturesFragmentFab.hide() //спрятать если не ментор
+        binding.lecturesFragmentFab.setOnClickListener {
+            viewModel.addLectureAction()
+        }
+        //observe
     }
 
     private fun callback(lecture: Lecture){}
 
-
+    override fun onBackPressed() {
+        viewModel.exitFragment()
+    }
 
     companion object {
         @JvmStatic
