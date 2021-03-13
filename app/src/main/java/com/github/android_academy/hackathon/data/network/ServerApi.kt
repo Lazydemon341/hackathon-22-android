@@ -1,12 +1,19 @@
 package com.github.android_academy.hackathon.data.network
 
-import com.github.android_academy.hackathon.data.network.models.SampleDTO
-import retrofit2.http.GET
-import retrofit2.http.Path
+import com.github.android_academy.hackathon.data.network.models.LoginRequestDTO
+import com.github.android_academy.hackathon.data.network.models.LoginResponseDTO
+import com.github.android_academy.hackathon.data.network.models.RegisterRequestDTO
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface ServerApi {
-    @GET("sample/{id}")
-    suspend fun getSample(
-        @Path("id") id: Long
-    ): SampleDTO
+    @POST("login")
+    suspend fun login(
+        @Body loginRequest: LoginRequestDTO
+    ): LoginResponseDTO
+
+    @POST("register")
+    suspend fun register(
+        @Body registerRequestDTO: RegisterRequestDTO
+    ): LoginResponseDTO
 }

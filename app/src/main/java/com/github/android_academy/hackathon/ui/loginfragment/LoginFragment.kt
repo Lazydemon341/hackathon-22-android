@@ -9,14 +9,14 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.LoginFragmentBinding
-import com.github.android_academy.hackathon.di.login.DaggerLoginViewModelComponent
+import com.github.android_academy.hackathon.di.viewmodels.login.DaggerLoginViewModelComponent
+import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
-import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment(R.layout.login_fragment) {
     private val binding by viewBinding(LoginFragmentBinding::bind)
-
 
 
     private val viewModel: LoginViewModel by viewModels(
@@ -25,7 +25,7 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
 
     override fun initViews(view: View) {
         super.initViews(view)
-        viewModel.loginResult.observe(viewLifecycleOwner, {checkLoginResult(it)})
+        viewModel.loginResult.observe(viewLifecycleOwner, { checkLoginResult(it) })
 
         binding.loginFragmentSignInButton.setOnClickListener {
             viewModel.login(
@@ -45,26 +45,29 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
         bindHideErrors()
     }
 
-    fun checkLoginResult(it:ViewState<Unit, String>){
+    fun checkLoginResult(it: ViewState<User, String?>) {
         //it.Success
-        when(it){
-            is ViewState.Loading -> {/*TODO показать анимацию */ }
+        when (it) {
+            is ViewState.Loading -> {/*TODO показать анимацию */
+            }
             is ViewState.Error -> {
                 //TODO в зависимости от сообщения подчеркивать разные поля
-                wrongPassword(it.result)
+                wrongPassword(it.result ?: "wrong username or password")
             }
             is ViewState.Success -> {
                 //TODO запустить другой фрагмент
+                Snackbar.make(binding.root, R.string.success, Snackbar.LENGTH_LONG)
+                    .show()
             }
         }
     }
 
-    fun wrongPassword(message:String){
+    fun wrongPassword(message: String) {
         binding.loginFragmentPassword.error = message
     }
 
 
-    fun bindHideErrors(){
+    fun bindHideErrors() {
         //ошибка исчезнет при изменении текста логина
         binding.loginFragmentLogin.addOnEditTextAttachedListener {
             binding.loginFragmentLogin.error = null

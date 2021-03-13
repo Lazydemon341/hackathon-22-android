@@ -28,9 +28,33 @@ class AuthRepositoryImpl(
     override suspend fun login(
         username: String,
         password: String
-    ): OperationResult<Unit, String> {
-        TODO("Not yet implemented")
-    }
+    ): OperationResult<User, String?> =
+        withContext(Dispatchers.IO) {
+            try {
+                OperationResult.Success(
+                    data = serverApi.login(
+                        LoginRequestDTO(
+                            username = username,
+                            pwd = password
+                        )
+                    ).toUser()
+                )
+            } catch (e: Exception) {
+                if (e.isConflict()) {
+                    OperationResult.Error(e.message)
+                } else {
+                    throw e
+                }
+            }
+//            val sharedPref = context.getSharedPreferences(
+//                context.resources.getString(R.string.shared_pref_name),
+//                Context.MODE_PRIVATE
+//            )
+//            sharedPref.edit()
+//                .putString("username", username)
+//                .putString("password", password)
+//                .apply()
+        }
 
     override suspend fun register(
         username: String,

@@ -13,4 +13,5 @@
     <string name="remember_me">Remember me</string>
     <string name="error_wrong_password">Passwords don\'t match</string>
     <string name="is_mentor">I am mentor</string>
+    <string name="success">Success</string>
 </resources>

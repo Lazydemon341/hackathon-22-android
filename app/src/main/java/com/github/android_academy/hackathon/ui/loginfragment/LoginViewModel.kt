@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.android_academy.hackathon.Screens
 import com.github.android_academy.hackathon.domain.OperationResult
+import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.ui.ViewState
 import com.github.terrakok.cicerone.Router
@@ -17,9 +18,9 @@ class LoginViewModel @Inject constructor(
     private val router : Router
 ) : ViewModel() {
 
-    private val mutableLoginResult: MutableLiveData<ViewState<Unit, String>> = MutableLiveData()
+    private val mutableLoginResult: MutableLiveData<ViewState<User, String?>> = MutableLiveData()
 
-    val loginResult: LiveData<ViewState<Unit, String>> get() = mutableLoginResult
+    val loginResult: LiveData<ViewState<User, String?>> get() = mutableLoginResult
 
     fun login(username: String, password: String) {
         viewModelScope.launch {

@@ -2,7 +2,6 @@ package com.github.android_academy.hackathon.domain.repositories
 
 import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.User
-import com.github.android_academy.hackathon.ui.ViewState
 
 interface AuthRepository {
     fun loadUser(): User?
