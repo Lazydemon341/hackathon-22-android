@@ -47,18 +47,24 @@ class CourseRepositoryImpl @Inject constructor(
             OperationResult.Error(e.message)
         }
 
-    override suspend fun updateCourse(course: Course) {
-        serverApi.updateCourse(
-            UpdateCourseRequestDTO(
-                id = course.id,
-                title = course.title,
-                shortDescription = course.shortDescription,
-                fullDescription = course.fullDescription,
-                imgUrl = course.imgUrl,
-                isSubscribed = course.isSubscribed,
-                tags = course.tags
+    override suspend fun updateCourse(course: Course) : OperationResult<Unit, String?> =
+        try {
+            serverApi.updateCourse(
+                UpdateCourseRequestDTO(
+                    id = course.id,
+                    title = course.title,
+                    shortDescription = course.shortDescription,
+                    fullDescription = course.fullDescription,
+                    imgUrl = course.imgUrl,
+                    isSubscribed = course.isSubscribed,
+                    tags = course.tags
+                )
             )
-        )
-    }
+            OperationResult.Success(Unit)
+        }
+        catch(e: Throwable){
+            OperationResult.Error(e.message)
+        }
+
 
 }

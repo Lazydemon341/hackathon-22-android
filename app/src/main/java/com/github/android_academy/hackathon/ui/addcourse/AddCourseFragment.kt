@@ -35,6 +35,9 @@ class AddCourseFragment : BaseFragment(R.layout.add_course_fragment) {
         }
     }
 
+    override fun onBackPressed() {
+        viewModel.exitFragment()
+    }
 
     companion object {
         @JvmStatic

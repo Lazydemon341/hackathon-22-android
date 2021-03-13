@@ -9,5 +9,5 @@ interface CourseRepository {
 
     suspend fun getFavouriteCourses(username: String): OperationResult<List<Course>, String?>
 
-    suspend fun updateCourse(course: Course)
+    suspend fun updateCourse(course: Course) : OperationResult<Unit, String?>
 }
