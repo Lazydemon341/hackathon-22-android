@@ -2,7 +2,7 @@ package com.github.android_academy.hackathon.di.viewmodels.registration
 
 import com.bsquaredwifi.app.di.scopes.VM
 import com.github.android_academy.hackathon.di.AppComponent
-import com.github.android_academy.hackathon.ui.registrationfragment.RegistrationViewModel
+import com.github.android_academy.hackathon.ui.registration.RegistrationViewModel
 import dagger.Component
 
 @VM

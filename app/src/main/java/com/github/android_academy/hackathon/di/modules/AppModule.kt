@@ -35,13 +35,4 @@ internal class AppModule {
     @Singleton
     fun provideDatabase(appContext: Context): SampleDatabase =
         SampleDatabase.getInstance(appContext)
-
-    @Provides
-    @Singleton
-    fun provideAuthRepositoryImpl(
-        context: Context,
-        database: SampleDatabase,
-        serverApi: ServerApi
-    ): AuthRepositoryImpl =
-        AuthRepositoryImpl(context, database, serverApi)
 }
