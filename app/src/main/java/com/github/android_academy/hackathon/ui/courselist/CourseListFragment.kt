@@ -32,7 +32,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     }
 }
 
-private class CourseListViewModelFactory() : ViewModelProvider.Factory {
+private class CourseListViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return DaggerCourseListViewModelComponent.builder()
