@@ -18,4 +18,9 @@
     <string name="appbar_item_login">LogIn</string>
     <string name="appbar_item_lectures">Lectures</string>
     <string name="appbar_item_map">Map</string>
+    <string name="course_title">Title:</string>
+    <string name="course_short_description">Short description:</string>
+    <string name="course_full_description">Full description:</string>
+    <string name="course_image_url">Image url:</string>
+    <string name="course_tags">Tags:</string>
 </resources>
