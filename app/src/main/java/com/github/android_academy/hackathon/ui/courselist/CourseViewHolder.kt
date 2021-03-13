@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.CourseItemFragmentBinding
 import com.github.android_academy.hackathon.domain.models.Course
@@ -24,13 +25,18 @@ class CourseViewHolder(private val binding: CourseItemFragmentBinding) :
                 binding.courseFavouriteStar,
                 ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.gold))
             )
-        }
-        else{
+        } else {
             ImageViewCompat.setImageTintList(
                 binding.courseFavouriteStar,
                 ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.gray))
             )
         }
+
+        Glide.with(itemView)
+            .load(course.imgUrl)
+            .centerCrop()
+            .placeholder(R.drawable.academy_logo)
+            .into(binding.courseLogo)
     }
 
     private fun setClickListeners(

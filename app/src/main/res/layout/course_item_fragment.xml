@@ -23,8 +23,8 @@
             android:textAllCaps="true"
             android:textSize="@dimen/text_mid_size"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/imageButton"
-            app:layout_constraintTop_toTopOf="@id/imageButton"
+            app:layout_constraintStart_toEndOf="@id/course_logo"
+            app:layout_constraintTop_toTopOf="@id/course_logo"
             tools:text="Androidacademy course" />
 
         <TextView
@@ -47,7 +47,7 @@
             app:tint="@color/gray" />
 
         <ImageView
-            android:id="@+id/imageButton"
+            android:id="@+id/course_logo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="@dimen/standard_margin"
