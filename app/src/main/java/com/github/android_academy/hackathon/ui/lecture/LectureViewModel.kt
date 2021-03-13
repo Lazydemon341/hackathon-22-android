@@ -1,4 +1,14 @@
 package com.github.android_academy.hackathon.ui.lecture
 
-class LectureViewModel {
+import androidx.lifecycle.ViewModel
+import com.github.terrakok.cicerone.Router
+import javax.inject.Inject
+
+class LectureViewModel @Inject constructor(
+    private val router: Router
+) :ViewModel(){
+
+    fun exitFragment(){
+        router.exit()
+    }
 }

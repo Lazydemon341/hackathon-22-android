@@ -10,6 +10,7 @@ import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.AddLectureFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.addcourse.DaggerAddCourseViewModelComponent
 import com.github.android_academy.hackathon.di.viewmodels.addlecture.DaggerAddLectureViewModelComponent
+import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.BaseFragment
 
 class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
@@ -23,8 +24,19 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
     override fun initViews(view: View) {
         super.initViews(view)
 
+
         binding.addCourseFab.setOnClickListener {
             //TODO создать лекцйию и вызвать addLecture
+            val lecture = Lecture(
+                title = binding.addLectureFragmentTitle.editText?.text.toString(),
+                youtubeUrl = binding.addLectureFragmentYoutubeUrl.editText?.text.toString(),
+                githubRepoUrl = binding.addLectureFragmentGithub.editText?.text.toString(),
+                telegramChannel = binding.addLectureFragmentTelegramChannel.editText?.text.toString(),
+                additionalMaterials = emptyList(), //TODO может чем-то заменить
+                imgUrl = binding.addLectureFragmentImgUrl.editText?.text.toString(),
+                tags = binding.addLectureFragmentTags.editText?.text.toString().split(";"),
+
+            )
         }
     }
     override fun onBackPressed() {
