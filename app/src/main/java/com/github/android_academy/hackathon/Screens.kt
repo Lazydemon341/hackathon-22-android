@@ -8,28 +8,35 @@ import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
 import com.github.terrakok.cicerone.androidx.Creator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.github.android_academy.hackathon.ui.addcourse.AddCourseFragment
+import com.github.android_academy.hackathon.ui.lectureslist.LecturesListFragment
 
 object Screens {
-    fun LoginFragment(): FragmentScreen =
+    fun loginFragment(): FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(LoginFragment.newInstance())
         )
 
-    fun RegistrationFragment(): FragmentScreen =
+    fun registrationFragment(): FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(RegistrationFragment.newInstance())
         )
 
-    fun RegistrationFragment(login:String, password : String): FragmentScreen =
+    fun registrationFragment(login:String, password : String): FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(RegistrationFragment.newInstance(login, password))
         )
-    fun CourseListFragment(): FragmentScreen =
+
+    fun courseListFragment(): FragmentScreen =
             FragmentScreen(
                     fragmentCreator = FragmentCreator(CourseListFragment.newInstance())
             )
 
-    fun AddCourseFragment() : FragmentScreen =
+    fun lecturesListFragment() : FragmentScreen =
+        FragmentScreen(
+            fragmentCreator = FragmentCreator(LecturesListFragment.newInstance())
+        )
+
+    fun addCourseFragment() : FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(AddCourseFragment.newInstance())
         )
