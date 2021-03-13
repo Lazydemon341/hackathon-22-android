@@ -45,8 +45,9 @@ class AddCourseFragment : BaseFragment(R.layout.add_course_fragment) {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                ViewState.Loading -> TODO("Show loading anim")
-                is ViewState.Success -> TODO()
+                else -> {
+                    //TODO
+                }
             }
         }
     }

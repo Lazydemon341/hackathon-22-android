@@ -30,7 +30,7 @@ class LectureFragment :BaseFragment(R.layout.lection_fragment) {
     }
 }
 
-private class LectureViewModelFactory() : ViewModelProvider.Factory {
+private class LectureViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return DaggerLectureViewModelComponent.builder()

@@ -45,7 +45,7 @@ class CourseRepositoryImpl @Inject constructor(
                     isSubscribed = it.isSubscribed,
                     tags = it.tags
                 )
-            }
+            }.filter { it.isSubscribed } // TODO: remove filter
             OperationResult.Success(courses)
         } catch (e: Throwable) {
             OperationResult.Error(e.message)
