@@ -1,66 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="left"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/small_margin">
+    app:cardCornerRadius="@dimen/small_margin"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="@dimen/small_margin">
 
-
-    <androidx.cardview.widget.CardView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="142dp"
-        android:layout_gravity="center"
-
-        android:stateListAnimator="@android:anim/accelerate_interpolator">
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:weightSum="4">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_margin="@dimen/standard_margin"
                 android:layout_weight="3"
-                android:layout_margin="@dimen/standard_margin">
+                android:padding="@dimen/text_title_size"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/course_item_fragment_coursename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/text_title_size"
                     android:textStyle="bold"
-                    android:id="@+id/lecture_item_fragment_lecturename"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/text_title_size"
-                    tools:text="Androidacademy Lecture" />
+                    tools:text="Androidacademy course" />
 
                 <TextView
-                    android:id="@+id/lecture_item_fragment_lecturetags"
+                    android:id="@+id/course_item_fragment_lecturescount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#555"
                     android:text="TextView"
-                    android:textAllCaps="true"
-                    android:textColor="#999"
-                    android:padding="@dimen/text_title_size"
-                    android:textSize="@dimen/text_title_size"
-                    tools:text="#Java #ANdroid #KOTLIN #AI" />
 
+                    tools:text="N lectures" />
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/lecture_item_fragment_imgurl"
+                android:id="@+id/imageButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_weight="1"
                 android:layout_margin="@dimen/standard_margin"
                 android:src="@drawable/common_google_signin_btn_icon_dark" />
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
