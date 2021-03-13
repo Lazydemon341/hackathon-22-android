@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.ui.courselist
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +12,7 @@ import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.domain.repositories.CourseRepository
+import com.github.android_academy.hackathon.ui.ViewState
 import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,16 +27,16 @@ class CourseListViewModel @Inject constructor(
 
     val user: LiveData<User> get() = _mutableuser
 
-    private val _mutablecourses = MutableLiveData<List<Course>>()//TODO добавить метод поолучения курсов
+    private val _mutablecourses = MutableLiveData<ViewState<List<Course>,String?>>()//TODO добавить метод поолучения курсов
 
-    val courses:LiveData<List<Course>> get() = _mutablecourses
+    val courses:LiveData<ViewState<List<Course>,String?>> get() = _mutablecourses
 
     fun onCourseAction(course: Course){
         //TODO получить курс
     }
 
     fun addCourseAction(){
-        router.navigateTo(Screens.AddCourseFragment(),false )
+        router.navigateTo(Screens.addCourseFragment(),false )
         //TODO добавление курса. На то что ментор уже проверили
     }
 
@@ -42,20 +44,20 @@ class CourseListViewModel @Inject constructor(
         viewModelScope.launch {
             courseRepository.updateCourse(course)
 
-            val coursesResult = courseRepository.getAllCourses()
+            val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")
             when(coursesResult){
-                is OperationResult.Success -> _mutablecourses.value = coursesResult.data?: emptyList()
-                is OperationResult.Error -> Log.e("Backend error", coursesResult.data.toString())
+                is OperationResult.Success -> _mutablecourses.value = ViewState.success(coursesResult.data?: emptyList())
+                is OperationResult.Error -> _mutablecourses.value = ViewState.error(coursesResult.data)
             }
         }
     }
 
     fun showFavoriteCourses(){
         viewModelScope.launch {
-            val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "-1") //TODO посмотреть что тправлять на бэк при Null username
+            val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")
             when(coursesResult){
-                is OperationResult.Success -> _mutablecourses.value = coursesResult.data?: emptyList()
-                is OperationResult.Error -> Log.e("Backend error", coursesResult.data.toString())
+                is OperationResult.Success -> _mutablecourses.value = ViewState.success(coursesResult.data?: emptyList())
+                is OperationResult.Error -> _mutablecourses.value = ViewState.error(coursesResult.data)
             }
         }
     }
@@ -64,8 +66,8 @@ class CourseListViewModel @Inject constructor(
         viewModelScope.launch {
             val coursesResult = courseRepository.getAllCourses()
             when(coursesResult){
-                is OperationResult.Success -> _mutablecourses.value = coursesResult.data?: emptyList()
-                is OperationResult.Error -> Log.e("Backend error", coursesResult.data.toString())
+                is OperationResult.Success -> _mutablecourses.value = ViewState.success(coursesResult.data?: emptyList())
+                is OperationResult.Error -> _mutablecourses.value = ViewState.error(coursesResult.data)
             }
         }
     }

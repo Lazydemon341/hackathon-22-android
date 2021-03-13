@@ -12,6 +12,7 @@ import com.github.android_academy.hackathon.databinding.CourseListFragmentBindin
 import com.github.android_academy.hackathon.di.viewmodels.courselist.DaggerCourseListViewModelComponent
 import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.ui.BaseFragment
+import com.github.android_academy.hackathon.ui.ViewState
 
 class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     private val binding by viewBinding(CourseListFragmentBinding::bind)
@@ -48,8 +49,11 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         viewModel.showAllCourses()
     }
 
-    private fun updateAdapter(courses: List<Course>){
-        coursesAdapter.submitList(courses)
+    private fun updateAdapter(courses: ViewState<List<Course>, String?>){
+        when(courses){
+            is ViewState.Success -> coursesAdapter.submitList(courses.result)
+            is ViewState.Error -> coursesAdapter.submitList(emptyList())
+        }
     }
 
     companion object {
