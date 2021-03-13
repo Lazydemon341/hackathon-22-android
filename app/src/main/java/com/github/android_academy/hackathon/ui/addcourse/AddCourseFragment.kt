@@ -22,7 +22,6 @@ class AddCourseFragment : BaseFragment(R.layout.add_course_fragment) {
 
     override fun initViews(view: View) {
         super.initViews(view)
-        //TODO observe
 
         binding.doneAddCourseFab.setOnClickListener {
             val course = Course(
