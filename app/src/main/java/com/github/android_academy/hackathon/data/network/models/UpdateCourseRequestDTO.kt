@@ -1,4 +1,4 @@
-package com.github.hackathon_22.api.models
+package com.github.android_academy.hackathon.data.network.models
 
 import com.github.android_academy.hackathon.domain.models.Course
 import com.squareup.moshi.JsonClass
@@ -10,7 +10,8 @@ data class UpdateCourseRequestDTO(
     val shortDescription: String? = null,
     val fullDescription: String? = null,
     val imgUrl: String? = null,
-    val tags: List<String>
+    val tags: List<String>,
+    val isSubscribed: Boolean
 )
 
 fun UpdateCourseRequestDTO.toCourse(): Course =
@@ -19,5 +20,6 @@ fun UpdateCourseRequestDTO.toCourse(): Course =
         shortDescription = shortDescription,
         fullDescription = fullDescription,
         imgUrl = imgUrl,
-        tags = tags
+        tags = tags,
+        isSubscribed = isSubscribed
     )

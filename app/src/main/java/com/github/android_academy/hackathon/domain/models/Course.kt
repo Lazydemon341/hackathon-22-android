@@ -5,5 +5,6 @@ data class Course(
     val shortDescription: String? = null,
     val fullDescription: String? = null,
     val imgUrl: String? = null,
-    val tags: List<String>
+    val tags: List<String>,
+    val isSubscribed: Boolean
 )

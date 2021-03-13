@@ -22,11 +22,11 @@ class CoursesAdapter(
     }
     companion object{
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Course>(){
-            override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean
-            = oldItem.url == newItem.url
+            override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean =
+                oldItem.imgUrl == newItem.imgUrl
 
-            override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean
-            = oldItem == newItem
+            override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean =
+                oldItem == newItem
 
         }
     }

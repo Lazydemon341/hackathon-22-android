@@ -28,5 +28,4 @@ class CourseViewHolder(private val binding : CourseItemFragmentBinding):
         binding.courseItemFragmentCoursename.text = course.title
         binding.courseItemFragmentLecturescount.text = course.shortDescription
     }
-
 }
