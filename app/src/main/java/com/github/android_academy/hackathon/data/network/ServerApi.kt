@@ -1,9 +1,6 @@
 package com.github.android_academy.hackathon.data.network
 
-import com.github.android_academy.hackathon.data.network.models.CourseDTO
-import com.github.android_academy.hackathon.data.network.models.LoginRequestDTO
-import com.github.android_academy.hackathon.data.network.models.LoginResponseDTO
-import com.github.android_academy.hackathon.data.network.models.RegisterRequestDTO
+import com.github.android_academy.hackathon.data.network.models.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -27,4 +24,9 @@ interface ServerApi {
 
     @GET("courses/all")
     suspend fun getFavoriteCourses(): List<CourseDTO>
+
+    @POST("courses/update")
+    suspend fun updateCourse(
+        @Body updateCourseRequestDTO: UpdateCourseRequestDTO
+    )
 }
