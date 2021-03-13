@@ -22,7 +22,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@android:anim/accelerate_interpolator">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/course_list_fragment_recycler"
