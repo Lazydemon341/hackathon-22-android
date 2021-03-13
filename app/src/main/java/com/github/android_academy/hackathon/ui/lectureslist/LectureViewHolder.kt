@@ -29,8 +29,8 @@ class LectureViewHolder(
     }
 
     private fun setText(lecture: Lecture){
-        binding.lectureItemFragmentLecturename.text = lecture.title
-        binding.lectureItemFragmentLecturetags.text = lecture.tags.joinToString(" ")
+        binding.lectureItemFragmentTitle.text = lecture.title
+        binding.lectureItemFragmentTags.text = lecture.tags.joinToString(" ")
         Glide
             .with(binding.root.context)
             .load(lecture.imgUrl)

@@ -31,7 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/course_item_fragment_coursename"
+                    android:id="@+id/lecture_item_fragment_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
@@ -41,7 +41,7 @@
                     tools:text="Androidacademy course" />
 
                 <TextView
-                    android:id="@+id/course_item_fragment_lecturescount"
+                    android:id="@+id/lecture_item_fragment_tags"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#555"

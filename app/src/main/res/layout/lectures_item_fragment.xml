@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/small_margin"
     app:cardUseCompatPadding="true"
     app:cardElevation="@dimen/small_margin">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
@@ -31,7 +30,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/course_item_fragment_coursename"
+                    android:id="@+id/lecture_item_fragment_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
@@ -41,7 +40,7 @@
                     tools:text="Androidacademy course" />
 
                 <TextView
-                    android:id="@+id/course_item_fragment_lecturescount"
+                    android:id="@+id/lecture_item_fragment_tags"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#555"
@@ -51,7 +50,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/lecture_item_fragment_Imgurl"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="@dimen/standard_margin"
