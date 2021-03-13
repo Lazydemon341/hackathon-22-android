@@ -42,6 +42,6 @@ class LoginViewModel @Inject constructor(
     }
 
     fun exitFragment() {
-        router.exit()
+        //TODO : close app
     }
 }

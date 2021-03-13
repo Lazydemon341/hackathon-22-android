@@ -1,111 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/standard_margin"
-    tools:context=".ui.registration.RegistrationFragment">
+    android:layout_height="wrap_content">
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/registration_progress_bar"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/registration_title"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_margin"
-        android:gravity="center"
-        android:text="@string/registration_title"
-        android:textAllCaps="true"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/text_title_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="@dimen/standard_margin"
+        tools:context=".ui.registration.RegistrationFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registration_fragment_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_margin"
-        app:errorEnabled="true"
-        app:layout_constraintTop_toBottomOf="@+id/registration_title"
-        tools:layout_editor_absoluteX="113dp">
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/registration_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/registration_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_name" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="@dimen/large_margin"
+            android:gravity="center"
+            android:text="@string/registration_title"
+            android:textAllCaps="true"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_title_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registration_fragment_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:layout_constraintTop_toBottomOf="@+id/registration_fragment_name"
-        tools:layout_editor_absoluteX="113dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_fragment_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_login" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="@dimen/large_margin"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toBottomOf="@+id/registration_title"
+            tools:layout_editor_absoluteX="113dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registration_fragment_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="password_toggle"
-        app:layout_constraintTop_toBottomOf="@+id/registration_fragment_login"
-        tools:layout_editor_absoluteX="129dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_name" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_fragment_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_password"
-            android:inputType="textPassword" />
+            app:errorEnabled="true"
+            app:layout_constraintTop_toBottomOf="@+id/registration_fragment_name"
+            tools:layout_editor_absoluteX="113dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_login" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registration_fragment_password2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="password_toggle"
-        app:errorEnabled="true"
-        app:layout_constraintTop_toBottomOf="@+id/registration_fragment_password"
-        tools:layout_editor_absoluteX="129dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_fragment_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_password_again"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:endIconMode="password_toggle"
+            app:layout_constraintTop_toBottomOf="@+id/registration_fragment_login"
+            tools:layout_editor_absoluteX="129dp">
 
-    <CheckBox
-        android:id="@+id/registration_fragment_ismentor_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/is_mentor"
-        android:textSize="@dimen/text_mid_size"
-        app:layout_constraintTop_toBottomOf="@+id/registration_fragment_password2"
-        tools:layout_editor_absoluteX="21dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_password"
+                android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/registration_fragment_sign_up_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registration_fragment_ismentor_checkbox" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_fragment_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toBottomOf="@+id/registration_fragment_password"
+            tools:layout_editor_absoluteX="129dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_password_again"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/registration_fragment_ismentor_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/is_mentor"
+            android:textSize="@dimen/text_mid_size"
+            app:layout_constraintTop_toBottomOf="@+id/registration_fragment_password2"
+            tools:layout_editor_absoluteX="21dp" />
+
+        <Button
+            android:id="@+id/registration_fragment_sign_up_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registration_fragment_ismentor_checkbox" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
