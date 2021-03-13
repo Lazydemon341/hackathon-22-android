@@ -3,6 +3,7 @@ package com.github.android_academy.hackathon.ui.lectureslist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.android_academy.hackathon.Screens
 import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.domain.models.User
@@ -31,6 +32,7 @@ class LecturesListViewModel @Inject constructor(
 
     fun addLectureAction(){
         //TODO Экран с добавлением лекции
+        router.navigateTo(Screens.addLectureFragment())
     }
 
     fun exitFragment(){
