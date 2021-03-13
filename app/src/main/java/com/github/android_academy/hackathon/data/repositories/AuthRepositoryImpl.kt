@@ -10,8 +10,9 @@ import com.github.android_academy.hackathon.data.network.models.toUser
 import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
+class AuthRepositoryImpl @Inject constructor(
     private val context: Context,
     private val database: SampleDatabase,
     private val serverApi: ServerApi
