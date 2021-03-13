@@ -58,6 +58,10 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         }
     }
 
+    override fun onBackPressed() {
+        viewModel.exitFragment()
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() = CourseListFragment()

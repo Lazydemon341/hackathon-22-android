@@ -64,6 +64,9 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
         binding.loginFragmentPassword.error = message
     }
 
+    override fun onBackPressed() {
+        viewModel.exitFragment()
+    }
 
     private fun bindHideErrors() {
         //ошибка исчезнет при изменении текста логина

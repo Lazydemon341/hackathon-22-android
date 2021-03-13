@@ -44,6 +44,10 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
+    fun goToPreviousFragment(){
+        router.exit()
+    }
+
     fun launchCourseList(){
         router.navigateTo(Screens.courseListFragment())
     }

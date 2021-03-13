@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val router : Router
+    private val router: Router
 ) : ViewModel() {
 
     private val mutableLoginResult: MutableLiveData<ViewState<Unit, String?>> = MutableLiveData()
@@ -33,11 +33,15 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun launchRegistration(login:String, password: String){
+    fun launchRegistration(login: String, password: String) {
         router.navigateTo(Screens.registrationFragment(login, password))
     }
 
-    fun launchCourseList(){
-        router.navigateTo(Screens.courseListFragment())
+    fun launchCourseList() {
+        router.newRootScreen(Screens.courseListFragment())
+    }
+
+    fun exitFragment() {
+        router.exit()
     }
 }

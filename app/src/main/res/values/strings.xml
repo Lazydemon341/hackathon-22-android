@@ -2,17 +2,17 @@
     <string name="app_name">HackathonWinnerApp</string>
     <string name="sample_text">Sample text</string>
     <string name="shared_pref_name">Auth data preferences</string>
-    <string name="enter_login">Enter login or email address</string>
-    <string name="enter_password">Enter your password</string>
-    <string name="enter_name">Enter your name</string>
-    <string name="enter_password_again">Enter your password again</string>
+    <string name="enter_login">Username</string>
+    <string name="enter_password">Password</string>
+    <string name="enter_name">Name</string>
+    <string name="enter_password_again">Repeat password</string>
     <string name="login_title">Login</string>
-    <string name="registration_title">Registration</string>
-    <string name="sign_in">Sign in</string>
-    <string name="sign_up">Sign up</string>
+    <string name="registration_title">Create new account</string>
+    <string name="sign_in">Log in</string>
+    <string name="sign_up">Create new account</string>
     <string name="remember_me">Remember me</string>
     <string name="error_wrong_password">Passwords don\'t match</string>
-    <string name="is_mentor">I am mentor</string>
+    <string name="is_mentor">I am a mentor</string>
     <string name="success">Success</string>
     <string name="appbar_item_mentor">Mentor</string>
     <string name="appbar_item_login">LogIn</string>
@@ -23,5 +23,5 @@
     <string name="course_full_description">Full description:</string>
     <string name="course_image_url">Image url:</string>
     <string name="course_tags">Tags:</string>
-    <string name="show_only_favorites">Show only favorite</string>
+    <string name="show_only_favorites">Favourite only</string>
 </resources>
