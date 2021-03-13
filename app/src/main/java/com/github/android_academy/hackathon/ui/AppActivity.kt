@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.Screens
+import com.github.android_academy.hackathon.data.PrefsStorage
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
@@ -18,6 +19,9 @@ class AppActivity : AppCompatActivity() {
     @Inject
     lateinit var router: Router
 
+    @Inject
+    lateinit var prefsStorage: PrefsStorage
+
     private val navigator = AppNavigator(this, R.id.container)
 
     private val currentFragment: BaseFragment?
@@ -29,7 +33,10 @@ class AppActivity : AppCompatActivity() {
         setContentView(R.layout.app_activity)
 
         if (savedInstanceState == null) {
-            router.newRootScreen(Screens.loginFragment())
+            if (prefsStorage.authToken.isNullOrBlank())
+                router.newRootScreen(Screens.loginFragment())
+            else
+                router.newRootScreen(Screens.courseListFragment())
         }
     }
 

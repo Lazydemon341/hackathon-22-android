@@ -10,11 +10,17 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.CourseListFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.courselist.DaggerCourseListViewModelComponent
+import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.ui.BaseFragment
+import com.github.android_academy.hackathon.ui.ViewState
 
 class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     private val binding by viewBinding(CourseListFragmentBinding::bind)
 
+    var coursesAdapter = CoursesAdapter(
+        courseListener = {viewModel.onCourseAction(it)},
+        {viewModel.subscribeAction(it)}
+    )
 
     private val viewModel: CourseListViewModel by viewModels(
             factoryProducer = { CourseListViewModelFactory() }
@@ -22,13 +28,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
 
     override fun initViews(view: View) {
         super.initViews(view)
-        //TODO observe
 
-        //recycler
-        val coursesAdapter = CoursesAdapter(
-            courseListener = {viewModel.onCourseAction(it)},
-            {viewModel.addToFavoriteAction(it)}
-        )
         binding.courseListFragmentRecycler.adapter = coursesAdapter
 
         //fab
@@ -36,9 +36,25 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         binding.courseFragmentFab.setOnClickListener {
             viewModel.addCourseAction()
         }
+
+        //TODO observe
+        viewModel.courses.observe(viewLifecycleOwner, this::updateAdapter)
+
+        //switch
+        binding.courseListFragmentSwitch.setOnCheckedChangeListener { button, b ->
+            if (b) viewModel.showFavoriteCourses() else  viewModel.showAllCourses()
+        }
+
+        //show courses
+        viewModel.showAllCourses()
     }
 
-
+    private fun updateAdapter(courses: ViewState<List<Course>, String?>){
+        when(courses){
+            is ViewState.Success -> coursesAdapter.submitList(courses.result)
+            is ViewState.Error -> coursesAdapter.submitList(emptyList())
+        }
+    }
 
     companion object {
         @JvmStatic
