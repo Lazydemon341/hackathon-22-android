@@ -25,8 +25,8 @@ class CourseViewHolder(private val binding : CourseItemFragmentBinding):
     }
 
     private fun setText(course: Course){
-        binding.courseItemFragmentCoursename.text = course.name
-        binding.courseItemFragmentLecturescount.text = course.lecturesCount.toString()
+        binding.courseItemFragmentCoursename.text = course.title
+        //binding.courseItemFragmentLecturescount.text = course.lecturesCount.toString()
     }
 
 }
