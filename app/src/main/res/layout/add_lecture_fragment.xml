@@ -16,10 +16,80 @@
         app:srcCompat="@drawable/ic_baseline_check_24" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_lecture_fragment_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="132dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lecture_title" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_lecture_fragment_youtubeUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/add_lecture_fragment_title"
+        tools:layout_editor_absoluteX="117dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/youtube_link" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_lecture_fragment_github"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/github_repo"
+        app:layout_constraintTop_toBottomOf="@+id/add_lecture_fragment_youtubeUrl"
+        tools:layout_editor_absoluteX="139dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_lecture_fragment_telegramChannel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/telegram_channel"
+        app:layout_constraintTop_toBottomOf="@+id/add_lecture_fragment_github"
+        tools:layout_editor_absoluteX="177dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_lecture_fragment_imgUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/img_url"
+        app:layout_constraintTop_toBottomOf="@+id/add_lecture_fragment_telegramChannel"
+        tools:layout_editor_absoluteX="217dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_lecture_fragment_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tags"
+        app:layout_constraintTop_toBottomOf="@+id/add_lecture_fragment_imgUrl"
+        tools:layout_editor_absoluteX="151dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

@@ -24,4 +24,10 @@
     <string name="course_image_url">Image url:</string>
     <string name="course_tags">Tags:</string>
     <string name="show_only_favorites">Favourite only</string>
+    <string name="lecture_title">Lecture title</string>
+    <string name="youtube_link">Youtube link</string>
+    <string name="github_repo">Github repositry link</string>
+    <string name="telegram_channel">Telegram channel link</string>
+    <string name="img_url">Image preview link</string>
+    <string name="tags">Tags</string>
 </resources>

@@ -20,7 +20,7 @@ import com.github.android_academy.hackathon.ui.ViewState
 class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
     private val binding by viewBinding(LecturesListFragmentBinding::bind)
 
-    private val lecturesAdapter = LecturesListAdapter({viewModel.onLectureAction(it)}) //TODO добавить нормальный callback при нажатии на лекцию
+    private val lecturesAdapter = LecturesListAdapter({viewModel.onLectureAction(it)})
 
     private val viewModel: LecturesListViewModel by viewModels(
         factoryProducer = { LecturesListViewModelFactory() }
@@ -44,6 +44,7 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment){
         //observe
         viewModel.lectures.observe(viewLifecycleOwner, this::updateAdapter)
 
+        //update lectures list
     }
 
     private fun updateAdapter(lectures:ViewState<List<Lecture>, String?>){

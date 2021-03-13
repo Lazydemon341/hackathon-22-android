@@ -22,16 +22,15 @@ class LecturesListViewModel @Inject constructor(
     val user: LiveData<User> get() = _mutableuser
 
     private val _mutableLectures =
-        MutableLiveData<ViewState<List<Lecture>, String?>>()//TODO добавить метод поолучения курсов
+        MutableLiveData<ViewState<List<Lecture>, String?>>()//TODO Получение лекций
 
     val lectures: LiveData<ViewState<List<Lecture>, String?>> get() = _mutableLectures
 
     fun onLectureAction(lecture: Lecture){
-
+        //TODO нажатие на лекцию. Запуск экрана с лекцией
     }
 
     fun addLectureAction(){
-        //TODO Экран с добавлением лекции
         router.navigateTo(Screens.addLectureFragment())
     }
 

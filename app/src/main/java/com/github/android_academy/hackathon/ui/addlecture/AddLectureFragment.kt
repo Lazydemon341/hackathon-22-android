@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
-import com.github.android_academy.hackathon.databinding.AddCourseFragmentBinding
 import com.github.android_academy.hackathon.databinding.AddLectureFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.addcourse.DaggerAddCourseViewModelComponent
+import com.github.android_academy.hackathon.di.viewmodels.addlecture.DaggerAddLectureViewModelComponent
 import com.github.android_academy.hackathon.ui.BaseFragment
 
 class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
@@ -39,7 +39,7 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
 private class AddLectureViewModelFactory() : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return DaggerAddCourseViewModelComponent.builder()
+        return DaggerAddLectureViewModelComponent.builder()
             .appComponent(App.appComponent)
             .build()
             .provideViewModel() as T
