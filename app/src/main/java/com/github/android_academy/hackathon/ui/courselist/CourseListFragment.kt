@@ -43,6 +43,9 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         binding.courseListFragmentSwitch.setOnCheckedChangeListener { button, b ->
             if (b) viewModel.showFavoriteCourses() else  viewModel.showAllCourses()
         }
+
+        //show courses
+        viewModel.showAllCourses()
     }
 
     private fun updateAdapter(courses: List<Course>){
