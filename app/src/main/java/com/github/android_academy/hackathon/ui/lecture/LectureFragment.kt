@@ -1,5 +1,7 @@
 package com.github.android_academy.hackathon.ui.lecture
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -26,21 +28,41 @@ class LectureFragment :BaseFragment(R.layout.lection_fragment) {
     override fun initViews(view: View) {
         super.initViews(view)
 
-        //TODO show information in all views
         val lecture = arguments?.getParcelable<Lecture>(LECTURE_KEY)
+
+        //Load main picture
         Glide
             .with(requireContext())
             .load(lecture?.imgUrl)
             .centerCrop()
-            //.placeholder(R.)
+            .placeholder(R.drawable.academy_logo)
             .into(binding.lectureImgurl)
-        binding.linkGithub.text
 
+        binding.ratingBar.rating = 5F
 
-        //fab
-        binding.linkGithub.text = lecture?.githubRepoUrl
-        binding.linkYoutube.text = lecture?.youtubeUrl
-        binding.ratingBar.numStars = 5
+        //youtube
+        binding.lectionFragmentYoutubeUrl.setText(lecture?.youtubeUrl)
+        binding.lectionFragmentYoutubeButton.setOnClickListener {
+            val youtubeIntent: Intent = Intent(Intent.ACTION_VIEW)
+            youtubeIntent.setData(Uri.parse(lecture?.youtubeUrl))
+            startActivity(Intent.createChooser(youtubeIntent, "Choose youtube video player"))
+        }
+
+        //github
+        binding.lectionFragmentTelegramUrl.setText(lecture?.telegramChannel)
+        binding.lectionFragmentTelegramButton.setOnClickListener {
+            val telegramIntent: Intent = Intent(Intent.ACTION_VIEW,Uri.parse(lecture?.telegramChannel))
+            startActivity(telegramIntent)
+        }
+
+        //telegram
+        binding.lectionFragmentGithubUrl.setText(lecture?.githubRepoUrl)
+        binding.lectionFragmentGithubButton.setOnClickListener {
+            val githubIntent: Intent = Intent(Intent.ACTION_VIEW)
+            githubIntent.setData(Uri.parse(lecture?.githubRepoUrl))
+            startActivity(Intent.createChooser(githubIntent, "Choose telegram"))
+        }
+
     }
 
     override fun onBackPressed() {
@@ -50,10 +72,10 @@ class LectureFragment :BaseFragment(R.layout.lection_fragment) {
     companion object {
         private const val LECTURE_KEY = "lecture_key"
         @JvmStatic
-        fun newInstance(lecture:Lecture): LectureFragment{
+        fun newInstance(lecture: Lecture): LectureFragment{
             val fragment = LectureFragment()
             val bundle = Bundle()
-            bundle.putParcelable(LECTURE_KEY,lecture)
+            bundle.putParcelable(LECTURE_KEY, lecture)
             fragment.arguments = bundle
             return fragment
         }

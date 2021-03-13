@@ -17,6 +17,8 @@ class LectureViewHolder(
         lecture: Lecture
     ) {
         setClickListener(lectureListener, lecture)
+
+        setText(lecture)
     }
 
     private fun setClickListener(
@@ -35,7 +37,7 @@ class LectureViewHolder(
             .with(binding.root.context)
             .load(lecture.imgUrl)
             .centerCrop()
-            //.placeholder(R.)
+            .placeholder(R.drawable.academy_logo)
             .into(binding.lectureItemFragmentImgurl)
     }
 }

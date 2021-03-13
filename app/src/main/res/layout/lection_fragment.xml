@@ -32,7 +32,7 @@
             android:layout_height="50sp"
             android:src="@drawable/yt" />
 
-        <TextView
+        <EditText
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -43,17 +43,20 @@
             android:textFontWeight="700"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/link_youtube"
+        <EditText
+            android:id="@+id/lection_fragment_youtubeUrl"
             android:layout_width="172dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:fontFamily="serif"
             android:padding="8dp"
-            android:text="http://github.com/azaza"
+            android:editable="false"
+            android:inputType="textUri"
+            android:text="http://youtube.com/sample"
             android:textColor="#c1c1c1" />
 
         <ImageButton
+            android:id="@+id/lection_fragment_youtube_button"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:fontFamily="serif"
@@ -93,16 +96,17 @@
 
         <TextView
 
-            android:id="@+id/link_github"
+            android:id="@+id/lection_fragment_githubUrl"
             android:layout_width="172dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:fontFamily="serif"
             android:padding="8dp"
-            android:text="http://github.com/azaza"
+            android:text="http://github.com/sample"
             android:textColor="#c1c1c1" />
 
         <ImageButton
+            android:id="@+id/lection_fragment_github_button"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:fontFamily="serif"
@@ -142,15 +146,17 @@
 
         <TextView
 
+            android:id="@+id/lection_fragment_telegramUrl"
             android:layout_width="172dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:fontFamily="serif"
             android:padding="8dp"
-            android:text="http://github.com/azaza"
+            android:text="http://t.me/sample"
             android:textColor="#c1c1c1" />
 
         <ImageButton
+            android:id="@+id/lection_fragment_telegram_button"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:fontFamily="serif"
@@ -190,12 +196,11 @@
             android:orientation="horizontal">
 
             <TextView
-
+                android:id = "@+id/lection_fragment_aditionals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
                 android:padding="8dp"
-                android:text="none yet"
                 android:textColor="#888"
                 android:textFontWeight="400" />
         </LinearLayout>

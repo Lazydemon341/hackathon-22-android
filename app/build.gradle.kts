@@ -83,6 +83,7 @@ dependencies {
     implementation(Libs.adapterDelegates)
     implementation(Libs.cicerone)
     implementation(Libs.glide)
+    annotationProcessor(Libs.glide)
     kapt(Libs.glideCompiler)
     kapt(Libs.moshiCodeGen)
     implementation(Libs.glideOkhttp)
