@@ -2,6 +2,8 @@ package com.github.android_academy.hackathon.di.modules
 
 import android.content.Context
 import com.github.android_academy.hackathon.data.local.SampleDatabase
+import com.github.android_academy.hackathon.data.network.ServerApi
+import com.github.android_academy.hackathon.data.repositories.AuthRepositoryImpl
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -31,6 +33,15 @@ internal class AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(appContext : Context) : SampleDatabase =
+    fun provideDatabase(appContext: Context): SampleDatabase =
         SampleDatabase.getInstance(appContext)
+
+    @Provides
+    @Singleton
+    fun provideAuthRepositoryImpl(
+        context: Context,
+        database: SampleDatabase,
+        serverApi: ServerApi
+    ): AuthRepositoryImpl =
+        AuthRepositoryImpl(context, database, serverApi)
 }

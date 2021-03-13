@@ -10,5 +10,5 @@ import javax.inject.Singleton
 internal abstract class DataModule {
     @Binds
     @Singleton
-    abstract fun provideSampleRepository(sampleRepositoryImpl: AuthRepositoryImpl): AuthRepository
+    abstract fun provideAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
 }

@@ -1,4 +1,4 @@
-package com.github.android_academy.hackathon.di.login
+package com.github.android_academy.hackathon.di.viewmodels.login
 
 import com.bsquaredwifi.app.di.scopes.VM
 import com.github.android_academy.hackathon.di.AppComponent

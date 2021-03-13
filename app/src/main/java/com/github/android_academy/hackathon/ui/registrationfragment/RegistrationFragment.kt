@@ -13,7 +13,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.RegistrationFragmentBinding
-import com.github.android_academy.hackathon.di.registration.DaggerRegistrationViewModelComponent
+import com.github.android_academy.hackathon.di.viewmodels.registration.DaggerRegistrationViewModelComponent
+import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 import kotlin.math.log
@@ -33,12 +34,12 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         binding.registrationFragmentPassword.editText?.setText(arguments?.getString(KEY_PASSWORD))
 
         binding.registrationFragmentSignUpButton.setOnClickListener {
-            if (comparePasswords()){
+            if (true){
                 viewModel.register(
-                    binding.registrationFragmentLogin.editText?.text.toString(),
-                    binding.registrationFragmentPassword.editText?.text.toString(),
-                    binding.registrationFragmentName.editText?.text.toString(),
-                    binding.registrationFragmentIsmentorCheckbox.isChecked
+                    username = binding.registrationFragmentLogin.editText?.text.toString(),
+                    password = binding.registrationFragmentPassword.editText?.text.toString(),
+                    name = binding.registrationFragmentName.editText?.text.toString(),
+                    isMentor = binding.registrationFragmentIsmentorCheckbox.isChecked
                 )
             }
             else{
@@ -48,16 +49,17 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
     }
 
     fun comparePasswords():Boolean {
-        return binding.registrationFragmentPassword.editText?.text == binding.registrationFragmentPassword2.editText?.text
+        return binding.registrationFragmentPassword.editText?.text?.toString() ==
+                binding.registrationFragmentPassword2.editText?.text?.toString()
     }
 
-    fun checkRegistrationResult(it: ViewState<Unit, String>){
+    fun checkRegistrationResult(it: ViewState<User, String?>){
         //it.Success
         when(it){
             is ViewState.Loading -> {/*TODO показать анимацию */ }
             is ViewState.Error -> {
                 //TODO в зависимости от сообщения подчеркивать разные поля
-                wrongPassword(it.result)
+                wrongPassword(it.result ?: "Unknown login error")
             }
             is ViewState.Success -> {
                 //TODO запустить другой фрагмент

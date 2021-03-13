@@ -7,12 +7,12 @@ import com.github.android_academy.hackathon.ui.ViewState
 interface AuthRepository {
     fun loadUser(): User?
 
-    suspend fun login(username: String, password: String): OperationResult<Unit, String>
+    suspend fun login(username: String, password: String): OperationResult<User, String?>
 
     suspend fun register(
         username: String,
         password: String,
         name: String,
         isMentor: Boolean
-    ): OperationResult<Unit, String>
+    ): OperationResult<User, String?>
 }
