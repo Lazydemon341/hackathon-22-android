@@ -40,6 +40,8 @@ class CourseListViewModel @Inject constructor(
         //TODO добавление курса. На то что ментор уже проверили
     }
 
+
+
     fun subscribeAction(course: Course) {
         viewModelScope.launch {
             courseRepository.updateCourse(course)
@@ -57,8 +59,7 @@ class CourseListViewModel @Inject constructor(
     fun showFavoriteCourses() {
         viewModelScope.launch {
             _mutablecourses.value = ViewState.loading()
-            val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")
-            when (coursesResult) {
+            when (val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")) {
                 is OperationResult.Success -> _mutablecourses.value =
                     ViewState.success(coursesResult.data ?: emptyList())
                 is OperationResult.Error -> _mutablecourses.value =
@@ -70,14 +71,17 @@ class CourseListViewModel @Inject constructor(
     fun showAllCourses() {
         viewModelScope.launch {
             _mutablecourses.value = ViewState.loading()
-            val coursesResult = courseRepository.getAllCourses()
-            when (coursesResult) {
+            when (val coursesResult = courseRepository.getAllCourses()) {
                 is OperationResult.Success -> _mutablecourses.value =
                     ViewState.success(coursesResult.data ?: emptyList())
                 is OperationResult.Error -> _mutablecourses.value =
                     ViewState.error(coursesResult.data)
             }
         }
+    }
+
+    fun exitFragment(){
+        router.exit()
     }
 
     fun isMentor() = user.value?.isMentor == true

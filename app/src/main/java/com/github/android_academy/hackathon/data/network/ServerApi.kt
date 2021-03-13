@@ -18,9 +18,7 @@ interface ServerApi {
     ): LoginResponseDTO
 
     @GET("courses/favorite")
-    suspend fun getFavouriteCourses(
-        @Query(value = "username") username: String
-    ): List<CourseDTO>
+    suspend fun getFavouriteCourses(): List<CourseDTO>
 
     @GET("courses/all")
     suspend fun getAllCourses(): List<CourseDTO>

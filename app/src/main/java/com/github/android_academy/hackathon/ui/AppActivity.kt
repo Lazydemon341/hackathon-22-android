@@ -3,6 +3,7 @@ package com.github.android_academy.hackathon.ui
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.Screens
@@ -28,15 +29,17 @@ class AppActivity : AppCompatActivity() {
         get() = supportFragmentManager.findFragmentById(R.id.container) as? BaseFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setTheme(R.style.Theme_HackathonWinnerApp)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_activity)
 
         if (savedInstanceState == null) {
-            if (prefsStorage.authToken.isNullOrBlank())
+            //if (prefsStorage.authToken.isNullOrBlank())
                 router.newRootScreen(Screens.loginFragment())
-            else
-                router.newRootScreen(Screens.courseListFragment())
+            //else
+            //    router.newRootScreen(Screens.courseListFragment())
+            //TODO uncomment
         }
     }
 

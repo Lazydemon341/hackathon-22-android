@@ -1,16 +1,16 @@
 package com.github.android_academy.hackathon.ui.registration
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.RegistrationFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.registration.DaggerRegistrationViewModelComponent
-import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 
@@ -23,13 +23,13 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
 
     override fun initViews(view: View) {
         super.initViews(view)
-        viewModel.registrationResult.observe(viewLifecycleOwner, { checkRegistrationResult(it)})
+        viewModel.registrationResult.observe(viewLifecycleOwner, { checkRegistrationResult(it) })
 
         binding.registrationFragmentLogin.editText?.setText(arguments?.getString(KEY_LOGIN))
         binding.registrationFragmentPassword.editText?.setText(arguments?.getString(KEY_PASSWORD))
 
         binding.registrationFragmentSignUpButton.setOnClickListener {
-            if (true){
+            if (validateFields()) {
                 viewModel.register(
                     username = binding.registrationFragmentLogin.editText?.text.toString(),
                     password = binding.registrationFragmentPassword.editText?.text.toString(),
@@ -37,45 +37,70 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
                     isMentor = binding.registrationFragmentIsmentorCheckbox.isChecked
                 )
             }
-            else{
-                binding.registrationFragmentPassword2.error = getString(R.string.error_wrong_password) //покажем ошибку если пароли не совпали
-            }
         }
     }
 
-    fun comparePasswords():Boolean {
-        return binding.registrationFragmentPassword.editText?.text?.toString() ==
-                binding.registrationFragmentPassword2.editText?.text?.toString()
+    private fun validateFields(): Boolean {
+        if (binding.registrationFragmentName.editText?.text.toString().isNullOrBlank()) {
+            binding.registrationFragmentName.error = "Enter a valid name!"
+            return false
+        }
+        if (binding.registrationFragmentLogin.editText?.text.toString().isNullOrBlank()) {
+            binding.registrationFragmentLogin.error = "Enter a valid name!"
+            return false
+        }
+        if (binding.registrationFragmentPassword.editText?.text.toString().isNullOrBlank()) {
+            binding.registrationFragmentPassword.error = "Enter a valid name!"
+            return false
+        }
+        return comparePasswords()
     }
 
-    fun checkRegistrationResult(it: ViewState<Unit, String?>){
-        //it.Success
-        when(it){
-            is ViewState.Loading -> {/*TODO показать анимацию */ }
+    private fun comparePasswords(): Boolean {
+        if (binding.registrationFragmentPassword.editText?.text?.toString() ==
+            binding.registrationFragmentPassword2.editText?.text?.toString()
+        ) {
+            return true
+        } else {
+            binding.registrationFragmentPassword2.error = getString(R.string.error_wrong_password)
+            return false
+        }
+    }
+
+    private fun checkRegistrationResult(it: ViewState<Unit, String?>) {
+        when (it) {
+            is ViewState.Loading -> {
+                binding.registrationProgressBar.isVisible = true
+            }
             is ViewState.Error -> {
-                //TODO в зависимости от сообщения подчеркивать разные поля
+                binding.registrationProgressBar.isVisible = false
                 wrongPassword(it.result ?: "Unknown login error")
             }
             is ViewState.Success -> {
-                //TODO запустить другой фрагмент
+                binding.registrationProgressBar.isVisible = false
                 viewModel.launchCourseList()
             }
         }
     }
 
-    fun wrongPassword(message:String){
+    override fun onBackPressed() {
+        viewModel.goToPreviousFragment()
+    }
+
+    private fun wrongPassword(message: String) {
         binding.registrationFragmentLogin.error = message
     }
 
     companion object {
         private const val KEY_LOGIN = "login"
         private const val KEY_PASSWORD = "password"
+
         @JvmStatic
-        fun newInstance(login:String, password:String):RegistrationFragment {
+        fun newInstance(login: String, password: String): RegistrationFragment {
             val fragment = RegistrationFragment()
             val bundle = Bundle()
             bundle.putString(KEY_PASSWORD, password)
-            bundle.putString(KEY_LOGIN, login )
+            bundle.putString(KEY_LOGIN, login)
             fragment.arguments = bundle
             return fragment
         }

@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.ui.login
 
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -46,15 +47,15 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
     private fun checkLoginResult(it: ViewState<Unit, String?>) {
         //it.Success
         when (it) {
-            is ViewState.Loading -> {/*TODO показать анимацию */
+            is ViewState.Loading -> {
+                binding.loginProgressBar.isVisible = true
             }
             is ViewState.Error -> {
-                //TODO в зависимости от сообщения подчеркивать разные поля
+                binding.loginProgressBar.isVisible = false
                 wrongPassword(it.result ?: "wrong username or password")
             }
             is ViewState.Success -> {
-                Snackbar.make(binding.root, R.string.success, Snackbar.LENGTH_LONG)
-                    .show()
+                binding.loginProgressBar.isVisible = true
                 viewModel.launchCourseList()
             }
         }
@@ -64,6 +65,9 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
         binding.loginFragmentPassword.error = message
     }
 
+    override fun onBackPressed() {
+        viewModel.exitFragment()
+    }
 
     private fun bindHideErrors() {
         //ошибка исчезнет при изменении текста логина
