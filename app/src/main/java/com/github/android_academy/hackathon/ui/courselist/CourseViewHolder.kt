@@ -46,6 +46,17 @@ class CourseViewHolder(private val binding: CourseItemFragmentBinding) :
     ) {
         itemView.setOnClickListener { courseListener(course) }
         binding.courseFavouriteStar.setOnClickListener {
+            if (!course.isSubscribed) {
+                ImageViewCompat.setImageTintList(
+                    binding.courseFavouriteStar,
+                    ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.gold))
+                )
+            } else {
+                ImageViewCompat.setImageTintList(
+                    binding.courseFavouriteStar,
+                    ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.gray))
+                )
+            }
             addToFavoriteListener(course) // Изменить курс
         }
     }

@@ -1,5 +1,9 @@
 package com.github.android_academy.hackathon.domain.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize()
 data class Lecture(
     val id: Long? = null,
     val title: String,
@@ -10,4 +14,4 @@ data class Lecture(
     val imgUrl: String? = null,
     val tags: List<String>,
     val courseId: Long
-)
+) : Parcelable
