@@ -26,7 +26,7 @@ class CourseListViewModel @Inject constructor(
     }
 
     fun addCourseAction() {
-        router.navigateTo(Screens.AddCourseFragment())
+        router.navigateTo(Screens.addCourseFragment())
     }
 
     fun addToFavoriteAction(course: Course) {

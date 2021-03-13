@@ -13,12 +13,11 @@ import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val context: Context,
-    private val database: SampleDatabase,
+    context: Context,
     private val serverApi: ServerApi
 ) : AuthRepository {
 
-    val sharedPref = context.getSharedPreferences(
+    private val sharedPref = context.getSharedPreferences(
         context.resources.getString(R.string.shared_pref_name),
         Context.MODE_PRIVATE
     )

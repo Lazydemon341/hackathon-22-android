@@ -34,10 +34,10 @@ class LoginViewModel @Inject constructor(
     }
 
     fun launchRegistration(login:String, password: String){
-        router.navigateTo(Screens.RegistrationFragment(login, password))
+        router.navigateTo(Screens.registrationFragment(login, password))
     }
 
     fun launchCourseList(){
-        router.navigateTo(Screens.CourseListFragment())
+        router.navigateTo(Screens.courseListFragment())
     }
 }
