@@ -12,6 +12,7 @@ import com.github.android_academy.hackathon.databinding.AddCourseFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.addcourse.DaggerAddCourseViewModelComponent
 import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.ui.BaseFragment
+import com.github.android_academy.hackathon.ui.ViewState
 
 class AddCourseFragment : BaseFragment(R.layout.add_course_fragment) {
     private val binding by viewBinding(AddCourseFragmentBinding::bind)
@@ -35,8 +36,18 @@ class AddCourseFragment : BaseFragment(R.layout.add_course_fragment) {
             viewModel.addCourse(course)
         }
 
-        viewModel.singleLiveEvent.observe(viewLifecycleOwner){
-            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        viewModel.singleLiveEvent.observe(viewLifecycleOwner) {
+            when (it) {
+                is ViewState.Error -> {
+                    Toast.makeText(
+                        requireActivity(),
+                        it.result,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                ViewState.Loading -> TODO("Show loading anim")
+                is ViewState.Success -> TODO()
+            }
         }
     }
 
