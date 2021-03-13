@@ -1,6 +1,6 @@
 package com.github.android_academy.hackathon.ui.courselist
 
-import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -57,7 +57,8 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
             is ViewState.Success -> coursesAdapter.submitList(courses.result)
             is ViewState.Loading -> {/*TODO показать загрузку */}
             is ViewState.Error -> {
-                Toast.makeText(context, courses.result,Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Something went wrong",Toast.LENGTH_LONG).show()
+                Log.e("Updating list error", courses.result?: "Null string")
             }
         }
     }

@@ -32,6 +32,7 @@ class CourseListViewModel @Inject constructor(
 
     fun onCourseAction(course: Course) {
         //TODO получить курс
+        router.navigateTo(Screens.lecturesListFragment())
     }
 
     fun addCourseAction() {
