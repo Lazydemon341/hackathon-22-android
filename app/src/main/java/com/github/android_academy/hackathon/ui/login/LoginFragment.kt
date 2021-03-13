@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.ui.login
 
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,6 @@ import com.github.android_academy.hackathon.databinding.LoginFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.login.DaggerLoginViewModelComponent
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
-import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment(R.layout.login_fragment) {
     private val binding by viewBinding(LoginFragmentBinding::bind)
@@ -25,6 +25,16 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
     override fun initViews(view: View) {
         super.initViews(view)
         viewModel.loginResult.observe(viewLifecycleOwner, { checkLoginResult(it) })
+
+        binding.loginFragmentPassword.editText?.setOnEditorActionListener { _, id, _ ->
+            if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+                viewModel.login(
+                    binding.loginFragmentLogin.editText?.text.toString(),
+                    binding.loginFragmentPassword.editText?.text.toString()
+                )
+                true
+            } else false
+        }
 
         binding.loginFragmentSignInButton.setOnClickListener {
             viewModel.login(
