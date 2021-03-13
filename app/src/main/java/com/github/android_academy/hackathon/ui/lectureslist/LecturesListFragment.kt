@@ -23,7 +23,7 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment) {
     private val binding by viewBinding(LecturesListFragmentBinding::bind)
 
     private val lecturesAdapter =
-        LecturesListAdapter({ viewModel.onLectureAction(it) }) //TODO добавить нормальный callback при нажатии на лекцию
+        LecturesListAdapter({ viewModel.onLectureAction(it) })
 
     private val viewModel: LecturesListViewModel by viewModels(
         factoryProducer = { LecturesListViewModelFactory() }
@@ -32,7 +32,6 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment) {
 
     override fun initViews(view: View) {
         super.initViews(view)
-        //TODO observe
 
         //recycler
         binding.lecturesListFragmentRecycler.layoutManager = LinearLayoutManager(requireContext())
@@ -41,7 +40,7 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment) {
         //fab
         if (!viewModel.isMentor()) binding.lecturesFragmentFab.hide() //спрятать если не ментор
         binding.lecturesFragmentFab.setOnClickListener {
-            viewModel.addLectureAction()
+            viewModel.addLectureAction(arguments?.getLong(COURSE_ID_KEY)!!)
         }
 
 

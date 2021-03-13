@@ -3,6 +3,7 @@ package com.github.android_academy.hackathon
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.android_academy.hackathon.domain.models.Course
+import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.courselist.CourseListFragment
 import com.github.android_academy.hackathon.ui.login.LoginFragment
 import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
@@ -39,14 +40,14 @@ object Screens {
             fragmentCreator = FragmentCreator(LecturesListFragment.newInstance(course))
         )
 
-    fun addLectureFragment() : FragmentScreen =
+    fun addLectureFragment(courseId:Long) : FragmentScreen =
         FragmentScreen(
-            fragmentCreator = FragmentCreator(AddLectureFragment.newInstance())
+            fragmentCreator = FragmentCreator(AddLectureFragment.newInstance(courseId))
         )
 
-    fun lectureFragment() : FragmentScreen =
+    fun lectureFragment(lecture:Lecture) : FragmentScreen =
         FragmentScreen(
-            fragmentCreator = FragmentCreator(LectureFragment.newInstance())
+            fragmentCreator = FragmentCreator(LectureFragment.newInstance(lecture))
         )
 
 
