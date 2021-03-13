@@ -18,12 +18,12 @@ interface ServerApi {
     ): LoginResponseDTO
 
     @GET("courses/favorite")
-    suspend fun getFavoriteCourses(
+    suspend fun getFavouriteCourses(
         @Query(value = "username") username: String
     ): List<CourseDTO>
 
     @GET("courses/all")
-    suspend fun getFavoriteCourses(): List<CourseDTO>
+    suspend fun getAllCourses(): List<CourseDTO>
 
     @POST("courses/update")
     suspend fun updateCourse(
