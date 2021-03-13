@@ -10,7 +10,6 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.LoginFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.login.DaggerLoginViewModelComponent
-import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 import com.google.android.material.snackbar.Snackbar

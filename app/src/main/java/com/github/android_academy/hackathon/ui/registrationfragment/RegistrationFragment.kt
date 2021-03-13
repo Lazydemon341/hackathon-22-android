@@ -34,7 +34,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         binding.registrationFragmentPassword.editText?.setText(arguments?.getString(KEY_PASSWORD))
 
         binding.registrationFragmentSignUpButton.setOnClickListener {
-            if (true){
+            if (comparePasswords()){
                 viewModel.register(
                     username = binding.registrationFragmentLogin.editText?.text.toString(),
                     password = binding.registrationFragmentPassword.editText?.text.toString(),
@@ -48,7 +48,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         }
     }
 
-    fun comparePasswords():Boolean {
+    private fun comparePasswords():Boolean {
         return binding.registrationFragmentPassword.editText?.text?.toString() ==
                 binding.registrationFragmentPassword2.editText?.text?.toString()
     }
