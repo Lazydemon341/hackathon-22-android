@@ -58,6 +58,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
             }
             is ViewState.Success -> {
                 //TODO запустить другой фрагмент
+                viewModel.launchCourseList()
             }
         }
     }

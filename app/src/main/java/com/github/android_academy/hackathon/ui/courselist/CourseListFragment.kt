@@ -28,7 +28,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
 
     companion object {
         @JvmStatic
-        fun newInstance() = LoginFragment()
+        fun newInstance() = CourseListFragment()
     }
 }
 
