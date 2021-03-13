@@ -52,7 +52,7 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
             }
             is ViewState.Error -> {
                 binding.loginProgressBar.isVisible = false
-                wrongPassword(it.result ?: "wrong username or password")
+                wrongPassword("Wrong username or password!")
             }
             is ViewState.Success -> {
                 binding.loginProgressBar.isVisible = true

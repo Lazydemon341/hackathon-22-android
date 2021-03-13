@@ -35,11 +35,10 @@ class AppActivity : AppCompatActivity() {
         setContentView(R.layout.app_activity)
 
         if (savedInstanceState == null) {
-            //if (prefsStorage.authToken.isNullOrBlank())
+            if (prefsStorage.authToken.isNullOrBlank())
                 router.newRootScreen(Screens.loginFragment())
-            //else
-            //    router.newRootScreen(Screens.courseListFragment())
-            //TODO uncomment
+            else
+                router.newRootScreen(Screens.courseListFragment())
         }
     }
 
