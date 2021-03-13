@@ -43,12 +43,11 @@ class LecturesListViewModel @Inject constructor(
     }
 
     fun onLectureAction(lecture: Lecture){
-        //TODO нажатие на лекцию. Запуск экрана с лекцией
-        router.navigateTo(Screens.lectureFragment())
-    }//TODO добавить передачу id лекции
+        router.navigateTo(Screens.lectureFragment(lecture))
+    }
 
-    fun addLectureAction(){
-        router.navigateTo(Screens.addLectureFragment())
+    fun addLectureAction(courseId: Long){
+        router.navigateTo(Screens.addLectureFragment(courseId))
     }
 
     fun exitFragment(){

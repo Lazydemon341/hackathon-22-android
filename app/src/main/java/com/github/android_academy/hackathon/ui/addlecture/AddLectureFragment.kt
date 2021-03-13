@@ -1,5 +1,6 @@
 package com.github.android_academy.hackathon.ui.addlecture
 
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -27,7 +28,6 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
 
 
         binding.addCourseFab.setOnClickListener {
-            //TODO создать лекцйию и вызвать addLecture
             val lecture = Lecture(
                 title = binding.addLectureFragmentTitle.editText?.text.toString(),
                 youtubeUrl = binding.addLectureFragmentYoutubeUrl.editText?.text.toString(),
@@ -36,18 +36,26 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
                 additionalMaterials = emptyList(), //TODO может чем-то заменить
                 imgUrl = binding.addLectureFragmentImgUrl.editText?.text.toString(),
                 tags = binding.addLectureFragmentTags.editText?.text.toString().split(" "),
-                courseId = 1 //TODO получить из Bundle
+                courseId = arguments?.getLong(COURSE_ID)!! //TODO получить из Bundle
             )
-
 
         }
     }
+
     override fun onBackPressed() {
         viewModel.exitFragment()
     }
+
     companion object {
+        private const val COURSE_ID = "course_id"
         @JvmStatic
-        fun newInstance() = AddLectureFragment()
+        fun newInstance(courseId:Long) :AddLectureFragment{
+            val fragment = AddLectureFragment()
+            val bundle = Bundle()
+            bundle.putLong(COURSE_ID,courseId)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
 

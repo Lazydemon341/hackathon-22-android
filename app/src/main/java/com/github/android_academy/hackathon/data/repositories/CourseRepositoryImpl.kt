@@ -70,9 +70,9 @@ class CourseRepositoryImpl @Inject constructor(
         }
 
 
-    override suspend fun getAllLectures(course: Course): OperationResult<List<Lecture>, String?> =
+    override suspend fun getAllLectures(courseId: Long): OperationResult<List<Lecture>, String?> =
         try {
-            val lectures = serverApi.getAllLectures(course.id!!).map {
+            val lectures = serverApi.getAllLectures(courseId).map {
                 it.toLecture()
             }
             OperationResult.Success(lectures)
