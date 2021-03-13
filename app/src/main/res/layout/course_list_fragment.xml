@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
+        android:id="@+id/course_list_fragment_switch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Switch"
+        android:text="@string/show_only_favorites"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -17,7 +17,7 @@
         android:id="@+id/course_list_fragment_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/switch1"
+        app:layout_constraintTop_toBottomOf="@+id/course_list_fragment_switch"
         tools:layout_editor_absoluteX="138dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

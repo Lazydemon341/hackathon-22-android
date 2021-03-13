@@ -38,6 +38,11 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
 
         //TODO observe
         viewModel.courses.observe(viewLifecycleOwner, this::updateAdapter)
+
+        //switch
+        binding.courseListFragmentSwitch.setOnCheckedChangeListener { button, b ->
+            if (b) viewModel.showFavoriteCourses() else  viewModel.showAllCourses()
+        }
     }
 
     private fun updateAdapter(courses: List<Course>){
