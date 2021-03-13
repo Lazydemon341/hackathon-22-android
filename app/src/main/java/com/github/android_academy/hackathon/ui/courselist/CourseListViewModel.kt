@@ -2,6 +2,7 @@ package com.github.android_academy.hackathon.ui.courselist
 
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +23,6 @@ class CourseListViewModel @Inject constructor(
     private val courseRepository : CourseRepository,
     private val authRepository: AuthRepository
 ) : ViewModel(){
-    //TODO: implement view model
     private val _mutableuser = MutableLiveData<User>(authRepository.loadUser())
 
     val user: LiveData<User> get() = _mutableuser
@@ -36,12 +36,13 @@ class CourseListViewModel @Inject constructor(
     }
 
     fun addCourseAction(){
-        router.navigateTo(Screens.addCourseFragment(),false )
+        router.navigateTo(Screens.addCourseFragment())
         //TODO добавление курса. На то что ментор уже проверили
     }
 
     fun subscribeAction(course: Course){
         viewModelScope.launch {
+            _mutablecourses.value = ViewState.loading()
             courseRepository.updateCourse(course)
 
             val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")
@@ -54,6 +55,8 @@ class CourseListViewModel @Inject constructor(
 
     fun showFavoriteCourses(){
         viewModelScope.launch {
+            _mutablecourses.value = ViewState.loading()
+
             val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")
             when(coursesResult){
                 is OperationResult.Success -> _mutablecourses.value = ViewState.success(coursesResult.data?: emptyList())
@@ -64,6 +67,8 @@ class CourseListViewModel @Inject constructor(
 
     fun showAllCourses(){
         viewModelScope.launch {
+            _mutablecourses.value = ViewState.loading()
+
             val coursesResult = courseRepository.getAllCourses()
             when(coursesResult){
                 is OperationResult.Success -> _mutablecourses.value = ViewState.success(coursesResult.data?: emptyList())

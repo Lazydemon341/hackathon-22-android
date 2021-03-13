@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/course_list_fragment_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/show_only_favorites"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

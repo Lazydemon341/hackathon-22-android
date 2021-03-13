@@ -2,6 +2,7 @@ package com.github.android_academy.hackathon.ui.courselist
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -46,13 +47,16 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         }
 
         //show courses
-        viewModel.showAllCourses()
+        if (binding.courseListFragmentSwitch.splitTrack) viewModel.showFavoriteCourses() else  viewModel.showAllCourses()
     }
 
     private fun updateAdapter(courses: ViewState<List<Course>, String?>){
         when(courses){
             is ViewState.Success -> coursesAdapter.submitList(courses.result)
-            is ViewState.Error -> coursesAdapter.submitList(emptyList())
+            is ViewState.Loading -> {/*TODO показать загрузку */}
+            is ViewState.Error -> {
+                Toast.makeText(context, courses.result,Toast.LENGTH_LONG).show()
+            }
         }
     }
 
