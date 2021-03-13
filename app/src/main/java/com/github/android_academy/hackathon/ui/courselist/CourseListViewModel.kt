@@ -22,6 +22,8 @@ class CourseListViewModel @Inject constructor(
 
     val user: LiveData<User> get() = _mutableuser
 
+    private val _mutablecourses = MutableLiveData<List<Course>>()//TODO добавить метод поолучения курсов
+
     fun onCourseAction(course: Course){
         //TODO получить курс
     }
@@ -30,7 +32,8 @@ class CourseListViewModel @Inject constructor(
         //TODO добавление курса. На то что ментор уже проверили
     }
 
-    fun addToFavoriteAction(course: Course){
+    fun subscribeAction(course: Course){
+
         //TODO обновить юзера, обновить иконку
     }
 

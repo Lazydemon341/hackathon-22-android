@@ -27,7 +27,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         //recycler
         val coursesAdapter = CoursesAdapter(
             courseListener = {viewModel.onCourseAction(it)},
-            {viewModel.addToFavoriteAction(it)}
+            {viewModel.subscribeAction(it)}
         )
         binding.courseListFragmentRecycler.adapter = coursesAdapter
 
@@ -37,8 +37,6 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
             viewModel.addCourseAction()
         }
     }
-
-
 
     companion object {
         @JvmStatic
