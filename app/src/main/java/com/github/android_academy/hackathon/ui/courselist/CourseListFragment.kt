@@ -1,7 +1,8 @@
 package com.github.android_academy.hackathon.ui.courselist
 
-import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,16 +16,16 @@ import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 
-class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
+class CourseListFragment : BaseFragment(R.layout.course_list_fragment) {
     private val binding by viewBinding(CourseListFragmentBinding::bind)
 
     private val coursesAdapter = CoursesAdapter(
-        courseListener = {viewModel.onCourseAction(it)},
-        {viewModel.subscribeAction(it)}
+        courseListener = { viewModel.onCourseAction(it) },
+        { viewModel.subscribeAction(it) }
     )
 
     private val viewModel: CourseListViewModel by viewModels(
-            factoryProducer = { CourseListViewModelFactory() }
+        factoryProducer = { CourseListViewModelFactory() }
     )
 
     override fun initViews(view: View) {
@@ -34,7 +35,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         binding.courseListFragmentRecycler.adapter = coursesAdapter
 
         //fab
-        if(!viewModel.isMentor()) binding.courseFragmentFab.hide() //спрятать если не ментор
+        if (!viewModel.isMentor()) binding.courseFragmentFab.hide() //спрятать если не ментор
         binding.courseFragmentFab.setOnClickListener {
             viewModel.addCourseAction()
         }
@@ -44,18 +45,30 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
 
         //switch
         binding.courseListFragmentSwitch.setOnCheckedChangeListener { button, b ->
-            if (b) viewModel.showFavoriteCourses() else  viewModel.showAllCourses()
+            if (b) viewModel.showFavoriteCourses() else viewModel.showAllCourses()
         }
 
         //show courses
         viewModel.showAllCourses()
     }
 
-    private fun updateAdapter(courses: ViewState<List<Course>, String?>){
-        when(courses){
-            is ViewState.Success -> coursesAdapter.submitList(courses.result)
-            is ViewState.Error -> coursesAdapter.submitList(emptyList())
+    private fun updateAdapter(courses: ViewState<List<Course>, String?>) {
+        when (courses) {
+            is ViewState.Success -> {
+                binding.courseListProgressBar.isVisible = false
+                coursesAdapter.submitList(courses.result)
+            }
+            ViewState.Loading -> binding.courseListProgressBar.isVisible = true
+            is ViewState.Error -> {
+                binding.courseListProgressBar.isVisible = false
+                showError()
+            }
         }
+    }
+
+    private fun showError() {
+        Toast.makeText(requireContext(), "Couldn't load courses...", Toast.LENGTH_SHORT)
+            .show()
     }
 
     override fun onBackPressed() {
@@ -72,8 +85,8 @@ private class CourseListViewModelFactory() : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return DaggerCourseListViewModelComponent.builder()
-                .appComponent(App.appComponent)
-                .build()
-                .provideViewModel() as T
+            .appComponent(App.appComponent)
+            .build()
+            .provideViewModel() as T
     }
 }
