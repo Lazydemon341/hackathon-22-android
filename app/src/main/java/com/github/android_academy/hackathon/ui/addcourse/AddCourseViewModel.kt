@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.ui.addcourse
 
 import androidx.lifecycle.ViewModel
+import com.github.android_academy.hackathon.Screens
 import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.repositories.CourseRepository
 import com.github.terrakok.cicerone.Router
@@ -12,6 +13,7 @@ class AddCourseViewModel @Inject constructor(
 ): ViewModel() {
 
     fun addCourse(course : Course){
-        TODO("Not yet implemented")
+        //TODO : send new course to repo
+        router.navigateTo(Screens.CourseListFragment())
     }
 }

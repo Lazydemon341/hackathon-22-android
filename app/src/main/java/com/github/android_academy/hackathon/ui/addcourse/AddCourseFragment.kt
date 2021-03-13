@@ -25,15 +25,14 @@ class AddCourseFragment : BaseFragment(R.layout.add_course_fragment) {
         //TODO observe
 
         binding.doneAddCourseFab.setOnClickListener {
-            viewModel.addCourse(
-                Course(
-                    title = binding.addCourseTitle.editText?.text.toString(),
-                    shortDescription = binding.addCourseShortDescription.editText?.text.toString(),
-                    fullDescription = binding.addCourseFullDescription.editText?.text.toString(),
-                    imgUrl = binding.addCourseImageUrl.editText?.text.toString(),
-                    tags = binding.addCourseTags.editText?.text.toString().split(" ")
-                )
+            val course = Course(
+                title = binding.addCourseTitle.editText?.text.toString(),
+                shortDescription = binding.addCourseShortDescription.editText?.text.toString(),
+                fullDescription = binding.addCourseFullDescription.editText?.text.toString(),
+                imgUrl = binding.addCourseImageUrl.editText?.text.toString(),
+                tags = binding.addCourseTags.editText?.text.toString().split(" ")
             )
+            viewModel.addCourse(course)
         }
     }
 
