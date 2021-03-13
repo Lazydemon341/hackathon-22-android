@@ -7,6 +7,7 @@ import com.github.android_academy.hackathon.ui.login.LoginFragment
 import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
 import com.github.terrakok.cicerone.androidx.Creator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
+import com.github.android_academy.hackathon.ui.addcourse.AddCourseFragment
 
 object Screens {
     fun LoginFragment(): FragmentScreen =
@@ -27,6 +28,11 @@ object Screens {
             FragmentScreen(
                     fragmentCreator = FragmentCreator(CourseListFragment.newInstance())
             )
+
+    fun AddCourseFragment() : FragmentScreen =
+        FragmentScreen(
+            fragmentCreator = FragmentCreator(AddCourseFragment.newInstance())
+        )
 
     class FragmentCreator(private val fragment: Fragment) : Creator<FragmentFactory, Fragment> {
         override fun create(argument: FragmentFactory): Fragment =
