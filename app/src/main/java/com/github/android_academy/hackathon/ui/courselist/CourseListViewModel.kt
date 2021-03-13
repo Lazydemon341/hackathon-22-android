@@ -7,6 +7,5 @@ import javax.inject.Inject
 class CourseListViewModel @Inject constructor(
     private val router : Router
 ) : ViewModel(){
-
     //TODO: implement view model
 }

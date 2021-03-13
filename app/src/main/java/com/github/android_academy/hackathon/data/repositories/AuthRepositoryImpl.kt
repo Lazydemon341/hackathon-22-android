@@ -13,8 +13,9 @@ import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.extensions.isConflict
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
+class AuthRepositoryImpl @Inject constructor(
     private val context: Context,
     private val database: SampleDatabase,
     private val serverApi: ServerApi
