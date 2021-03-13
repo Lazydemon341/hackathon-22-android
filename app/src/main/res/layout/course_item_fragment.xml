@@ -10,13 +10,13 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="142dp"
         android:stateListAnimator="@android:anim/accelerate_interpolator">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:weightSum="4">
