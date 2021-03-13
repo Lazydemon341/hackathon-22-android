@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.android_academy.hackathon.Screens
 import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
@@ -24,17 +25,20 @@ class CourseListViewModel @Inject constructor(
 
     private val _mutablecourses = MutableLiveData<List<Course>>()//TODO добавить метод поолучения курсов
 
+    val courses:LiveData<List<Course>> get() = _mutablecourses
+
     fun onCourseAction(course: Course){
         //TODO получить курс
     }
 
     fun addCourseAction(){
+        router.navigateTo(Screens.AddCourseFragment(),false )
         //TODO добавление курса. На то что ментор уже проверили
     }
 
     fun subscribeAction(course: Course){
 
-        //TODO обновить юзера, обновить иконку
+        //TODO запросить на беке список курсов, обновить локальынй
     }
 
     fun isMentor() = user.value?.isMentor == true

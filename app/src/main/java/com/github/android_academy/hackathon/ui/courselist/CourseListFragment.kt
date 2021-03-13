@@ -10,11 +10,16 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.CourseListFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.courselist.DaggerCourseListViewModelComponent
+import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.ui.BaseFragment
 
 class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     private val binding by viewBinding(CourseListFragmentBinding::bind)
 
+    var coursesAdapter = CoursesAdapter(
+        courseListener = {viewModel.onCourseAction(it)},
+        {viewModel.subscribeAction(it)}
+    )
 
     private val viewModel: CourseListViewModel by viewModels(
             factoryProducer = { CourseListViewModelFactory() }
@@ -22,13 +27,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
 
     override fun initViews(view: View) {
         super.initViews(view)
-        //TODO observe
 
-        //recycler
-        val coursesAdapter = CoursesAdapter(
-            courseListener = {viewModel.onCourseAction(it)},
-            {viewModel.subscribeAction(it)}
-        )
         binding.courseListFragmentRecycler.adapter = coursesAdapter
 
         //fab
@@ -36,6 +35,13 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         binding.courseFragmentFab.setOnClickListener {
             viewModel.addCourseAction()
         }
+
+        //TODO observe
+        viewModel.courses.observe(viewLifecycleOwner, this::updateAdapter)
+    }
+
+    private fun updateAdapter(courses: List<Course>){
+        coursesAdapter.submitList(courses)
     }
 
     companion object {
