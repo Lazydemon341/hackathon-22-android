@@ -1,7 +1,7 @@
 package com.github.android_academy.hackathon.domain.models
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize()
 data class Lecture(

@@ -9,12 +9,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.AddLectureFragmentBinding
-import com.github.android_academy.hackathon.di.viewmodels.addcourse.DaggerAddCourseViewModelComponent
 import com.github.android_academy.hackathon.di.viewmodels.addlecture.DaggerAddLectureViewModelComponent
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.BaseFragment
+import com.github.android_academy.hackathon.ui.ViewState
 
-class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
+class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment) {
     private val binding by viewBinding(AddLectureFragmentBinding::bind)
 
 
@@ -39,6 +39,18 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
             )
             viewModel.addLecture(lecture)
         }
+
+        viewModel.singleLiveEvent.observe(viewLifecycleOwner) {
+            when (it) {
+                is ViewState.Error -> {
+                    //TODO
+                }
+                ViewState.Loading -> {
+                    //TODO
+                }
+                is ViewState.Success -> viewModel.exitFragment()
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -47,11 +59,12 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
 
     companion object {
         private const val COURSE_ID = "course_id"
+
         @JvmStatic
-        fun newInstance(courseId:Long) :AddLectureFragment{
+        fun newInstance(courseId: Long): AddLectureFragment {
             val fragment = AddLectureFragment()
             val bundle = Bundle()
-            bundle.putLong(COURSE_ID,courseId)
+            bundle.putLong(COURSE_ID, courseId)
             fragment.arguments = bundle
             return fragment
         }
