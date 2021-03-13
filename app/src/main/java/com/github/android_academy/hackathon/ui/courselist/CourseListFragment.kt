@@ -21,7 +21,14 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment) {
 
     private val coursesAdapter = CoursesAdapter(
         courseListener = { viewModel.onCourseAction(it) },
-        { viewModel.subscribeAction(it) }
+        addToFavoriteListener = {
+            viewModel.subscribeAction(it)
+            if (binding.courseListFragmentSwitch.isChecked)
+                viewModel.showFavoriteCourses()
+            else{
+                viewModel.showAllCourses()
+            }
+        }
     )
 
     private val viewModel: CourseListViewModel by viewModels(
@@ -40,16 +47,14 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment) {
             viewModel.addCourseAction()
         }
 
-        //TODO observe
         viewModel.courses.observe(viewLifecycleOwner, this::updateAdapter)
+
+        viewModel.showAllCourses()
 
         //switch
         binding.courseListFragmentSwitch.setOnCheckedChangeListener { button, b ->
             if (b) viewModel.showFavoriteCourses() else viewModel.showAllCourses()
         }
-
-        //show courses
-        viewModel.showAllCourses()
     }
 
     private fun updateAdapter(courses: ViewState<List<Course>, String?>) {
@@ -61,6 +66,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment) {
             ViewState.Loading -> binding.courseListProgressBar.isVisible = true
             is ViewState.Error -> {
                 binding.courseListProgressBar.isVisible = false
+                coursesAdapter.submitList(emptyList())
                 showError()
             }
         }

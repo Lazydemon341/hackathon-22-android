@@ -45,14 +45,6 @@ class CourseListViewModel @Inject constructor(
     fun subscribeAction(course: Course) {
         viewModelScope.launch {
             courseRepository.updateCourse(course)
-
-            val coursesResult = courseRepository.getFavouriteCourses(user.value?.username ?: "")
-            when (coursesResult) {
-                is OperationResult.Success -> _mutablecourses.value =
-                    ViewState.success(coursesResult.data ?: emptyList())
-                is OperationResult.Error -> _mutablecourses.value =
-                    ViewState.error(coursesResult.data)
-            }
         }
     }
 

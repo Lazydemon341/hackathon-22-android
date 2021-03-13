@@ -31,7 +31,7 @@ class CourseRepositoryImpl @Inject constructor(
 
     override suspend fun getFavouriteCourses(username: String): OperationResult<List<Course>, String?> =
         try {
-            val courses = serverApi.getFavouriteCourses(username).map {
+            val courses = serverApi.getFavouriteCourses().map {
                 Course(
                     id = it.id,
                     title = it.title,
