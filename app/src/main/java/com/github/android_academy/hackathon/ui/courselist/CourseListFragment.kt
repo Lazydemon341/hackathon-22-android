@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
@@ -17,7 +18,7 @@ import com.github.android_academy.hackathon.ui.ViewState
 class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     private val binding by viewBinding(CourseListFragmentBinding::bind)
 
-    var coursesAdapter = CoursesAdapter(
+    private val coursesAdapter = CoursesAdapter(
         courseListener = {viewModel.onCourseAction(it)},
         {viewModel.subscribeAction(it)}
     )
@@ -29,6 +30,7 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     override fun initViews(view: View) {
         super.initViews(view)
 
+        binding.courseListFragmentRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.courseListFragmentRecycler.adapter = coursesAdapter
 
         //fab

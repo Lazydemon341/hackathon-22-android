@@ -29,4 +29,14 @@ interface ServerApi {
     suspend fun updateCourse(
         @Body updateCourseRequestDTO: UpdateCourseRequestDTO
     )
+
+    @POST("lectures/update")
+    suspend fun updateLecture(
+        @Body updateLectureRequestDTO: UpdateLectureRequestDTO
+    )
+
+    @GET("lectures/all")
+    suspend fun getAllLectures(
+        @Query(value = "courseId") courseId: Long
+    )
 }

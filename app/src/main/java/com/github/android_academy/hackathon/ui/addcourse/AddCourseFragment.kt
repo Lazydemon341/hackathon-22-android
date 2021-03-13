@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.ui.addcourse
 
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -32,6 +33,10 @@ class AddCourseFragment : BaseFragment(R.layout.add_course_fragment) {
                 tags = binding.addCourseTags.editText?.text.toString().split(" ")
             )
             viewModel.addCourse(course)
+        }
+
+        viewModel.singleLiveEvent.observe(viewLifecycleOwner){
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
         }
     }
 
