@@ -56,7 +56,7 @@ class CourseRepositoryImpl @Inject constructor(
                     shortDescription = course.shortDescription,
                     fullDescription = course.fullDescription,
                     imgUrl = course.imgUrl,
-                    isSubscribed = course.isSubscribed,
+                    subscribed = course.isSubscribed,
                     tags = course.tags
                 )
             )

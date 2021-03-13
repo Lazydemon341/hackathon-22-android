@@ -23,11 +23,11 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment) {
         courseListener = { viewModel.onCourseAction(it) },
         addToFavoriteListener = {
             viewModel.subscribeAction(it)
-            if (binding.courseListFragmentSwitch.isChecked)
-                viewModel.showFavoriteCourses()
-            else{
-                viewModel.showAllCourses()
-            }
+//            if (binding.courseListFragmentSwitch.isChecked)
+//                viewModel.showFavoriteCourses()
+//            else{
+//                viewModel.showAllCourses()
+//            }
         }
     )
 

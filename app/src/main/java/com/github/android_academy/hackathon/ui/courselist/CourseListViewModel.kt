@@ -44,7 +44,16 @@ class CourseListViewModel @Inject constructor(
 
     fun subscribeAction(course: Course) {
         viewModelScope.launch {
-            courseRepository.updateCourse(course)
+            val updateCourse = Course(
+                id = course.id,
+                title = course.title,
+                shortDescription = course.shortDescription,
+                fullDescription = course.fullDescription,
+                imgUrl = course.imgUrl,
+                tags = course.tags,
+                isSubscribed = !course.isSubscribed
+            )
+            courseRepository.updateCourse(updateCourse)
         }
     }
 
