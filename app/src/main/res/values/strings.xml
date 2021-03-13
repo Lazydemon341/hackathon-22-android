@@ -15,7 +15,7 @@
     <string name="is_mentor">I am a mentor</string>
     <string name="success">Success</string>
     <string name="appbar_item_mentor">Mentor</string>
-    <string name="appbar_item_login">LogIn</string>
+    <string name="appbar_item_log_out">Log out</string>
     <string name="appbar_item_lectures">Lectures</string>
     <string name="appbar_item_map">Map</string>
     <string name="course_title">Title:</string>

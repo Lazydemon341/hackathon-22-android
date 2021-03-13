@@ -1,7 +1,7 @@
 package com.github.android_academy.hackathon.data.repositories
 
-import android.content.Context
-import com.github.android_academy.hackathon.R
+import androidx.lifecycle.LiveData
+import com.github.android_academy.hackathon.data.PrefsStorage
 import com.github.android_academy.hackathon.data.network.ServerApi
 import com.github.android_academy.hackathon.data.network.models.LoginRequestDTO
 import com.github.android_academy.hackathon.data.network.models.RegisterRequestDTO
@@ -9,35 +9,18 @@ import com.github.android_academy.hackathon.data.network.models.toUser
 import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
+import com.github.android_academy.hackathon.domain.repositories.MyOptional
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    context: Context,
+    private val prefsStorage: PrefsStorage,
     private val serverApi: ServerApi
 ) : AuthRepository {
 
-    private val sharedPref = context.getSharedPreferences(
-        context.resources.getString(R.string.shared_pref_name),
-        Context.MODE_PRIVATE
-    )
 
+    override fun loadUser(): User? = prefsStorage.loadUser()
 
-    override fun loadUser(): User? {
-        val username = sharedPref.getString(USERNAME_KEY, null)
-        val name = sharedPref.getString(NAME_KEY, null)
-        val token = sharedPref.getString(TOKEN_KEY, null)
-        val isMentor = sharedPref.getBoolean(IS_MENTOR_KEY, false)
-
-        if (!username.isNullOrBlank() && !name.isNullOrBlank() && !token.isNullOrBlank())
-            return User(
-                username = username,
-                name = name,
-                token = token,
-                isMentor = isMentor
-            )
-
-        return null
-    }
+    override fun observeUser(): LiveData<MyOptional<User>> = prefsStorage.observeUser()
 
     override suspend fun login(
         username: String,
@@ -51,7 +34,7 @@ class AuthRepositoryImpl @Inject constructor(
                 )
             ).toUser()
 
-            saveToSharedPref(user)
+            prefsStorage.saveToSharedPref(user)
 
             OperationResult.Success(Unit)
 
@@ -76,7 +59,7 @@ class AuthRepositoryImpl @Inject constructor(
                 )
             ).toUser()
 
-            saveToSharedPref(user)
+            prefsStorage.saveToSharedPref(user)
 
             OperationResult.Success(Unit)
 
@@ -84,19 +67,8 @@ class AuthRepositoryImpl @Inject constructor(
             OperationResult.Error(e.message)
         }
 
-    private fun saveToSharedPref(
-        user: User
-    ) {
-        sharedPref.edit()
-            .putString(USERNAME_KEY, user.username)
-            .putString(NAME_KEY, user.name)
-            .putString(TOKEN_KEY, user.token)
-            .putBoolean(IS_MENTOR_KEY, user.isMentor)
-            .apply()
-    }
+
+    override fun logOut() =
+        prefsStorage.saveToSharedPref(null)
 }
 
-private const val USERNAME_KEY = "username"
-private const val NAME_KEY = "name"
-private const val TOKEN_KEY = "token"
-private const val IS_MENTOR_KEY = "IsMentor"

@@ -13,13 +13,10 @@ class TokenAuthenticator @Inject constructor(
     override fun authenticate(route: Route?, response: Response): Request? {
         if (responseCount(response) >= MAX_ATTEMPTS)
             return null
-        return prefsStorage.authToken
-            ?.let { token ->
-                response.request
-                    .newBuilder()
-                    .header(AUTH_HEADER, token)
-                    .build()
-            }
+        return response.request
+            .newBuilder()
+            .header(AUTH_HEADER, prefsStorage.loadUser()?.token.orEmpty())
+            .build()
     }
 
     private fun responseCount(response: Response): Int {

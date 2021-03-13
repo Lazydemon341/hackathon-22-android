@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-<group android:checkableBehavior="single">
-    <item android:id="@+id/item_login" android:title="@string/appbar_item_login" android:icon="@android:drawable/ic_input_add" />
-    <item android:id="@+id/item_mentor" android:title="@string/appbar_item_mentor"  android:icon="@android:drawable/ic_input_add" />
-    <item android:id="@+id/item_letcures" android:title="@string/appbar_item_lectures"  android:icon="@android:drawable/ic_input_add" />
-    <item android:id="@+id/item_map" android:title="@string/appbar_item_map"  android:icon="@android:drawable/ic_menu_zoom" />
-</group>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_log_out"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/appbar_item_log_out"
+            app:showAsAction="never"
+            />
+<!--        <item-->
+<!--            android:id="@+id/item_mentor"-->
+<!--            android:icon="@android:drawable/ic_input_add"-->
+<!--            android:title="@string/appbar_item_mentor" />-->
+<!--        <item-->
+<!--            android:id="@+id/item_lectures"-->
+<!--            android:icon="@android:drawable/ic_input_add"-->
+<!--            android:title="@string/appbar_item_lectures" />-->
+<!--        <item-->
+<!--            android:id="@+id/item_map"-->
+<!--            android:icon="@android:drawable/ic_menu_zoom"-->
+<!--            android:title="@string/appbar_item_map" />-->
+    </group>
 
 </menu>

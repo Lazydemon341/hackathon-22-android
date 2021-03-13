@@ -1,56 +1,68 @@
 package com.github.android_academy.hackathon.data
 
 import android.content.Context
-import android.content.SharedPreferences
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.domain.models.User
-import com.squareup.moshi.Moshi
+import com.github.android_academy.hackathon.domain.repositories.MyOptional
 import javax.inject.Inject
 
 class PrefsStorage @Inject constructor(
-    private val context: Context,
-    private val moshi: Moshi
+    context: Context
 ) {
 
-    var authToken: String?
-        get() = getSharedPreferences(context.resources.getString(R.string.shared_pref_name)).getString(
-            KEY_TOKEN,
-            null
-        )
-        set(token) = getSharedPreferences(context.resources.getString(R.string.shared_pref_name))
-            .edit()
-            .putString(KEY_TOKEN, token)
-            .apply()
+    private val sharedPref = context.getSharedPreferences(
+        context.resources.getString(R.string.shared_pref_name),
+        Context.MODE_PRIVATE
+    )
 
-    var cachedProfile: User?
-        get() {
-            val profileJson = getSharedPreferences(NAME_PROFILE).getString(KEY_PROFILE, null)
-            return if (profileJson != null) {
-                profileJson.runCatching {
-                    moshi.adapter(User::class.java)
-                        .fromJson(this)
-                }.getOrNull()
-            } else {
-                null
-            }
-        }
-        set(profile) = getSharedPreferences(NAME_PROFILE)
-            .edit()
-            .putString(KEY_PROFILE, moshi.adapter(User::class.java).toJson(profile))
-            .apply()
+    private val userLiveData = MutableLiveData(MyOptional(loadUser()))
 
-    fun clearProfile() {
-        getSharedPreferences(NAME_PROFILE).edit().clear().apply()
-        cachedProfile = null
+    fun observeUser(): LiveData<MyOptional<User>> = userLiveData
+
+    fun loadUser(): User? {
+        val username = sharedPref.getString(USERNAME_KEY, null)
+        val name = sharedPref.getString(NAME_KEY, null)
+        val token = sharedPref.getString(TOKEN_KEY, null)
+        val isMentor = sharedPref.getBoolean(IS_MENTOR_KEY, false)
+
+        if (!username.isNullOrBlank() && !name.isNullOrBlank() && !token.isNullOrBlank())
+            return User(
+                username = username,
+                name = name,
+                token = token,
+                isMentor = isMentor
+            )
+
+        return null
     }
 
-    private fun getSharedPreferences(name: String): SharedPreferences {
-        return context.getSharedPreferences(name, Context.MODE_PRIVATE)
+    fun saveToSharedPref(
+        user: User?
+    ) {
+        if (user != null) {
+            sharedPref.edit()
+                .putString(USERNAME_KEY, user.username)
+                .putString(NAME_KEY, user.name)
+                .putString(TOKEN_KEY, user.token)
+                .putBoolean(IS_MENTOR_KEY, user.isMentor)
+                .apply()
+        } else {
+            sharedPref.edit()
+                .remove(USERNAME_KEY)
+                .remove(NAME_KEY)
+                .remove(TOKEN_KEY)
+                .remove(IS_MENTOR_KEY)
+                .apply()
+        }
+        userLiveData.postValue(MyOptional(user))
     }
 
     companion object {
-        const val KEY_TOKEN = "token"
-        const val NAME_PROFILE = "profile"
-        const val KEY_PROFILE = "profile"
+        private const val USERNAME_KEY = "username"
+        private const val NAME_KEY = "name"
+        private const val TOKEN_KEY = "token"
+        private const val IS_MENTOR_KEY = "IsMentor"
     }
 }

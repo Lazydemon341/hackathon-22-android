@@ -4,13 +4,16 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.Screens
-import com.github.android_academy.hackathon.data.PrefsStorage
+import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.google.android.material.appbar.MaterialToolbar
 import javax.inject.Inject
 
 class AppActivity : AppCompatActivity() {
@@ -21,7 +24,7 @@ class AppActivity : AppCompatActivity() {
     lateinit var router: Router
 
     @Inject
-    lateinit var prefsStorage: PrefsStorage
+    lateinit var authRepository: AuthRepository
 
     private val navigator = AppNavigator(this, R.id.container)
 
@@ -31,14 +34,22 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setTheme(R.style.Theme_HackathonWinnerApp)
+
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.app_activity)
+        setSupportActionBar(findViewById(R.id.app_toolbar))
+        setupActionBar()
 
         if (savedInstanceState == null) {
-            if (prefsStorage.authToken.isNullOrBlank())
+            if (authRepository.loadUser() == null)
                 router.newRootScreen(Screens.loginFragment())
             else
                 router.newRootScreen(Screens.courseListFragment())
+        }
+
+        authRepository.observeUser().observe(this) {
+            //TODO: update nav drawer
         }
     }
 
@@ -55,4 +66,13 @@ class AppActivity : AppCompatActivity() {
     override fun onBackPressed() {
         currentFragment?.onBackPressed() ?: super.onBackPressed()
     }
+
+
+    private fun setupActionBar() {
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+//        (supportActionBar).setNavigationOnClickListener() {
+//            findViewById<DrawerLayout>(R.id.drawer_layout).openDrawer(GravityCompat.START)
+//        } // TODO
+    }
+
 }
