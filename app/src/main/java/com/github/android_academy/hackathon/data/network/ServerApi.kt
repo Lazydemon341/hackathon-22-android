@@ -36,5 +36,5 @@ interface ServerApi {
     @GET("lectures/all")
     suspend fun getAllLectures(
         @Query(value = "courseId") courseId: Long
-    )
+    ) : List<LectureDTO>
 }
