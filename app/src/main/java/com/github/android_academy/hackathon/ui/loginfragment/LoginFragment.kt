@@ -45,7 +45,7 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
         bindHideErrors()
     }
 
-    fun checkLoginResult(it: ViewState<User, String?>) {
+    fun checkLoginResult(it: ViewState<Unit, String?>) {
         //it.Success
         when (it) {
             is ViewState.Loading -> {/*TODO показать анимацию */

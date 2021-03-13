@@ -15,10 +15,10 @@ class RegistrationViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    private val mutableRegistrationResult: MutableLiveData<ViewState<User, String?>> =
+    private val mutableRegistrationResult: MutableLiveData<ViewState<Unit, String?>> =
         MutableLiveData()
 
-    val registrationResult: LiveData<ViewState<User, String?>> get() = mutableRegistrationResult
+    val registrationResult: LiveData<ViewState<Unit, String?>> get() = mutableRegistrationResult
 
     fun register(
         username: String,

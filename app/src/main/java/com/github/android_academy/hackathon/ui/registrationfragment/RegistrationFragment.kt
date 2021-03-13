@@ -53,7 +53,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
                 binding.registrationFragmentPassword2.editText?.text?.toString()
     }
 
-    fun checkRegistrationResult(it: ViewState<User, String?>){
+    private fun checkRegistrationResult(it: ViewState<Unit, String?>){
         //it.Success
         when(it){
             is ViewState.Loading -> {/*TODO показать анимацию */ }
@@ -67,7 +67,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         }
     }
 
-    fun wrongPassword(message:String){
+    private fun wrongPassword(message:String){
         binding.registrationFragmentLogin.error = message
     }
 

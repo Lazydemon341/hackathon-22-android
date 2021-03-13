@@ -18,9 +18,9 @@ class LoginViewModel @Inject constructor(
     private val router : Router
 ) : ViewModel() {
 
-    private val mutableLoginResult: MutableLiveData<ViewState<User, String?>> = MutableLiveData()
+    private val mutableLoginResult: MutableLiveData<ViewState<Unit, String?>> = MutableLiveData()
 
-    val loginResult: LiveData<ViewState<User, String?>> get() = mutableLoginResult
+    val loginResult: LiveData<ViewState<Unit, String?>> get() = mutableLoginResult
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
