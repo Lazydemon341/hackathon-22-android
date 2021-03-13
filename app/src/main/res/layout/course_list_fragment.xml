@@ -21,4 +21,13 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="138dp"
         tools:layout_editor_absoluteY="156dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/course_fragment_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_sharp_add_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

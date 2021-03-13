@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/item_login" android:title="LogIn" />
-    <item android:id="@+id/item_mentor" android:title="Mentor" />
-    <item android:id="@+id/item_letcure" android:title="Lectures" />
-    <item android:id="@+id/item_map" android:title="Map" />
+    <item android:id="@+id/item_login" android:title="@string/appbar_item_login" />
+    <item android:id="@+id/item_mentor" android:title="@string/appbar_item_mentor" />
+    <item android:id="@+id/item_letcure" android:title="@string/appbar_item_lectures" />
+    <item android:id="@+id/item_map" android:title="@string/appbar_item_map" />
 </menu>
