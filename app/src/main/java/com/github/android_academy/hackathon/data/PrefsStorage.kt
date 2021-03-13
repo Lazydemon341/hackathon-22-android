@@ -2,6 +2,7 @@ package com.github.android_academy.hackathon.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.domain.models.User
 import com.squareup.moshi.Moshi
 import javax.inject.Inject
@@ -12,8 +13,11 @@ class PrefsStorage @Inject constructor(
 ) {
 
     var authToken: String?
-        get() = getSharedPreferences(NAME_AUTH).getString(KEY_TOKEN, null)
-        set(token) = getSharedPreferences(NAME_AUTH)
+        get() = getSharedPreferences(context.resources.getString(R.string.shared_pref_name)).getString(
+            KEY_TOKEN,
+            null
+        )
+        set(token) = getSharedPreferences(context.resources.getString(R.string.shared_pref_name))
             .edit()
             .putString(KEY_TOKEN, token)
             .apply()
@@ -45,7 +49,6 @@ class PrefsStorage @Inject constructor(
     }
 
     companion object {
-        const val NAME_AUTH = "auth_data"
         const val KEY_TOKEN = "token"
         const val NAME_PROFILE = "profile"
         const val KEY_PROFILE = "profile"
