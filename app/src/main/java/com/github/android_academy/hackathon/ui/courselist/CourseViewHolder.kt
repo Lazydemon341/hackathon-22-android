@@ -7,16 +7,21 @@ import com.github.android_academy.hackathon.domain.models.Course
 class CourseViewHolder(private val binding : CourseItemFragmentBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(course : Course, listener:(Course)-> Unit){
-        setClickListener(listener,course)
+    fun bind(
+        course : Course, courseListener:(Course)-> Unit,
+        addToFavoriteListener : (Course) -> Unit
+    ) {
+        setClickListeners(courseListener, addToFavoriteListener,course)
         setText(course)
     }
 
-    private fun setClickListener(
-            listener: (Course) -> Unit,
+    private fun setClickListeners(
+            courseListener: (Course) -> Unit,
+            addToFavoriteListener: (Course) -> Unit,
             course: Course
     ){
-        itemView.setOnClickListener { listener(course) }
+        itemView.setOnClickListener { courseListener(course) }
+        binding.imageButton.setOnClickListener { addToFavoriteListener(course) }
     }
 
     private fun setText(course: Course){
