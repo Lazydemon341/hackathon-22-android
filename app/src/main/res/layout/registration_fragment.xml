@@ -73,7 +73,7 @@ tools:context=".ui.registrationfragment.RegistrationFragment">
             android:hint="@string/enter_password_again" />
     </com.google.android.material.textfield.TextInputLayout>
 
-<CheckedTextView
+<CheckBox
     android:id="@+id/registration_fragment_ismentor_checkbox"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
