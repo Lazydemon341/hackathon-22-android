@@ -2,7 +2,7 @@ package com.github.android_academy.hackathon
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.github.android_academy.hackathon.ui.courselistfragment.CourseListFragment
+import com.github.android_academy.hackathon.ui.courselist.CourseListFragment
 import com.github.android_academy.hackathon.ui.loginfragment.LoginFragment
 import com.github.android_academy.hackathon.ui.registrationfragment.RegistrationFragment
 import com.github.terrakok.cicerone.androidx.Creator
