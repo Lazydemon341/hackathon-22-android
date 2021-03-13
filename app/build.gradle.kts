@@ -36,7 +36,11 @@ android {
         getByName("debug") {
             signingConfig = signingConfigs["debug"]
             isDebuggable = true
-            buildConfigField("String", "BASE_URL", """"http://10.0.2.2:8080/"""")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                """"https://winner-app-2t4oaep36q-ez.a.run.app/""""
+            )
         }
 
         getByName("release") {
