@@ -43,7 +43,7 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
         bindHideErrors()
     }
 
-    fun checkLoginResult(it: ViewState<Unit, String?>) {
+    private fun checkLoginResult(it: ViewState<Unit, String?>) {
         //it.Success
         when (it) {
             is ViewState.Loading -> {/*TODO показать анимацию */
@@ -56,16 +56,17 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
                 //TODO запустить другой фрагмент
                 Snackbar.make(binding.root, R.string.success, Snackbar.LENGTH_LONG)
                     .show()
+                viewModel.launchCourseList()
             }
         }
     }
 
-    fun wrongPassword(message: String) {
+    private fun wrongPassword(message: String) {
         binding.loginFragmentPassword.error = message
     }
 
 
-    fun bindHideErrors() {
+    private fun bindHideErrors() {
         //ошибка исчезнет при изменении текста логина
         binding.loginFragmentLogin.addOnEditTextAttachedListener {
             binding.loginFragmentLogin.error = null
