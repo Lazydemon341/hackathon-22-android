@@ -10,6 +10,7 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.LoginFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.login.DaggerLoginViewModelComponent
+import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 import com.google.android.material.snackbar.Snackbar
@@ -32,9 +33,9 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
                 binding.loginFragmentPassword.editText?.text.toString()
             )
         }
+        //TODO добавить помогающий текст 
 
         binding.loginFragmentSignUpButton.setOnClickListener {
-            //TODO запустить фрагмент регистрации и перенести логин с паролем
             viewModel.launchRegistration(
                 binding.loginFragmentLogin.editText?.text.toString(),
                 binding.loginFragmentPassword.editText?.text.toString()
@@ -44,7 +45,7 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
         bindHideErrors()
     }
 
-    fun checkLoginResult(it: ViewState<Unit, String?>) {
+    fun checkLoginResult(it: ViewState<User, String?>) {
         //it.Success
         when (it) {
             is ViewState.Loading -> {/*TODO показать анимацию */

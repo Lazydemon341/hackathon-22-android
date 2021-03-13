@@ -34,7 +34,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         binding.registrationFragmentPassword.editText?.setText(arguments?.getString(KEY_PASSWORD))
 
         binding.registrationFragmentSignUpButton.setOnClickListener {
-            if (comparePasswords()){
+            if (true){
                 viewModel.register(
                     username = binding.registrationFragmentLogin.editText?.text.toString(),
                     password = binding.registrationFragmentPassword.editText?.text.toString(),
@@ -48,12 +48,12 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         }
     }
 
-    private fun comparePasswords():Boolean {
+    fun comparePasswords():Boolean {
         return binding.registrationFragmentPassword.editText?.text?.toString() ==
                 binding.registrationFragmentPassword2.editText?.text?.toString()
     }
 
-    private fun checkRegistrationResult(it: ViewState<Unit, String?>){
+    fun checkRegistrationResult(it: ViewState<User, String?>){
         //it.Success
         when(it){
             is ViewState.Loading -> {/*TODO показать анимацию */ }
@@ -67,7 +67,7 @@ class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
         }
     }
 
-    private fun wrongPassword(message:String){
+    fun wrongPassword(message:String){
         binding.registrationFragmentLogin.error = message
     }
 
