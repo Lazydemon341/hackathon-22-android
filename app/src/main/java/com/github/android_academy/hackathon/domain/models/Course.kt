@@ -1,6 +1,7 @@
 package com.github.android_academy.hackathon.domain.models
 
 data class Course(
+    val id: Long,
     val title: String,
     val shortDescription: String? = null,
     val fullDescription: String? = null,
