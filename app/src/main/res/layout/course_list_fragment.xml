@@ -4,7 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/standard_margin">
+    android:paddingStart="@dimen/standard_margin"
+    android:paddingEnd="@dimen/standard_margin"
+    android:paddingTop="@dimen/standard_margin">
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/course_list_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,16 +32,16 @@
         android:id="@+id/course_list_fragment_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/course_list_fragment_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/small_margin"
         app:layout_constraintTop_toBottomOf="@+id/course_list_fragment_switch"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="138dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -41,4 +53,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_sharp_add_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
