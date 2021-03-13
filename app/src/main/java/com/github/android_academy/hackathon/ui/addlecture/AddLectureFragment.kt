@@ -26,7 +26,6 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
         super.initViews(view)
 
 
-
         binding.addCourseFab.setOnClickListener {
             val lecture = Lecture(
                 title = binding.addLectureFragmentTitle.editText?.text.toString(),
@@ -38,7 +37,7 @@ class AddLectureFragment :BaseFragment(R.layout.add_lecture_fragment){
                 tags = binding.addLectureFragmentTags.editText?.text.toString().split(" "),
                 courseId = arguments?.getLong(COURSE_ID)!! //TODO получить из Bundle
             )
-
+            viewModel.addLecture(lecture)
         }
     }
 
