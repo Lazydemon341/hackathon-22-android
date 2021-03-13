@@ -14,4 +14,8 @@
     <string name="error_wrong_password">Passwords don\'t match</string>
     <string name="is_mentor">I am mentor</string>
     <string name="success">Success</string>
+    <string name="appbar_item_mentor">Mentor</string>
+    <string name="appbar_item_login">LogIn</string>
+    <string name="appbar_item_lectures">Lectures</string>
+    <string name="appbar_item_map">Map</string>
 </resources>
