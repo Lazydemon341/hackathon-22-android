@@ -27,11 +27,11 @@ class CourseListViewModel @Inject constructor(
     }
 
     fun addCourseAction(){
-        //TODO добавление курса
+        //TODO добавление курса. На то что ментор уже проверили
     }
 
     fun addToFavoriteAction(course: Course){
-        //TODO обновить юзера
+        //TODO обновить юзера, обновить иконку
     }
 
     fun isMentor() = user.value?.isMentor == true

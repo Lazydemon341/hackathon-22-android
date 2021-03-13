@@ -53,7 +53,6 @@ class LoginFragment : BaseFragment(R.layout.login_fragment) {
                 wrongPassword(it.result ?: "wrong username or password")
             }
             is ViewState.Success -> {
-                //TODO запустить другой фрагмент
                 Snackbar.make(binding.root, R.string.success, Snackbar.LENGTH_LONG)
                     .show()
                 viewModel.launchCourseList()
