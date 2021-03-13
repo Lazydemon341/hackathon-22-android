@@ -10,10 +10,7 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.CourseListFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.courselist.DaggerCourseListViewModelComponent
-import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.ui.BaseFragment
-import com.github.android_academy.hackathon.ui.loginfragment.LoginFragment
-import com.github.android_academy.hackathon.ui.registrationfragment.RegistrationFragment
 
 class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
     private val binding by viewBinding(CourseListFragmentBinding::bind)
@@ -28,21 +25,24 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment){
         //TODO observe
 
         //recycler
-        val coursesAdapter = CoursesAdapter {
-            viewModel.onCourseAction(it)
-        }
+        val coursesAdapter = CoursesAdapter(
+            courseListener = {viewModel.onCourseAction(it)},
+            {viewModel.addToFavoriteAction(it)}
+        )
         binding.courseListFragmentRecycler.adapter = coursesAdapter
 
         //fab
+        if(!viewModel.isMentor()) binding.courseFragmentFab.hide() //спрятать если не ментор
         binding.courseFragmentFab.setOnClickListener {
-            viewModel.addCourseAction() }
+            viewModel.addCourseAction()
+        }
     }
 
 
+
     companion object {
-        private const val KEY_USER = "user"
         @JvmStatic
-        fun newInstance() = LoginFragment()
+        fun newInstance() = CourseListFragment()
     }
 }
 

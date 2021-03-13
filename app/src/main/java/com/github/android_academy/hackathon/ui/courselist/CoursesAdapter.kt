@@ -8,7 +8,8 @@ import com.github.android_academy.hackathon.databinding.CourseItemFragmentBindin
 import com.github.android_academy.hackathon.domain.models.Course
 
 class CoursesAdapter(
-        private val listener: (Course) -> Unit //Обозначает листенера для нажатия на курс
+        private val courseListener: (Course) -> Unit, //Обозначает листенера для нажатия на курс
+        private val addToFavoriteListener: (Course) -> Unit
 ) : ListAdapter<Course, CourseViewHolder>(DIFF_CALLBACK){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -17,7 +18,7 @@ class CoursesAdapter(
     }
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
-        holder.bind(getItem(position), listener)
+        holder.bind(getItem(position), courseListener = courseListener, addToFavoriteListener = addToFavoriteListener)
     }
     companion object{
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Course>(){
