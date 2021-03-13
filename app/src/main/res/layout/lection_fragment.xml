@@ -7,7 +7,7 @@
     android:padding="@dimen/standard_margin">
 
     <ImageView
-
+        android:id="@+id/lecture_imgurl"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:src="@drawable/googleg_standard_color_18" />
@@ -27,6 +27,11 @@
         android:orientation="horizontal"
         android:weightSum="5">
 
+        <ImageView
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/yt" />
+
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -35,7 +40,8 @@
             android:padding="8dp"
             android:text="YouTube"
             android:textColor="#888"
-            android:textFontWeight="700" />
+            android:textFontWeight="700"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/link_youtube"
@@ -47,15 +53,14 @@
             android:text="http://github.com/azaza"
             android:textColor="#c1c1c1" />
 
-        <Button
-            android:id="@+id/link_youtube_click"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        <ImageButton
             android:layout_width="52dp"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:fontFamily="serif"
             android:padding="8dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/click"
             android:text="LINK"
-
             android:textColor="@color/black"
             android:textStyle="bold" />
     </LinearLayout>
@@ -69,8 +74,13 @@
         android:orientation="horizontal"
         android:weightSum="5">
 
-        <TextView
 
+        <ImageView
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/github" />
+
+        <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -78,7 +88,8 @@
             android:padding="8dp"
             android:text="GitHub"
             android:textColor="#888"
-            android:textFontWeight="700" />
+            android:textFontWeight="700"
+            android:visibility="gone" />
 
         <TextView
 
@@ -91,12 +102,61 @@
             android:text="http://github.com/azaza"
             android:textColor="#c1c1c1" />
 
-        <Button
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        <ImageButton
             android:layout_width="52dp"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:fontFamily="serif"
             android:padding="8dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/click"
+            android:text="LINK"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_title_size"
+        android:gravity="center_horizontal|center"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+
+        <ImageView
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/tg" />
+
+        <TextView
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:fontFamily="serif"
+            android:padding="8dp"
+            android:text="Telegram"
+            android:textColor="#888"
+            android:textFontWeight="700"
+            android:visibility="gone" />
+
+        <TextView
+
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:fontFamily="serif"
+            android:padding="8dp"
+            android:text="http://github.com/azaza"
+            android:textColor="#c1c1c1" />
+
+        <ImageButton
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:fontFamily="serif"
+            android:padding="8dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/click"
             android:text="LINK"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -121,66 +181,24 @@
             android:textColor="#888"
             android:textFontWeight="700" />
 
-        <TextView
-            android:id="@+id/link_materials"
-            android:layout_width="172dp"
+        <LinearLayout
+            android:id="@+id/lection_fragment_materials_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="http://github.com/azaza"
-            android:textColor="#c1c1c1" />
+            android:layout_marginTop="@dimen/text_title_size"
+            android:gravity="center_horizontal|center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/link_materials_click"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="52dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="LINK"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:padding="8dp"
+                android:text="none yet"
+                android:textColor="#888"
+                android:textFontWeight="400" />
+        </LinearLayout>
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_title_size"
-        android:gravity="center_horizontal|center"
-        android:orientation="horizontal"
-        android:weightSum="5">
-
-        <TextView
-
-            android:layout_width="84dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="Telegram"
-            android:textColor="#888"
-            android:textFontWeight="700" />
-
-        <TextView
-
-            android:layout_width="172dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="http://github.com/azaza"
-            android:textColor="#c1c1c1" />
-
-        <Button
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="52dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="LINK"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-    </LinearLayout>
-
 </LinearLayout>
