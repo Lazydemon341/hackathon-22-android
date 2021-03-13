@@ -54,8 +54,8 @@
 
             <ImageButton
                 android:id="@+id/lecture_item_fragment_imgurl"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_margin="@dimen/standard_margin"
                 android:src="@drawable/common_google_signin_btn_icon_dark" />
