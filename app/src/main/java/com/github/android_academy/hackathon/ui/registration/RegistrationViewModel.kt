@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.android_academy.hackathon.Screens
 import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.ui.ViewState
+import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RegistrationViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val router : Router
 ) : ViewModel() {
 
     private val mutableRegistrationResult: MutableLiveData<ViewState<Unit, String?>> =
@@ -40,5 +43,9 @@ class RegistrationViewModel @Inject constructor(
                 is OperationResult.Success -> ViewState.success(result.data)
             }
         }
+    }
+
+    fun launchCourseList(){
+        router.navigateTo(Screens.CourseListFragment())
     }
 }
