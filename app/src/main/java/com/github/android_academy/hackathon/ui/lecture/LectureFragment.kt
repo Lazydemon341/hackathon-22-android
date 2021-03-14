@@ -39,7 +39,7 @@ class LectureFragment : BaseFragment(R.layout.lection_fragment, true, "Lecture")
                 .into(binding.lectureImage)
 
             //youtube
-            //binding.lectureTelegramUrlText.setText(lecture?.youtubeUrl) TODO
+            binding.lectureYoutubeUrlText.setText(lecture?.youtubeUrl)
             binding.lectureYoutubeButton.setOnClickListener {
                 val youtubeIntent: Intent = Intent(Intent.ACTION_VIEW)
                 youtubeIntent.data = Uri.parse(lecture?.youtubeUrl)
@@ -47,7 +47,7 @@ class LectureFragment : BaseFragment(R.layout.lection_fragment, true, "Lecture")
             }
 
             //github
-            //binding.lectionFragmentTelegramUrl.setText(lecture?.telegramChannel) TODO
+            binding.lectureTelegramUrlText.setText(lecture?.telegramChannel)
             binding.lectureTelegramButton.setOnClickListener {
                 val telegramIntent: Intent =
                     Intent(Intent.ACTION_VIEW, Uri.parse(lecture?.telegramChannel))
@@ -55,7 +55,7 @@ class LectureFragment : BaseFragment(R.layout.lection_fragment, true, "Lecture")
             }
 
             //telegram
-            //binding.lectionFragmentGithubUrl.setText(lecture?.githubRepoUrl) TODO
+            binding.lectureGithubUrlText.setText(lecture?.githubRepoUrl)
             binding.lectureGithubButton.setOnClickListener {
                 val githubIntent: Intent = Intent(Intent.ACTION_VIEW)
                 githubIntent.data = Uri.parse(lecture?.githubRepoUrl)
