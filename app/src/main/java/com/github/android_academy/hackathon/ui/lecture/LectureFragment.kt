@@ -38,6 +38,7 @@ class LectureFragment : BaseFragment(R.layout.lection_fragment, true, "Lecture")
                 .placeholder(R.drawable.academy_logo)
                 .into(binding.lectureImage)
 
+            binding.lectureTitle.setText(lecture?.title)
             //youtube
             binding.lectureYoutubeUrlText.setText(lecture?.youtubeUrl)
             binding.lectureYoutubeButton.setOnClickListener {
