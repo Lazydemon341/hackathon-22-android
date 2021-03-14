@@ -74,6 +74,7 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true, "Ad
                         dateAndTime.set(Calendar.YEAR, p1)
                         dateAndTime.set(Calendar.MONTH, p2)
                         dateAndTime.set(Calendar.DAY_OF_MONTH, p3)
+                        setInitialDateTime()
                     }
                 }
                 , dateAndTime.get(Calendar.YEAR),
@@ -91,6 +92,7 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true, "Ad
                     override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
                         dateAndTime.set(Calendar.HOUR_OF_DAY, p1)
                         dateAndTime.set(Calendar.MINUTE, p2)
+                        setInitialDateTime()
                     }
 
                 }
