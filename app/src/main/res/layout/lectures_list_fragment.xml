@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/large_margin"
         tools:layout_editor_absoluteX="138dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
