@@ -17,7 +17,7 @@ import com.github.android_academy.hackathon.ui.ViewState
 import java.util.*
 
 
-class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true) {
+class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true, "Add lecture") {
     private val binding by viewBinding(AddLectureFragmentBinding::bind)
 
 
@@ -25,7 +25,7 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true) {
         factoryProducer = { AddLectureViewModelFactory() }
     )
 
-    var dateAndTime = Calendar.getInstance()
+    private var dateAndTime: Calendar = Calendar.getInstance()
 
     override fun initViews(view: View) {
         super.initViews(view)
@@ -64,6 +64,7 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true) {
             viewModel.startDatePicker(dateAndTime)
         }
     }
+
     private fun setInitialDateTime() {
         binding.addLectureFragmentDate.setText(
             DateUtils.formatDateTime(

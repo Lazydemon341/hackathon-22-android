@@ -14,7 +14,7 @@ import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 
-class AddCourseFragment : BaseFragment(R.layout.add_course_fragment, true) {
+class AddCourseFragment : BaseFragment(R.layout.add_course_fragment, true, "Add course") {
     private val binding by viewBinding(AddCourseFragmentBinding::bind)
 
 

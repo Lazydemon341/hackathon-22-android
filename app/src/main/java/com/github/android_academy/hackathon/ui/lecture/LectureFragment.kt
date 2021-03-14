@@ -17,7 +17,7 @@ import com.github.android_academy.hackathon.di.viewmodels.lecture.DaggerLectureV
 import com.github.android_academy.hackathon.ui.BaseFragment
 
 
-class LectureFragment : BaseFragment(R.layout.lection_fragment, true) {
+class LectureFragment : BaseFragment(R.layout.lection_fragment, true, "Lecture") {
     private val binding by viewBinding(LectionFragmentBinding::bind)
 
 

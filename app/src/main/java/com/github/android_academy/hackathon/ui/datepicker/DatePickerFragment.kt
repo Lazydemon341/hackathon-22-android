@@ -14,7 +14,7 @@ import com.github.android_academy.hackathon.ui.BaseFragment
 import java.util.*
 
 class DatePickerFragment() : BaseFragment(R.layout.date_picker_fragment,
-    false
+    false, "Pick date"
 ) {
     private val binding by viewBinding(DatePickerFragmentBinding::bind)
 

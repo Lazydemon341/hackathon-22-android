@@ -7,7 +7,11 @@ import androidx.fragment.app.Fragment
 import com.github.android_academy.hackathon.R
 import com.google.android.material.appbar.MaterialToolbar
 
-abstract class BaseFragment(layoutResource: Int, private val isShowToolbar: Boolean) :
+abstract class BaseFragment(
+    layoutResource: Int,
+    private val isShowToolbar: Boolean,
+    private val title: String = ""
+) :
     Fragment(layoutResource) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,6 +26,9 @@ abstract class BaseFragment(layoutResource: Int, private val isShowToolbar: Bool
     open fun onBackPressed() {}
 
     private fun showToolbar() {
-        activity?.findViewById<MaterialToolbar>(R.id.app_toolbar)?.isVisible = isShowToolbar
+        val toolbar = activity?.findViewById<MaterialToolbar>(R.id.app_toolbar)
+        toolbar?.isVisible = isShowToolbar
+        if (isShowToolbar)
+            toolbar?.title = title
     }
 }
