@@ -1,9 +1,5 @@
 package com.github.android_academy.hackathon.ui.addlecture
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.app.TimePickerDialog
-import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.View
@@ -64,61 +60,21 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true) {
 
         //date
         setInitialDateTime()
-        binding.addLectureFragmentDate.setOnClickListener { View.OnClickListener {
-            setDate(it)
-            setTime(it)
-        } }
+        binding.addLectureFragmentDate.setOnClickListener {
+            viewModel.startDatePicker(dateAndTime)
+        }
     }
-
-    // отображаем диалоговое окно для выбора даты
-    fun setDate(v: View?) {
-        val dialog = DatePickerDialog(
-            requireContext(), d,
-            dateAndTime.get(Calendar.YEAR),
-            dateAndTime.get(Calendar.MONTH),
-            dateAndTime.get(Calendar.DAY_OF_MONTH)
-        )
-        dialog.show()
-    }
-
-    // отображаем диалоговое окно для выбора времени
-    fun setTime(v: View?) {
-        val dialog = TimePickerDialog(
-            context, t,
-            dateAndTime.get(Calendar.HOUR_OF_DAY),
-            dateAndTime.get(Calendar.MINUTE), true
-        )
-        dialog.show()
-    }
-
-    // установка начальных даты и времени
     private fun setInitialDateTime() {
         binding.addLectureFragmentDate.setText(
             DateUtils.formatDateTime(
                 context,
-                dateAndTime.getTimeInMillis(),
+                dateAndTime.timeInMillis,
                 DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
                         or DateUtils.FORMAT_SHOW_TIME
             )
         )
     }
 
-    // установка обработчика выбора времени
-    var t =
-        OnTimeSetListener { view, hourOfDay, minute ->
-            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
-            dateAndTime.set(Calendar.MINUTE, minute)
-            setInitialDateTime()
-        }
-
-    // установка обработчика выбора даты
-    var d =
-        OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            dateAndTime.set(Calendar.YEAR, year)
-            dateAndTime.set(Calendar.MONTH, monthOfYear)
-            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            setInitialDateTime()
-        }
 
     override fun onBackPressed() {
         viewModel.exitFragment()

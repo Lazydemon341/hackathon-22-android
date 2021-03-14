@@ -11,8 +11,10 @@ import com.github.terrakok.cicerone.androidx.Creator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.github.android_academy.hackathon.ui.addcourse.AddCourseFragment
 import com.github.android_academy.hackathon.ui.addlecture.AddLectureFragment
+import com.github.android_academy.hackathon.ui.datepicker.DatePickerFragment
 import com.github.android_academy.hackathon.ui.lecture.LectureFragment
 import com.github.android_academy.hackathon.ui.lectureslist.LecturesListFragment
+import java.util.*
 
 object Screens {
     fun loginFragment(): FragmentScreen =
@@ -38,6 +40,11 @@ object Screens {
     fun lecturesListFragment(course : Course) : FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(LecturesListFragment.newInstance(course))
+        )
+
+    fun datePickerFragment(calendar: Calendar) : FragmentScreen =
+        FragmentScreen(
+            fragmentCreator = FragmentCreator(DatePickerFragment.newInstance(calendar))
         )
 
     fun addLectureFragment(courseId:Long) : FragmentScreen =

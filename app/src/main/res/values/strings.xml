@@ -31,4 +31,5 @@
     <string name="img_url">Image preview link</string>
     <string name="tags">Tags</string>
     <string name="date_label">Date</string>
+    <string name="date_picker_title">Date of lecture</string>
 </resources>

@@ -4,14 +4,18 @@ import android.util.Log
 import androidx.annotation.MainThread
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.*
+import androidx.lifecycle.Observer
+import com.github.android_academy.hackathon.Screens
 import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.domain.repositories.CourseRepository
 import com.github.android_academy.hackathon.ui.ViewState
 import com.github.android_academy.hackathon.ui.addcourse.SingleLiveEvent
 import com.github.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.Screen
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
@@ -38,6 +42,10 @@ class AddLectureViewModel @Inject constructor(
 
     fun exitFragment() {
         router.exit()
+    }
+
+    fun startDatePicker(calendar: Calendar){
+        router.navigateTo(Screens.datePickerFragment(calendar))
     }
 }
 
