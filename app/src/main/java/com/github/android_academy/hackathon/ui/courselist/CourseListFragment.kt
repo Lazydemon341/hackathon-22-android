@@ -16,7 +16,7 @@ import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 
-class CourseListFragment : BaseFragment(R.layout.course_list_fragment, true) {
+class CourseListFragment : BaseFragment(R.layout.course_list_fragment, true, "Courses") {
     private val binding by viewBinding(CourseListFragmentBinding::bind)
 
     private val coursesAdapter = CoursesAdapter(

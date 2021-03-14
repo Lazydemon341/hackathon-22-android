@@ -17,7 +17,7 @@ import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 
 
-class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment, true) {
+class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment, true, "Lectures") {
     private val binding by viewBinding(LecturesListFragmentBinding::bind)
 
     private val lecturesAdapter =
