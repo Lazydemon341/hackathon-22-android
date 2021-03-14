@@ -96,7 +96,7 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/registration_fragment_ismentor_checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,10 +105,12 @@
             app:layout_constraintTop_toBottomOf="@+id/registration_fragment_password2"
             tools:layout_editor_absoluteX="21dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/registration_fragment_sign_up_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@drawable/rounded_shape"
             android:text="@string/sign_up"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registration_fragment_ismentor_checkbox" />

@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.Screens
+import com.github.android_academy.hackathon.databinding.AddCourseFragmentBinding
+import com.github.android_academy.hackathon.databinding.AppActivityBinding
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -17,6 +20,10 @@ import com.google.android.material.appbar.MaterialToolbar
 import javax.inject.Inject
 
 class AppActivity : AppCompatActivity() {
+
+    private val binding by viewBinding(AppActivityBinding::bind)
+
+
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
@@ -70,9 +77,9 @@ class AppActivity : AppCompatActivity() {
 
     private fun setupActionBar() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
-//        (supportActionBar).setNavigationOnClickListener() {
-//            findViewById<DrawerLayout>(R.id.drawer_layout).openDrawer(GravityCompat.START)
-//        } // TODO
+        (binding.appToolbar).setNavigationOnClickListener() {
+            findViewById<DrawerLayout>(R.id.drawer_layout).openDrawer(GravityCompat.START)
+        }
     }
 
 }

@@ -23,7 +23,7 @@
     </group>
     <item
         android:id="@+id/item_about"
-        android:icon="@android:drawable/ic_menu_myplaces"
+        android:icon="@drawable/ic_info_24"
         android:title="About App"
         app:showAsAction="collapseActionView" />
 </menu>

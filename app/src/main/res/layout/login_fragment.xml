@@ -69,14 +69,17 @@
             android:id="@+id/login_fragment_sign_in_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_shape"
             android:text="@string/sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_fragment_password" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/login_fragment_sign_up_button"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/standard_margin"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_shape"
             android:text="@string/sign_up"
             app:layout_constraintTop_toBottomOf="@+id/login_fragment_sign_in_button" />
 

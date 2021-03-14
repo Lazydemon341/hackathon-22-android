@@ -14,7 +14,7 @@ import com.github.android_academy.hackathon.di.viewmodels.login.DaggerLoginViewM
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 
-class LoginFragment : BaseFragment(R.layout.login_fragment) {
+class LoginFragment : BaseFragment(R.layout.login_fragment, false) {
     private val binding by viewBinding(LoginFragmentBinding::bind)
 
 

@@ -14,7 +14,7 @@ import com.github.android_academy.hackathon.di.viewmodels.registration.DaggerReg
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
 
-class RegistrationFragment : BaseFragment(R.layout.registration_fragment) {
+class RegistrationFragment : BaseFragment(R.layout.registration_fragment, false) {
     private val binding by viewBinding(RegistrationFragmentBinding::bind)
 
     private val viewModel: RegistrationViewModel by viewModels(

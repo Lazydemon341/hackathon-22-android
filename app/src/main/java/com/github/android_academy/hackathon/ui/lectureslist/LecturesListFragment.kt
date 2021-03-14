@@ -19,7 +19,7 @@ import com.github.android_academy.hackathon.ui.ViewState
 import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
 
 
-class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment) {
+class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment, true) {
     private val binding by viewBinding(LecturesListFragmentBinding::bind)
 
     private val lecturesAdapter =
