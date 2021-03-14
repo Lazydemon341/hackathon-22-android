@@ -57,12 +57,12 @@ class CourseViewHolder(private val binding: CourseItemFragmentBinding) :
                     ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.gray))
                 )
             }
-            addToFavoriteListener(course) // Изменить курс
+            addToFavoriteListener(course)
         }
     }
 
     private fun setText(course: Course) {
         binding.courseItemFragmentCoursename.text = course.title
-        binding.courseItemFragmentLecturescount.text = course.shortDescription
+        binding.courseItemTags.text = course.tags.joinToString { " " }
     }
 }

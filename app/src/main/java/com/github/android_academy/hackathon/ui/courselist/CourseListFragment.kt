@@ -20,14 +20,11 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment, true) {
     private val binding by viewBinding(CourseListFragmentBinding::bind)
 
     private val coursesAdapter = CoursesAdapter(
-        courseListener = { viewModel.onCourseAction(it) },
+        courseListener = {
+            viewModel.onCourseAction(it)
+        },
         addToFavoriteListener = {
-            viewModel.subscribeAction(it)
-            if (binding.courseListFragmentSwitch.isChecked)
-                viewModel.showFavoriteCourses()
-            else{
-                viewModel.showAllCourses()
-            }
+            onSubscribeToCourse(it)
         }
     )
 
@@ -54,6 +51,16 @@ class CourseListFragment : BaseFragment(R.layout.course_list_fragment, true) {
         //switch
         binding.courseListFragmentSwitch.setOnCheckedChangeListener { button, b ->
             if (b) viewModel.showFavoriteCourses() else viewModel.showAllCourses()
+        }
+    }
+
+    private fun onSubscribeToCourse(course: Course) {
+        viewModel.subscribeAction(course)
+        coursesAdapter.submitList(emptyList())
+        if (binding.courseListFragmentSwitch.isChecked)
+            viewModel.showFavoriteCourses()
+        else {
+            viewModel.showAllCourses()
         }
     }
 
