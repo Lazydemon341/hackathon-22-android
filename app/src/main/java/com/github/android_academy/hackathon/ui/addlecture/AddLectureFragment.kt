@@ -106,7 +106,7 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true, "Ad
 
     private fun setInitialDateTime() {
         binding.addLectureFragmentDate.setText(
-            DateUtils.formatDate(
+            DateUtils.formatDateTime(
                 context,
                 dateAndTime.timeInMillis,
                 DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
