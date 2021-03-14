@@ -36,5 +36,10 @@ interface ServerApi {
     @GET("lectures/all")
     suspend fun getAllLectures(
         @Query(value = "courseId") courseId: Long
-    ) : List<LectureDTO>
+    ): List<LectureDTO>
+
+    @POST("user/update-fcm-token")
+    suspend fun updateFcmToken(
+        @Body fcmToken: String
+    )
 }
