@@ -12,5 +12,6 @@ data class UpdateLectureRequestDTO(
     val additionalMaterials: List<AdditionalMaterialDTO>,
     val imgUrl: String? = null,
     val tags: List<String>,
-    val courseId: Long
+    val courseId: Long,
+    val startTimestamp : Long
 )

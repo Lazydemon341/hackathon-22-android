@@ -73,7 +73,7 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment, true)
     }
 
     private fun showError() {
-        Toast.makeText(requireContext(), "Couldn't load дусегкуы...", Toast.LENGTH_SHORT)
+        Toast.makeText(requireContext(), "Couldn't load list...", Toast.LENGTH_SHORT)
             .show()
     }
 

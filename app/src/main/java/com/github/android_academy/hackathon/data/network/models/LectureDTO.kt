@@ -13,7 +13,8 @@ data class LectureDTO(
     val additionalMaterials: List<AdditionalMaterialDTO>,
     val imgUrl: String? = null,
     val tags: List<String>,
-    val courseId: Long
+    val courseId: Long,
+    val startTimestamp : Long
 )
 
 fun LectureDTO.toLecture(): Lecture =
@@ -26,5 +27,6 @@ fun LectureDTO.toLecture(): Lecture =
         additionalMaterials = additionalMaterials.map(AdditionalMaterialDTO::toAdditionalMaterial),
         imgUrl = imgUrl,
         tags = tags,
-        courseId = courseId
+        courseId = courseId,
+        startTimestamp = startTimestamp
     )

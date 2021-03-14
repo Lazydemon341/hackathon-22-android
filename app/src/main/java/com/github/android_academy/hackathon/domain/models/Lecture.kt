@@ -13,5 +13,6 @@ data class Lecture(
     val additionalMaterials: List<AdditionalMaterial>,
     val imgUrl: String? = null,
     val tags: List<String>,
-    val courseId: Long
+    val courseId: Long,
+    val startTimestamp : Long
 ) : Parcelable

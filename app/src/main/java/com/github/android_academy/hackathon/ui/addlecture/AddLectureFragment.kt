@@ -7,7 +7,6 @@ import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.View
-import android.widget.EditText
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -42,10 +41,11 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true) {
                 youtubeUrl = binding.addLectureFragmentYoutubeUrl.editText?.text.toString(),
                 githubRepoUrl = binding.addLectureFragmentGithub.editText?.text.toString(),
                 telegramChannel = binding.addLectureFragmentTelegramChannel.editText?.text.toString(),
-                additionalMaterials = emptyList(), //TODO может чем-то заменить
+                additionalMaterials = emptyList(),
                 imgUrl = binding.addLectureFragmentImgUrl.editText?.text.toString(),
                 tags = binding.addLectureFragmentTags.editText?.text.toString().split(" "),
-                courseId = arguments?.getLong(COURSE_ID)!! //TODO получить из Bundle
+                courseId = arguments?.getLong(COURSE_ID)!!,
+                startTimestamp = dateAndTime.timeInMillis
             )
             viewModel.addLecture(lecture)
         }
@@ -63,49 +63,37 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true) {
         }
 
         //date
-        //TODO брать дату из лекции
         setInitialDateTime()
-        binding.addLectureFragmentDate.editText?.setOnClickListener { View.OnClickListener {
+        binding.addLectureFragmentDate.setOnClickListener { View.OnClickListener {
             setDate(it)
             setTime(it)
         } }
     }
 
-    private fun setTime(calendar: Calendar, currentDateTime: EditText){
-        currentDateTime.setText(
-            DateUtils.formatDateTime(
-                context,
-                calendar.getTimeInMillis(),
-                DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
-                        or DateUtils.FORMAT_SHOW_TIME
-            )
-        )
-    }
-
     // отображаем диалоговое окно для выбора даты
     fun setDate(v: View?) {
-        DatePickerDialog(
+        val dialog = DatePickerDialog(
             requireContext(), d,
             dateAndTime.get(Calendar.YEAR),
             dateAndTime.get(Calendar.MONTH),
             dateAndTime.get(Calendar.DAY_OF_MONTH)
         )
-            .show()
+        dialog.show()
     }
 
     // отображаем диалоговое окно для выбора времени
     fun setTime(v: View?) {
-        TimePickerDialog(
+        val dialog = TimePickerDialog(
             context, t,
             dateAndTime.get(Calendar.HOUR_OF_DAY),
             dateAndTime.get(Calendar.MINUTE), true
         )
-            .show()
+        dialog.show()
     }
 
     // установка начальных даты и времени
     private fun setInitialDateTime() {
-        binding.addLectureFragmentDate.editText?.setText(
+        binding.addLectureFragmentDate.setText(
             DateUtils.formatDateTime(
                 context,
                 dateAndTime.getTimeInMillis(),

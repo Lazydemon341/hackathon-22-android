@@ -2,6 +2,7 @@ package com.github.android_academy.hackathon.ui.addlecture
 
 import android.util.Log
 import androidx.annotation.MainThread
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.*
 import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.Lecture

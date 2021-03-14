@@ -97,7 +97,8 @@ class CourseRepositoryImpl @Inject constructor(
                     },
                     imgUrl = lecture.imgUrl,
                     tags = lecture.tags,
-                    courseId = lecture.courseId
+                    courseId = lecture.courseId,
+                    startTimestamp = lecture.startTimestamp
                 )
             )
             OperationResult.Success(Unit)
