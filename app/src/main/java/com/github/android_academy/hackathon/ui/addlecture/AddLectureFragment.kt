@@ -75,8 +75,6 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true, "Ad
                         dateAndTime.set(Calendar.MONTH, p2)
                         dateAndTime.set(Calendar.DAY_OF_MONTH, p3)
                     }
-
-
                 }
                 , dateAndTime.get(Calendar.YEAR),
                 dateAndTime.get(Calendar.MONTH),
@@ -111,6 +109,11 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true, "Ad
                 dateAndTime.timeInMillis,
                 DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
             )
+        )
+        binding.addLectureFragmentTime.setText(
+            DateUtils.formatDateTime(context,
+                dateAndTime.timeInMillis,
+                DateUtils.FORMAT_SHOW_TIME)
         )
     }
 
