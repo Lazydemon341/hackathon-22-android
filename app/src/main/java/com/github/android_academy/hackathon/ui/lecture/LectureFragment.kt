@@ -17,7 +17,7 @@ import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.BaseFragment
 
 
-class LectureFragment :BaseFragment(R.layout.lection_fragment, true) {
+class LectureFragment : BaseFragment(R.layout.lection_fragment, true) {
     private val binding by viewBinding(LectionFragmentBinding::bind)
 
 
@@ -36,31 +36,37 @@ class LectureFragment :BaseFragment(R.layout.lection_fragment, true) {
             .load(lecture?.imgUrl)
             .centerCrop()
             .placeholder(R.drawable.academy_logo)
-            .into(binding.lectureImgurl)
+            .into(binding.lectureImage)
 
-        binding.ratingBar.rating = 5F
+        binding.lectureRatingBar.rating = 5F
 
         //youtube
-        binding.lectionFragmentYoutubeUrl.setText(lecture?.youtubeUrl)
-        binding.lectionFragmentYoutubeButton.setOnClickListener {
+        //binding.lectureTelegramUrlText.setText(lecture?.youtubeUrl) TODO
+        binding.lectureYoutubeButton.setOnClickListener {
             val youtubeIntent: Intent = Intent(Intent.ACTION_VIEW)
-            youtubeIntent.setData(Uri.parse(lecture?.youtubeUrl))
-            startActivity(Intent.createChooser(youtubeIntent, "Choose youtube video player"))
+            youtubeIntent.data = Uri.parse(lecture?.youtubeUrl)
+            startActivity(Intent.createChooser(youtubeIntent, "Youtube:"))
         }
 
         //github
-        binding.lectionFragmentTelegramUrl.setText(lecture?.telegramChannel)
-        binding.lectionFragmentTelegramButton.setOnClickListener {
-            val telegramIntent: Intent = Intent(Intent.ACTION_VIEW,Uri.parse(lecture?.telegramChannel))
-            startActivity(telegramIntent)
+        //binding.lectionFragmentTelegramUrl.setText(lecture?.telegramChannel) TODO
+        binding.lectureTelegramButton.setOnClickListener {
+            val telegramIntent: Intent =
+                Intent(Intent.ACTION_VIEW, Uri.parse(lecture?.telegramChannel))
+            startActivity(Intent.createChooser(telegramIntent, "Telegram:"))
         }
 
         //telegram
-        binding.lectionFragmentGithubUrl.setText(lecture?.githubRepoUrl)
-        binding.lectionFragmentGithubButton.setOnClickListener {
+        //binding.lectionFragmentGithubUrl.setText(lecture?.githubRepoUrl) TODO
+        binding.lectureGithubButton.setOnClickListener {
             val githubIntent: Intent = Intent(Intent.ACTION_VIEW)
-            githubIntent.setData(Uri.parse(lecture?.githubRepoUrl))
-            startActivity(Intent.createChooser(githubIntent, "Choose telegram"))
+            githubIntent.data = Uri.parse(lecture?.githubRepoUrl)
+            startActivity(
+                Intent.createChooser(
+                    githubIntent,
+                    "Github:"
+                )
+            ) // TODO change to choose github
         }
 
     }
@@ -71,8 +77,9 @@ class LectureFragment :BaseFragment(R.layout.lection_fragment, true) {
 
     companion object {
         private const val LECTURE_KEY = "lecture_key"
+
         @JvmStatic
-        fun newInstance(lecture: Lecture): LectureFragment{
+        fun newInstance(lecture: Lecture): LectureFragment {
             val fragment = LectureFragment()
             val bundle = Bundle()
             bundle.putParcelable(LECTURE_KEY, lecture)

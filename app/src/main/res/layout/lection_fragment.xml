@@ -1,209 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal|top"
-    android:orientation="vertical"
-    android:padding="@dimen/standard_margin">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/lecture_imgurl"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/googleg_standard_color_18" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lecture_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="?attr/ratingBarStyleSmall"
-        android:max="5"
-        android:progress="0" />
+        android:layout_marginTop="@dimen/large_margin"
+        android:textAllCaps="true"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_title_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Lecture #1" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_title_size"
-        android:gravity="center_horizontal|center"
-        android:orientation="horizontal"
-        android:weightSum="5">
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:layout_marginEnd="@dimen/standard_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lecture_title">
 
-        <ImageView
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:src="@drawable/yt" />
-
-        <EditText
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="YouTube"
-            android:textColor="#888"
-            android:textFontWeight="700"
-            android:visibility="gone" />
-
-        <EditText
-            android:id="@+id/lection_fragment_youtubeUrl"
-            android:layout_width="172dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:inputType="textUri"
-            android:text="http://youtube.com/sample"
-            android:textColor="#c1c1c1" />
-
-        <ImageButton
-            android:id="@+id/lection_fragment_youtube_button"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:scaleType="fitEnd"
-            android:src="@drawable/click"
-            android:text="LINK"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_title_size"
-        android:gravity="center_horizontal|center"
-        android:orientation="horizontal"
-        android:weightSum="5">
-
-
-        <ImageView
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:src="@drawable/github" />
-
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="GitHub"
-            android:textColor="#888"
-            android:textFontWeight="700"
-            android:visibility="gone" />
-
-        <TextView
-
-            android:id="@+id/lection_fragment_githubUrl"
-            android:layout_width="172dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="http://github.com/sample"
-            android:textColor="#c1c1c1" />
-
-        <ImageButton
-            android:id="@+id/lection_fragment_github_button"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:scaleType="fitEnd"
-            android:src="@drawable/click"
-            android:text="LINK"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_title_size"
-        android:gravity="center_horizontal|center"
-        android:orientation="horizontal"
-        android:weightSum="5">
-
-
-        <ImageView
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:src="@drawable/tg" />
-
-        <TextView
-            android:layout_width="84dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="Telegram"
-            android:textColor="#888"
-            android:textFontWeight="700"
-            android:visibility="gone" />
-
-        <TextView
-
-            android:id="@+id/lection_fragment_telegramUrl"
-            android:layout_width="172dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="http://t.me/sample"
-            android:textColor="#c1c1c1" />
-
-        <ImageButton
-            android:id="@+id/lection_fragment_telegram_button"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:scaleType="fitEnd"
-            android:src="@drawable/click"
-            android:text="LINK"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_title_size"
-        android:gravity="center_horizontal|center"
-        android:orientation="horizontal"
-        android:weightSum="5">
-
-        <TextView
-
-            android:layout_width="84dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:fontFamily="serif"
-            android:padding="8dp"
-            android:text="Materials"
-            android:textColor="#888"
-            android:textFontWeight="700" />
-
-        <LinearLayout
-            android:id="@+id/lection_fragment_materials_container"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_title_size"
-            android:gravity="center_horizontal|center"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/lecture_image"
+                style="@style/roundedImageView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/academy_logo" />
 
             <TextView
-                android:id = "@+id/lection_fragment_aditionals"
+                android:id="@+id/rate_lecture_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:textSize="@dimen/text_mid_size"
+                android:text="Rate this lecture:"
+                app:layout_constraintBottom_toBottomOf="@id/lecture_ratingBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lecture_ratingBar" />
+
+            <RatingBar
+                android:id="@+id/lecture_ratingBar"
+                style="?attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginEnd="@dimen/standard_margin"
+                android:max="5"
+                android:progress="0"
+                app:layout_constraintStart_toEndOf="@id/rate_lecture_text"
+                app:layout_constraintTop_toTopOf="@id/lecture_telegram_button" />
+
+            <ImageView
+                android:id="@+id/lecture_youtube_button"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
                 android:fontFamily="serif"
                 android:padding="8dp"
-                android:textColor="#888"
-                android:textFontWeight="400" />
-        </LinearLayout>
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_youtube"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lecture_image" />
 
-    </LinearLayout>
-</LinearLayout>
+            <EditText
+                android:id="@+id/lecture_youtubeUrl_edit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:fontFamily="serif"
+                android:inputType="textUri"
+                android:padding="8dp"
+                android:textColor="#c1c1c1"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/lecture_youtube_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lecture_youtube_button"
+                app:layout_constraintTop_toTopOf="@id/lecture_youtube_button"
+                tools:text="http://youtube.com/sample" />
+
+            <TextView
+                android:id="@+id/lecture_youtubeUrl_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:fontFamily="serif"
+                android:padding="8dp"
+                android:textColor="#c1c1c1"
+                app:layout_constraintBottom_toBottomOf="@id/lecture_youtube_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lecture_youtube_button"
+                app:layout_constraintTop_toTopOf="@id/lecture_youtube_button"
+                tools:text="http://youtube.com/sample" />
+
+            <ImageView
+                android:id="@+id/lecture_github_button"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:fontFamily="serif"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_github"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lecture_youtube_button" />
+
+            <EditText
+                android:id="@+id/lecture_githubUrl_edit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:fontFamily="serif"
+                android:inputType="textUri"
+                android:padding="8dp"
+                android:textColor="#c1c1c1"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/lecture_github_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lecture_github_button"
+                app:layout_constraintTop_toTopOf="@id/lecture_github_button"
+                tools:text="http://youtube.com/sample" />
+
+            <TextView
+                android:id="@+id/lecture_githubUrl_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:fontFamily="serif"
+                android:padding="8dp"
+                android:textColor="#c1c1c1"
+                app:layout_constraintBottom_toBottomOf="@id/lecture_github_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lecture_github_button"
+                app:layout_constraintTop_toTopOf="@id/lecture_github_button"
+                tools:text="http://youtube.com/sample" />
+
+            <ImageView
+                android:id="@+id/lecture_telegram_button"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:fontFamily="serif"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_telegram"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lecture_github_button" />
+
+            <EditText
+                android:id="@+id/lecture_telegram_url_edit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:fontFamily="serif"
+                android:inputType="textUri"
+                android:padding="8dp"
+                android:textColor="#c1c1c1"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/lecture_telegram_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lecture_telegram_button"
+                app:layout_constraintTop_toTopOf="@id/lecture_telegram_button"
+                tools:text="http://youtube.com/sample" />
+
+            <TextView
+                android:id="@+id/lecture_telegram_url_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:fontFamily="serif"
+                android:padding="8dp"
+                tools:text="http://youtube.com/sample"
+                android:textColor="#c1c1c1"
+                app:layout_constraintBottom_toBottomOf="@id/lecture_telegram_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lecture_telegram_button"
+                app:layout_constraintTop_toTopOf="@id/lecture_telegram_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

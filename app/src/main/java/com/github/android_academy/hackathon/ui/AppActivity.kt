@@ -2,6 +2,8 @@ package com.github.android_academy.hackathon.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
@@ -10,13 +12,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.Screens
-import com.github.android_academy.hackathon.databinding.AddCourseFragmentBinding
 import com.github.android_academy.hackathon.databinding.AppActivityBinding
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import com.google.android.material.appbar.MaterialToolbar
 import javax.inject.Inject
 
 class AppActivity : AppCompatActivity() {
@@ -56,7 +56,29 @@ class AppActivity : AppCompatActivity() {
         }
 
         authRepository.observeUser().observe(this) {
-            //TODO: update nav drawer
+            if (it.value != null) {
+                ((binding.nvView.getHeaderView(0) as LinearLayout).getChildAt(0) as TextView).text =
+                    it.value.username
+                ((binding.nvView.getHeaderView(0) as LinearLayout).getChildAt(1) as TextView).text =
+                    it.value.name
+            }
+        }
+
+        binding.nvView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                (R.id.item_log_out) ->{
+                    authRepository.logOut()
+                    router.newRootScreen(Screens.loginFragment())
+                }
+                (R.id.item_about)->{
+                    //TODO
+                }
+                else -> {
+                    //TODO
+                }
+            }
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            true
         }
     }
 
