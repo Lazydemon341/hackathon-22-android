@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.RatingBar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -38,7 +39,11 @@ class LectureFragment : BaseFragment(R.layout.lection_fragment, true) {
             .placeholder(R.drawable.academy_logo)
             .into(binding.lectureImage)
 
-        binding.lectureRatingBar.rating = 5F
+        binding.lectureRatingBar.rating = 0F
+
+        binding.lectureRatingBar.setOnRatingBarChangeListener { ratingBar: RatingBar, fl: Float, b: Boolean ->
+            ratingBar.rating = fl
+        }
 
         //youtube
         //binding.lectureTelegramUrlText.setText(lecture?.youtubeUrl) TODO
