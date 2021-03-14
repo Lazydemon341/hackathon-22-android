@@ -1,6 +1,8 @@
 package com.github.android_academy.hackathon.ui
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -38,6 +40,11 @@ class AppActivity : AppCompatActivity() {
     private val currentFragment: BaseFragment?
         get() = supportFragmentManager.findFragmentById(R.id.container) as? BaseFragment
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setTheme(R.style.Theme_HackathonWinnerApp)
@@ -48,7 +55,7 @@ class AppActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.app_toolbar))
         setupActionBar()
 
-        if (savedInstanceState == null) {
+        if (!handleIntent(intent) && savedInstanceState == null) {
             if (authRepository.loadUser() == null)
                 router.newRootScreen(Screens.loginFragment())
             else
@@ -65,12 +72,12 @@ class AppActivity : AppCompatActivity() {
         }
 
         binding.nvView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                (R.id.item_log_out) ->{
+            when (it.itemId) {
+                (R.id.item_log_out) -> {
                     authRepository.logOut()
                     router.newRootScreen(Screens.loginFragment())
                 }
-                (R.id.item_about)->{
+                (R.id.item_about) -> {
                     //TODO
                 }
                 else -> {
@@ -80,6 +87,21 @@ class AppActivity : AppCompatActivity() {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+    }
+
+    private fun handleIntent(receivedIntent: Intent?): Boolean {
+        receivedIntent?.data ?: (receivedIntent?.extras?.getString("click_action")
+            ?.let { Uri.parse(it) })?.also { uri ->
+                val courseId = uri.getQueryParameter("courseId")?.toLong() ?: -1
+                val lectureId = uri.getQueryParameter("lectureId")?.toLong() ?: -1
+                router.newRootChain(
+                    Screens.courseListFragment(),
+                    Screens.lecturesListFragment(courseId),
+                    Screens.lectureFragment(lectureId = lectureId)
+                )
+                return true
+            }
+        return false
     }
 
     override fun attachBaseContext(newBase: Context) {

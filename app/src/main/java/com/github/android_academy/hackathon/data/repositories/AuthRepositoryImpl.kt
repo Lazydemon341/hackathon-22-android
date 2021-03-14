@@ -77,6 +77,7 @@ class AuthRepositoryImpl @Inject constructor(
         FirebaseMessaging.getInstance().token
             .addOnSuccessListener { fcmToken ->
                 GlobalScope.launch {
+                    println("fcm_token:$fcmToken")
                     serverApi.updateFcmToken(fcmToken)
                 }
             }

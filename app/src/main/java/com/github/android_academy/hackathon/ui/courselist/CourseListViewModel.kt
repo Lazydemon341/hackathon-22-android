@@ -31,7 +31,7 @@ class CourseListViewModel @Inject constructor(
     val courses: LiveData<ViewState<List<Course>, String?>> get() = mutableCourses
 
     fun onCourseAction(course: Course) {
-        router.navigateTo(Screens.lecturesListFragment(course))
+        router.navigateTo(Screens.lecturesListFragment(course.id ?: -1))
     }
 
     fun addCourseAction() {

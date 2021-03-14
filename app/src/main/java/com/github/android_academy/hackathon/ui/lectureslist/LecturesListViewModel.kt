@@ -1,13 +1,11 @@
 package com.github.android_academy.hackathon.ui.lectureslist
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.android_academy.hackathon.Screens
 import com.github.android_academy.hackathon.domain.OperationResult
-import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
@@ -44,7 +42,7 @@ class LecturesListViewModel @Inject constructor(
     }
 
     fun onLectureAction(lecture: Lecture){
-        router.navigateTo(Screens.lectureFragment(lecture))
+        router.navigateTo(Screens.lectureFragment(lecture.id))
     }
 
     fun addLectureAction(courseId: Long){

@@ -7,6 +7,7 @@ import com.github.android_academy.hackathon.di.modules.DataModule
 import com.github.android_academy.hackathon.di.modules.NetworkModule
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.domain.repositories.CourseRepository
+import com.github.android_academy.hackathon.domain.repositories.LecturesRepository
 import com.github.android_academy.hackathon.ui.AppActivity
 import com.github.terrakok.cicerone.Router
 import dagger.BindsInstance
@@ -22,6 +23,8 @@ interface AppComponent {
     fun provideAuthRepository(): AuthRepository
 
     fun provideCourseRepository(): CourseRepository
+
+    fun provideLecturesRepository(): LecturesRepository
 
     fun inject(app: App)
 

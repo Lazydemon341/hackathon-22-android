@@ -12,11 +12,9 @@ import com.github.android_academy.hackathon.App
 import com.github.android_academy.hackathon.R
 import com.github.android_academy.hackathon.databinding.LecturesListFragmentBinding
 import com.github.android_academy.hackathon.di.viewmodels.lectureslist.DaggerLecturesListViewModelComponent
-import com.github.android_academy.hackathon.domain.models.Course
 import com.github.android_academy.hackathon.domain.models.Lecture
 import com.github.android_academy.hackathon.ui.BaseFragment
 import com.github.android_academy.hackathon.ui.ViewState
-import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
 
 
 class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment, true) {
@@ -85,10 +83,10 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment, true)
         private const val COURSE_ID_KEY = "course_id"
 
         @JvmStatic
-        fun newInstance(course: Course) : LecturesListFragment{
+        fun newInstance(id: Long): LecturesListFragment {
             val fragment = LecturesListFragment()
             val bundle = Bundle()
-            bundle.putLong(COURSE_ID_KEY, course.id!!)
+            bundle.putLong(COURSE_ID_KEY, id)
             fragment.arguments = bundle
             return fragment
         }
