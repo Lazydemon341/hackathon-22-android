@@ -42,7 +42,7 @@ class LecturesListViewModel @Inject constructor(
     }
 
     fun onLectureAction(lecture: Lecture){
-        router.navigateTo(Screens.lectureFragment(lecture.id))
+        router.navigateTo(Screens.lectureFragment(lecture.id!!))
     }
 
     fun addLectureAction(courseId: Long){

@@ -5,17 +5,20 @@ import android.content.Intent
 import android.net.Uri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import com.github.android_academy.hackathon.domain.models.Course
+import com.github.android_academy.hackathon.domain.models.Lecture
+import com.github.android_academy.hackathon.ui.courselist.CourseListFragment
+import com.github.android_academy.hackathon.ui.login.LoginFragment
+import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
+import com.github.terrakok.cicerone.androidx.Creator
+import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.github.android_academy.hackathon.ui.addcourse.AddCourseFragment
 import com.github.android_academy.hackathon.ui.addlecture.AddLectureFragment
-import com.github.android_academy.hackathon.ui.courselist.CourseListFragment
 import com.github.android_academy.hackathon.ui.datepicker.DatePickerFragment
 import com.github.android_academy.hackathon.ui.lecture.LectureFragment
 import com.github.android_academy.hackathon.ui.lectureslist.LecturesListFragment
-import com.github.android_academy.hackathon.ui.login.LoginFragment
-import com.github.android_academy.hackathon.ui.registration.RegistrationFragment
+import com.github.android_academy.hackathon.ui.timepicker.TimePickerFragment
 import com.github.terrakok.cicerone.androidx.ActivityScreen
-import com.github.terrakok.cicerone.androidx.Creator
-import com.github.terrakok.cicerone.androidx.FragmentScreen
 import java.util.*
 
 object Screens {
@@ -39,9 +42,9 @@ object Screens {
                     fragmentCreator = FragmentCreator(CourseListFragment.newInstance())
             )
 
-    fun lecturesListFragment(id: Long): FragmentScreen =
+    fun lecturesListFragment(courseId : Long) : FragmentScreen =
         FragmentScreen(
-            fragmentCreator = FragmentCreator(LecturesListFragment.newInstance(id))
+            fragmentCreator = FragmentCreator(LecturesListFragment.newInstance(courseId))
         )
 
     fun datePickerFragment(calendar: Calendar) : FragmentScreen =
@@ -49,18 +52,23 @@ object Screens {
             fragmentCreator = FragmentCreator(DatePickerFragment.newInstance(calendar))
         )
 
+    fun timePickerFragment(calendar: Calendar) : FragmentScreen =
+        FragmentScreen(
+            fragmentCreator = FragmentCreator(TimePickerFragment.newInstance(calendar))
+        )
+
     fun addLectureFragment(courseId:Long) : FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(AddLectureFragment.newInstance(courseId))
         )
 
-    fun lectureFragment(lectureId: Long?): FragmentScreen =
+    fun lectureFragment(lectureId:Long) : FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(LectureFragment.newInstance(lectureId))
         )
 
 
-    fun addCourseFragment(): FragmentScreen =
+    fun addCourseFragment() : FragmentScreen =
         FragmentScreen(
             fragmentCreator = FragmentCreator(AddCourseFragment.newInstance())
         )

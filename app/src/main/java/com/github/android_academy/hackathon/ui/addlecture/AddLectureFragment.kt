@@ -1,8 +1,13 @@
 package com.github.android_academy.hackathon.ui.addlecture
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.View
+import android.widget.DatePicker
+import android.widget.TimePicker
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -61,16 +66,50 @@ class AddLectureFragment : BaseFragment(R.layout.add_lecture_fragment, true) {
         //date
         setInitialDateTime()
         binding.addLectureFragmentDate.setOnClickListener {
-            viewModel.startDatePicker(dateAndTime)
+            //viewModel.startDatePicker(dateAndTime)
+            DatePickerDialog(
+                requireContext(),
+                object: DatePickerDialog.OnDateSetListener{
+                    override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+                        dateAndTime.set(Calendar.YEAR, p1)
+                        dateAndTime.set(Calendar.MONTH, p2)
+                        dateAndTime.set(Calendar.DAY_OF_MONTH, p3)
+                    }
+
+
+                }
+                , dateAndTime.get(Calendar.YEAR),
+                dateAndTime.get(Calendar.MONTH),
+                dateAndTime.get(Calendar.DAY_OF_MONTH)
+            ).show()
+
+
+        }
+
+        binding.addLectureFragmentTime.setOnClickListener {
+            TimePickerDialog(
+                requireContext(),
+                object: TimePickerDialog.OnTimeSetListener{
+                    override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+                        dateAndTime.set(Calendar.HOUR_OF_DAY, p1)
+                        dateAndTime.set(Calendar.MINUTE, p2)
+                    }
+
+                }
+                , dateAndTime.get(Calendar.HOUR_OF_DAY),
+                dateAndTime.get(Calendar.MINUTE),true
+            ).show()
+
+
         }
     }
+
     private fun setInitialDateTime() {
         binding.addLectureFragmentDate.setText(
-            DateUtils.formatDateTime(
+            DateUtils.formatDate(
                 context,
                 dateAndTime.timeInMillis,
                 DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
-                        or DateUtils.FORMAT_SHOW_TIME
             )
         )
     }
