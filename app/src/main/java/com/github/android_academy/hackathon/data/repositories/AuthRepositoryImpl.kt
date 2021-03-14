@@ -10,6 +10,10 @@ import com.github.android_academy.hackathon.domain.OperationResult
 import com.github.android_academy.hackathon.domain.models.User
 import com.github.android_academy.hackathon.domain.repositories.AuthRepository
 import com.github.android_academy.hackathon.domain.repositories.MyOptional
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -35,6 +39,7 @@ class AuthRepositoryImpl @Inject constructor(
             ).toUser()
 
             prefsStorage.saveToSharedPref(user)
+            sendFcmTokenToBackend()
 
             OperationResult.Success(Unit)
 
@@ -60,6 +65,7 @@ class AuthRepositoryImpl @Inject constructor(
             ).toUser()
 
             prefsStorage.saveToSharedPref(user)
+            sendFcmTokenToBackend()
 
             OperationResult.Success(Unit)
 
@@ -67,6 +73,17 @@ class AuthRepositoryImpl @Inject constructor(
             OperationResult.Error(e.message)
         }
 
+    private fun sendFcmTokenToBackend() {
+        FirebaseMessaging.getInstance().token
+            .addOnSuccessListener { fcmToken ->
+                GlobalScope.launch {
+                    serverApi.updateFcmToken(fcmToken)
+                }
+            }
+            .addOnFailureListener {
+                Timber.e(it, "Cannot get FCM token")
+            }
+    }
 
     override fun logOut() =
         prefsStorage.saveToSharedPref(null)

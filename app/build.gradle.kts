@@ -79,10 +79,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
     kapt(Libs.roomCompiler)
     platform(Libs.firebase)
+    implementation("com.google.firebase:firebase-messaging:21.0.1")
+
 
     implementation(Libs.adapterDelegates)
     implementation(Libs.cicerone)
     implementation(Libs.glide)
+    annotationProcessor(Libs.glide)
     kapt(Libs.glideCompiler)
     kapt(Libs.moshiCodeGen)
     implementation(Libs.glideOkhttp)

@@ -36,7 +36,6 @@ class CourseListViewModel @Inject constructor(
 
     fun addCourseAction() {
         router.navigateTo(Screens.addCourseFragment())
-        //TODO добавление курса. На то что ментор уже проверили
     }
 
 
