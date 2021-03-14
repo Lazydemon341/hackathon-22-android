@@ -1,5 +1,6 @@
 package com.github.android_academy.hackathon.ui.lectureslist
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -55,7 +55,14 @@ class LecturesListFragment : BaseFragment(R.layout.lectures_list_fragment, true)
         when (lectures) {
             is ViewState.Success -> {
                 //TODO Загрузка
-                lecturesAdapter.submitList(lectures.result)
+                val courseId = arguments?.getLong(COURSE_ID_KEY) ?: 0
+                var list = mutableListOf<Lecture>()
+                lectures.result.forEach {
+                    if (it.courseId == courseId){
+                        list.add(it)
+                    }
+                }
+                lecturesAdapter.submitList(list)
             }
             //ViewState.Loading ->  //TODO Загрузка
             is ViewState.Error -> {
